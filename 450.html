@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ather 450 Series — Apex, 450X, 450S | PILLAI AUTO, Ather OMR</title>
+<meta name="description" content="Explore the Ather 450 Apex, 450X and 450S at PILLAI AUTO, your authorised Ather dealership on OMR, Chennai. Specs, range, pricing and test rides across Chennai, Pondicherry, Chengalpet and Chidambaram.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pine-950:#0A1F19;
+    --pine-800:#123329;
+    --pine-700:#1A4536;
+    --green-400:#7CFB6D;
+    --green-300:#A6FF9B;
+    --cream-50:#F6F4EC;
+    --cream-100:#EEEADD;
+    --ink-900:#0E1D18;
+    --muted:#5B6E66;
+    --line:rgba(14,29,24,0.12);
+    --line-dark:rgba(246,244,236,0.14);
+    --radius:14px;
+    --disp:'Space Grotesk',sans-serif;
+    --body:'Inter',sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--body);
+    background:var(--cream-50);
+    color:var(--ink-900);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+  h1,h2,h3,h4{font-family:var(--disp); line-height:1.08; letter-spacing:-0.01em;}
+  .eyebrow{
+    font-family:var(--disp); font-size:12.5px; font-weight:600;
+    letter-spacing:0.14em; text-transform:uppercase; color:var(--green-400);
+  }
+  .eyebrow.dark{color:var(--pine-700);}
+
+  /* ---------- NAV ---------- */
+  header.site{
+    position:sticky; top:0; z-index:60;
+    background:rgba(10,31,25,0.94); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line-dark);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1180px; margin:0 auto;}
+  .brand{display:flex; align-items:center; gap:10px; color:var(--cream-50);}
+  .brand .mark{
+    width:34px; height:34px; border-radius:9px;
+    background:linear-gradient(135deg, var(--green-400), var(--green-300));
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--disp); font-weight:700; color:var(--pine-950); font-size:15px;
+  }
+  .brand .name{font-family:var(--disp); font-weight:600; font-size:15px; line-height:1.15;}
+  .brand .name small{display:block; font-family:var(--body); font-weight:400; font-size:11px; color:#A9BDB4; letter-spacing:0.03em;}
+  .nav-links{display:flex; align-items:center; gap:28px;}
+  .nav-links a{color:#CFE0D8; font-size:14px; font-weight:500; transition:color .15s;}
+  .nav-links a:hover{color:var(--green-400);}
+  .nav-cta{
+    display:flex; align-items:center; gap:14px;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--body); font-weight:600; font-size:14px;
+    padding:11px 20px; border-radius:999px; border:1px solid transparent;
+    cursor:pointer; transition:transform .15s, background .15s, border-color .15s;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-solid{background:var(--green-400); color:var(--pine-950);}
+  .btn-solid:hover{background:var(--green-300);}
+  .btn-outline{border-color:rgba(246,244,236,0.3); color:var(--cream-50);}
+  .btn-outline:hover{border-color:var(--green-400); color:var(--green-400);}
+  .btn-ink{border-color:var(--ink-900); color:var(--ink-900);}
+  .btn-ink:hover{background:var(--ink-900); color:var(--cream-50);}
+  @media (max-width:900px){ .nav-links{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:radial-gradient(1100px 520px at 78% -10%, #16493A 0%, var(--pine-950) 60%);
+    color:var(--cream-50); padding:64px 0 0; position:relative; overflow:hidden;
+  }
+  .hero-top{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center; padding-bottom:40px;}
+  @media (max-width:900px){ .hero-top{grid-template-columns:1fr; gap:32px;} }
+  .hero h1{font-size:clamp(38px,5.4vw,64px); margin:14px 0 18px; font-weight:600;}
+  .hero h1 em{font-style:normal; color:var(--green-400);}
+  .hero p.lede{font-size:17px; color:#C9DAD2; max-width:46ch; margin-bottom:28px;}
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
+
+  .hero-visual{
+    aspect-ratio:4/3; border-radius:20px;
+    background:linear-gradient(160deg, var(--pine-700), var(--pine-800));
+    border:1px solid var(--line-dark);
+    display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+  }
+  .hero-visual .ph-label{
+    text-align:center; color:#9CB5AA; font-size:13px; padding:20px;
+  }
+  .hero-visual .ph-icon{width:52px; height:52px; margin:0 auto 12px; opacity:.55;}
+  .hero-visual .ring{
+    position:absolute; width:340px; height:340px; border-radius:50%;
+    border:1px solid rgba(124,251,109,0.18); top:50%; left:50%; transform:translate(-50%,-50%);
+  }
+  .hero-visual .ring.r2{width:460px; height:460px; border-color:rgba(124,251,109,0.09);}
+
+  /* Trim switcher — signature element */
+  .trim-switch{
+    display:flex; gap:6px; background:rgba(246,244,236,0.06);
+    border:1px solid var(--line-dark); border-radius:999px; padding:5px;
+    width:fit-content;
+  }
+  .trim-btn{
+    font-family:var(--disp); font-weight:600; font-size:14px;
+    padding:10px 22px; border-radius:999px; color:#B9CCC2; cursor:pointer;
+    background:transparent; border:none; transition:color .2s;
+    position:relative; z-index:2;
+  }
+  .trim-btn.active{color:var(--pine-950);}
+  .trim-switch{position:relative;}
+  .trim-thumb{
+    position:absolute; top:5px; bottom:5px; left:5px;
+    border-radius:999px; background:var(--green-400);
+    transition:transform .35s cubic-bezier(.65,0,.35,1), width .35s cubic-bezier(.65,0,.35,1);
+    z-index:1;
+  }
+
+  .spec-strip{
+    border-top:1px solid var(--line-dark);
+    padding:26px 0; margin-top:8px;
+  }
+  .spec-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
+  @media (max-width:760px){ .spec-grid{grid-template-columns:repeat(2,1fr);} }
+  .spec-item .num{font-family:var(--disp); font-size:clamp(24px,3vw,32px); font-weight:600; color:var(--green-400); transition:opacity .2s;}
+  .spec-item .lbl{font-size:12.5px; color:#9CB5AA; margin-top:4px; letter-spacing:0.02em;}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:88px 0;}
+  section.tight{padding:64px 0;}
+  .section-head{max-width:640px; margin-bottom:44px;}
+  .section-head h2{font-size:clamp(28px,3.4vw,40px); margin-top:10px; font-weight:600;}
+  .section-head p{color:var(--muted); margin-top:12px; font-size:15.5px;}
+
+  /* Image placeholder blocks */
+  .media-slot{
+    background:var(--cream-100); border:1.5px dashed rgba(14,29,24,0.22);
+    border-radius:var(--radius); display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    color:var(--muted); padding:32px; gap:8px;
+  }
+  .media-slot .tag{
+    font-family:var(--disp); font-size:11px; font-weight:600; letter-spacing:0.08em;
+    text-transform:uppercase; background:var(--pine-950); color:var(--green-400);
+    padding:5px 12px; border-radius:999px; margin-bottom:6px;
+  }
+  .media-slot strong{font-family:var(--body); font-size:14px; color:var(--ink-900);}
+  .media-slot span{font-size:12.5px;}
+
+  /* Compare table */
+  .compare-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:16px; background:#fff;}
+  table.compare{width:100%; border-collapse:collapse; min-width:680px;}
+  table.compare th, table.compare td{
+    padding:16px 20px; text-align:left; border-bottom:1px solid var(--line); font-size:14.5px;
+  }
+  table.compare th{
+    font-family:var(--disp); font-weight:600; font-size:13.5px; background:var(--cream-50);
+  }
+  table.compare th.model-col{color:var(--pine-950);}
+  table.compare td.label{color:var(--muted); font-weight:500;}
+  table.compare tr:last-child td{border-bottom:none;}
+  table.compare td strong{color:var(--ink-900); font-weight:600;}
+  .badge{
+    display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.04em;
+    padding:3px 9px; border-radius:6px; background:var(--green-400); color:var(--pine-950);
+    margin-left:8px; vertical-align:middle;
+  }
+
+  /* Feature grid */
+  .feat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:860px){ .feat-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .feat-grid{grid-template-columns:1fr;} }
+  .feat-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px 24px; transition:border-color .2s, transform .2s;
+  }
+  .feat-card:hover{border-color:var(--green-400); transform:translateY(-3px);}
+  .feat-card .ico{
+    width:38px; height:38px; border-radius:10px; background:var(--pine-950);
+    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+  }
+  .feat-card h4{font-size:16.5px; font-weight:600; margin-bottom:8px;}
+  .feat-card p{font-size:13.8px; color:var(--muted);}
+
+  /* Ride modes strip */
+  .modes-strip{
+    background:var(--pine-950); color:var(--cream-50); border-radius:20px; padding:48px 40px;
+  }
+  .modes-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-top:28px;}
+  @media (max-width:800px){ .modes-grid{grid-template-columns:repeat(2,1fr);} }
+  .mode-card{border-left:2px solid var(--green-400); padding-left:16px;}
+  .mode-card .name{font-family:var(--disp); font-weight:600; font-size:16px; margin-bottom:6px;}
+  .mode-card p{font-size:13px; color:#A9BDB4;}
+
+  /* Battery / warranty split */
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
+  @media (max-width:860px){ .split{grid-template-columns:1fr; gap:32px;} }
+  .warranty-card{
+    background:linear-gradient(160deg, var(--pine-800), var(--pine-950));
+    color:var(--cream-50); border-radius:18px; padding:36px;
+  }
+  .warranty-card .big{font-family:var(--disp); font-size:52px; font-weight:700; color:var(--green-400);}
+  .warranty-card .cap{font-size:14px; color:#B9CCC2; margin-top:4px;}
+  .warranty-list{margin-top:24px; display:flex; flex-direction:column; gap:12px;}
+  .warranty-list li{list-style:none; display:flex; gap:10px; font-size:13.8px; color:#D6E4DD;}
+  .warranty-list li::before{content:"✓"; color:var(--green-400); font-weight:700;}
+
+  /* Colours */
+  .colour-row{display:flex; gap:18px; flex-wrap:wrap; margin-top:20px;}
+  .colour-chip{display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--muted);}
+  .swatch{width:26px; height:26px; border-radius:50%; border:1px solid rgba(0,0,0,0.12);}
+
+  /* Pricing / EMI */
+  .price-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:860px){ .price-grid{grid-template-columns:1fr;} }
+  .price-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:30px 26px;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .price-card.highlight{border-color:var(--pine-950); box-shadow:0 18px 40px -20px rgba(10,31,25,0.35);}
+  .price-card .model-name{font-family:var(--disp); font-weight:600; font-size:19px;}
+  .price-card .from{font-size:12.5px; color:var(--muted);}
+  .price-card .amount{font-family:var(--disp); font-size:30px; font-weight:700;}
+  .price-card .emi{font-size:13px; color:var(--muted);}
+  .price-card ul{margin-top:6px; display:flex; flex-direction:column; gap:8px;}
+  .price-card li{list-style:none; font-size:13.3px; color:var(--muted); display:flex; gap:8px;}
+  .price-card li::before{content:"—"; color:var(--green-400);}
+  .price-note{font-size:12.5px; color:var(--muted); margin-top:18px;}
+
+  /* CTA banner */
+  .cta-banner{
+    background:var(--pine-950); color:var(--cream-50); border-radius:22px;
+    padding:56px 44px; display:flex; align-items:center; justify-content:space-between; gap:32px;
+  }
+  @media (max-width:760px){ .cta-banner{flex-direction:column; text-align:center;} }
+  .cta-banner h3{font-size:clamp(24px,3vw,32px); font-weight:600;}
+  .cta-banner p{color:#B9CCC2; margin-top:8px; font-size:14.5px;}
+  .region-pills{display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;}
+  .pill{
+    font-size:12px; font-weight:600; padding:6px 13px; border-radius:999px;
+    background:rgba(246,244,236,0.08); border:1px solid var(--line-dark); color:#CFE0D8;
+  }
+
+  /* Footer */
+  footer.site{background:var(--ink-900); color:#B9CCC2; padding:56px 0 28px; font-size:13.5px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; padding-bottom:36px; border-bottom:1px solid var(--line-dark);}
+  @media (max-width:760px){ .foot-grid{grid-template-columns:1fr; gap:28px;} }
+  .foot-grid h5{font-family:var(--disp); font-size:13px; color:#EFEADF; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:14px;}
+  .foot-grid a, .foot-grid p{color:#9CB5AA; display:block; margin-bottom:8px;}
+  .foot-bottom{display:flex; justify-content:space-between; padding-top:22px; flex-wrap:wrap; gap:10px; color:#71887E; font-size:12.5px;}
+
+  /* Floating call button */
+  .float-call{
+    position:fixed; bottom:24px; right:24px; z-index:80;
+    background:var(--green-400); color:var(--pine-950);
+    width:58px; height:58px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 12px 28px -8px rgba(10,31,25,0.5);
+    transition:transform .2s;
+  }
+  .float-call:hover{transform:scale(1.08);}
+
+  .fade-in{opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;}
+  .fade-in.in{opacity:1; transform:none;}
+
+  [data-trim-only]{display:none;}
+  [data-trim-only].active-trim{display:block;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <div class="brand">
+      <div class="mark">PA</div>
+      <div class="name">PILLAI AUTO<small>Authorised Ather Dealership · OMR</small></div>
+    </div>
+    <nav class="nav-links">
+      <a href="#lineup">Lineup</a>
+      <a href="#compare">Compare</a>
+      <a href="#features">Features</a>
+      <a href="#battery">Battery &amp; Warranty</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#visit">Visit Us</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-outline" href="tel:09240013817">Call Showroom</a>
+      <a class="btn btn-solid" href="#visit">Book Test Ride</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div>
+        <span class="eyebrow">The 450 Series</span>
+        <h1>Three scooters.<br>One obsession with <em>getting there faster.</em></h1>
+        <p class="lede">From the value-first 450S to the record-setting 450 Apex, every 450 is built on the same fast, connected platform — tuned differently for how you actually ride. See it, sit on it, and take it home from PILLAI AUTO, Perungudi.</p>
+
+        <div class="trim-switch" id="trimSwitch">
+          <div class="trim-thumb" id="trimThumb"></div>
+          <button class="trim-btn active" data-trim="apex">450 Apex</button>
+          <button class="trim-btn" data-trim="x">450X</button>
+          <button class="trim-btn" data-trim="s">450S</button>
+        </div>
+
+        <div class="hero-actions" style="margin-top:26px;">
+          <a class="btn btn-solid" href="#visit">Book a Test Ride</a>
+          <a class="btn btn-outline" href="#compare">Compare Variants</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="ring r2"></div>
+        <div class="ring"></div>
+        <div class="ph-label">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="1.4"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3.5 2"/></svg>
+          <strong style="color:#EFEADF; display:block; margin-bottom:4px;">Hero shot — <span id="heroTrimName">450 Apex</span></strong>
+          <span>Placeholder for official Ather marketing-kit image or 360° hero render</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec-strip">
+      <div class="spec-grid" id="specStrip">
+        <div class="spec-item"><div class="num" data-spec="topspeed">100 km/h</div><div class="lbl">Top speed</div></div>
+        <div class="spec-item"><div class="num" data-spec="range">157 km</div><div class="lbl">IDC range</div></div>
+        <div class="spec-item"><div class="num" data-spec="accel">2.9 s</div><div class="lbl">0–40 km/h</div></div>
+        <div class="spec-item"><div class="num" data-spec="charge">5h 45m</div><div class="lbl">Full charge (home)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LINEUP INTRO -->
+<section id="lineup" class="tight">
+  <div class="wrap">
+    <div class="section-head fade-in">
+      <span class="eyebrow dark">Choose your 450</span>
+      <h2>Same DNA, different priorities.</h2>
+      <p>All three share the 450 platform's frame, brakes and connected dashboard. What changes is the motor, the battery, and how far Ather pushes the performance dial.</p>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg></div>
+        <h4>450 Apex — the flagship</h4>
+        <p>Ather's fastest scooter yet: 100 km/h top speed, a 2.9-second sprint to 40, and Warp+ mode for when SmartEco just won't cut it.</p>
+      </div>
+      <div class="feat-card">
+        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h4>450X — the all-rounder</h4>
+        <p>The scooter most riders end up choosing. Strong range up to 161 km, a full touchscreen dashboard, and a battery size to match your commute.</p>
+      </div>
+      <div class="feat-card">
+        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="2"><path d="M4 12h16M4 6h16M4 18h10"/></svg></div>
+        <h4>450S — the smart entry</h4>
+        <p>Everything you need for daily riding — Bluetooth, navigation, connected safety features — at the most accessible price in the 450 line-up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE TABLE -->
+<section id="compare">
+  <div class="wrap">
+    <div class="section-head fade-in">
+      <span class="eyebrow dark">Spec for spec</span>
+      <h2>Compare the 450 line-up.</h2>
+      <p>Figures below are Ather's official IDC-certified figures and factory specifications. Real-world range varies with riding mode, load and terrain.</p>
+    </div>
+
+    <div class="compare-wrap fade-in">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Specification</th>
+            <th class="model-col">450S</th>
+            <th class="model-col">450X <span class="badge">Popular</span></th>
+            <th class="model-col">450 Apex</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label">Top speed</td>
+            <td>90 km/h</td>
+            <td>90 km/h</td>
+            <td><strong>100 km/h</strong></td>
+          </tr>
+          <tr>
+            <td class="label">0–40 km/h</td>
+            <td>~3.9 s</td>
+            <td>3.3 s</td>
+            <td><strong>2.9 s</strong></td>
+          </tr>
+          <tr>
+            <td class="label">Battery pack</td>
+            <td>2.9 kWh</td>
+            <td>2.9 kWh or 3.7 kWh</td>
+            <td>3.7 kWh</td>
+          </tr>
+          <tr>
+            <td class="label">IDC range</td>
+            <td>Up to 115 km</td>
+            <td>Up to 161 km</td>
+            <td><strong>Up to 157 km</strong></td>
+          </tr>
+          <tr>
+            <td class="label">Motor peak output</td>
+            <td>5.4 kW / 22 Nm</td>
+            <td>6.4 kW / 26 Nm</td>
+            <td><strong>7.0 kW / 26 Nm</strong></td>
+          </tr>
+          <tr>
+            <td class="label">Full home charge</td>
+            <td>~7h 45m</td>
+            <td>5h 45m (3.7 kWh)</td>
+            <td>5h 45m</td>
+          </tr>
+          <tr>
+            <td class="label">Dashboard</td>
+            <td>Colour LCD</td>
+            <td>7-inch touchscreen</td>
+            <td>7-inch touchscreen</td>
+          </tr>
+          <tr>
+            <td class="label">Ride modes</td>
+            <td>Smart Eco, Eco, Ride, Sport</td>
+            <td>Smart Eco, Eco, Ride, Sport, Warp</td>
+            <td>Smart Eco, Eco, Ride, Sport, Warp+</td>
+          </tr>
+          <tr>
+            <td class="label">Kerb weight</td>
+            <td>~106 kg</td>
+            <td>~108 kg</td>
+            <td>111.6 kg</td>
+          </tr>
+          <tr>
+            <td class="label">Under-seat storage</td>
+            <td>22 L</td>
+            <td>22 L</td>
+            <td>22 L</td>
+          </tr>
+          <tr>
+            <td class="label">Standard battery warranty</td>
+            <td>3 years</td>
+            <td>3 years</td>
+            <td>3 years</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" style="background:var(--cream-100);">
+  <div class="wrap">
+    <div class="section-head fade-in">
+      <span class="eyebrow dark">What's the same on every 450</span>
+      <h2>Built-in intelligence, not bolted on.</h2>
+      <p>Every 450 you buy from PILLAI AUTO ships with Ather's connected stack — the software is what keeps getting better long after you've ridden home.</p>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="2"><path d="M12 20V10M6 20v-6M18 20V4"/></svg></div>
+        <h4>Turn-by-turn navigation</h4>
+        <p>Built-in maps on the dashboard so you're never fumbling for your phone at a signal.</p>
+      </div>
+      <div class="feat-card">
+        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="2"><path d="M5 13a7 7 0 0 1 14 0M8 13v6a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-3M13 13v6a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-6"/></svg></div>
+        <h4>Fall detection &amp; auto motor cut-off</h4>
+        <p>If the scooter senses a fall, power to the motor is cut automatically to prevent accidental acceleration.</p>
+      </div>
+      <div class="feat-card">
+        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="2"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg></div>
+        <h4>ParkSafe, LockSafe &amp; theft alerts</h4>
+        <p>Get an app alert the moment your Ather is moved, tampered with, or towed while parked.</p>
+      </div>
+      <div class="feat-card">
+        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="2"><path d="M4 12h4l2-7 4 14 2-7h4"/></svg></div>
+        <h4>Regenerative braking</h4>
+        <p>Recovers energy on deceleration and feeds it back into the battery — free range, essentially.</p>
+      </div>
+      <div class="feat-card">
+        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="2"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <h4>Hill Hold</h4>
+        <p>Holds the scooter steady on an incline without you having to ride the brake lever.</p>
+      </div>
+      <div class="feat-card">
+        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="2"><path d="M7 17 3 13l4-4M3 13h13a5 5 0 0 0 5-5"/></svg></div>
+        <h4>Reverse assist</h4>
+        <p>Back out of a tight parking spot at the press of a button, with taillights alerting people behind you.</p>
+      </div>
+    </div>
+
+    <div class="modes-strip" style="margin-top:56px;">
+      <span class="eyebrow">Ride modes</span>
+      <h3 style="color:#fff; font-size:26px; margin-top:10px; font-weight:600;">One scooter, several personalities.</h3>
+      <div class="modes-grid">
+        <div class="mode-card">
+          <div class="name">Smart Eco</div>
+          <p>Maximises range for the daily grind — the mode most owners live in.</p>
+        </div>
+        <div class="mode-card">
+          <div class="name">Ride</div>
+          <p>The balanced default: enough punch for city traffic without draining the battery.</p>
+        </div>
+        <div class="mode-card">
+          <div class="name">Sport</div>
+          <p>Sharper throttle response for overtakes and quicker getaways at signals.</p>
+        </div>
+        <div class="mode-card">
+          <div class="name">Warp / Warp+</div>
+          <p>Full send. Available on 450X and 450 Apex for the fastest acceleration in the line-up.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BATTERY & WARRANTY -->
+<section id="battery">
+  <div class="wrap">
+    <div class="split">
+      <div class="fade-in">
+        <span class="eyebrow dark">Battery &amp; warranty</span>
+        <h2 style="font-size:clamp(26px,3vw,36px); margin-top:10px;">A battery backed for the long haul.</h2>
+        <p style="color:var(--muted); margin-top:14px; font-size:15px;">Every 450 comes with a standard 3-year battery warranty. Want more runway? Upgrade to Ather's Eight870 warranty add-on through AtherStack Pro and extend battery cover up to 8 years — something we can set up for you right here at PILLAI AUTO when you book your scooter.</p>
+        <ul class="warranty-list">
+          <li>3-year standard battery warranty on every 450</li>
+          <li>Extend up to 8 years with the Eight70 warranty add-on</li>
+          <li>Fast-charging at Ather Grid points — 6,000+ points across 370+ cities</li>
+          <li>15 km of range from a 10-minute Ather Grid top-up</li>
+        </ul>
+      </div>
+      <div class="warranty-card fade-in">
+        <div class="big">8 yrs</div>
+        <div class="cap">Maximum battery warranty available with the Eight70 add-on</div>
+        <div style="height:1px; background:var(--line-dark); margin:24px 0;"></div>
+        <div class="big" style="font-size:38px;">370+</div>
+        <div class="cap">Cities with an Ather Grid fast-charging point</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOURS / IMAGERY -->
+<section style="background:var(--cream-100);">
+  <div class="wrap">
+    <div class="section-head fade-in">
+      <span class="eyebrow dark">Colours on display</span>
+      <h2>Come see the finish in person.</h2>
+      <p>Colour options vary by variant. These swatches are indicative — the real finish always looks better under Chennai sunlight, so we'd rather you see it on the showroom floor.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+      <div class="media-slot" style="aspect-ratio:4/3;">
+        <span class="tag">Image slot</span>
+        <strong>450 Apex — Indium Blue</strong>
+        <span>Insert official studio shot from the Ather dealer marketing kit</span>
+      </div>
+      <div class="media-slot" style="aspect-ratio:4/3;">
+        <span class="tag">Image slot</span>
+        <strong>450X — colour range</strong>
+        <span>True Red · Cosmic Black · Still White · Lunar Grey · Space Grey · Stealth Blue · Hyper Sand</span>
+      </div>
+      <div class="media-slot" style="aspect-ratio:4/3;">
+        <span class="tag">Video slot</span>
+        <strong>450 walkaround / test-ride film</strong>
+        <span>Embed official Ather product video or your own showroom footage here</span>
+      </div>
+    </div>
+    <div class="colour-row">
+      <div class="colour-chip"><span class="swatch" style="background:#B6252E;"></span>True Red</div>
+      <div class="colour-chip"><span class="swatch" style="background:#1B1B1E;"></span>Cosmic Black</div>
+      <div class="colour-chip"><span class="swatch" style="background:#F2F1EC; border:1px solid #ccc;"></span>Still White</div>
+      <div class="colour-chip"><span class="swatch" style="background:#7C8A93;"></span>Lunar Grey</div>
+      <div class="colour-chip"><span class="swatch" style="background:#59626B;"></span>Space Grey</div>
+      <div class="colour-chip"><span class="swatch" style="background:#3A5F8A;"></span>Stealth Blue</div>
+      <div class="colour-chip"><span class="swatch" style="background:#C7A27C;"></span>Hyper Sand</div>
+      <div class="colour-chip"><span class="swatch" style="background:#2A4B8C;"></span>Indium Blue (Apex)</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING / EMI -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head fade-in">
+      <span class="eyebrow dark">Pricing &amp; finance</span>
+      <h2>Own a 450 from as little as ₹2,545/month.*</h2>
+      <p>Ex-showroom pricing shown below is indicative and subject to change with state subsidies and taxes — our team will confirm the exact on-road price for your registration city before you book.</p>
+    </div>
+
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="model-name">450S</div>
+        <div class="from">Starting ex-showroom from</div>
+        <div class="amount">₹1.01 L*</div>
+        <div class="emi">EMIs from ~₹2,545/month*</div>
+        <ul>
+          <li>2.9 kWh battery, up to 115 km IDC range</li>
+          <li>Colour LCD dashboard</li>
+          <li>Bluetooth &amp; turn-by-turn navigation</li>
+        </ul>
+      </div>
+      <div class="price-card highlight">
+        <div class="model-name">450X</div>
+        <div class="from">Starting ex-showroom from</div>
+        <div class="amount">₹1.47 L*</div>
+        <div class="emi">EMIs from ~₹3,600/month*</div>
+        <ul>
+          <li>Choice of 2.9 kWh or 3.7 kWh battery</li>
+          <li>7-inch touchscreen, Warp mode</li>
+          <li>Up to 161 km IDC range</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="model-name">450 Apex</div>
+        <div class="from">Starting ex-showroom from</div>
+        <div class="amount">₹1.95 L*</div>
+        <div class="emi">EMIs from ~₹4,800/month*</div>
+        <ul>
+          <li>100 km/h top speed, Warp+ mode</li>
+          <li>3.7 kWh battery, up to 157 km IDC range</li>
+          <li>Flagship trim &amp; finish</li>
+        </ul>
+      </div>
+    </div>
+    <p class="price-note">*Zero down payment financing available, interest rates from 3.99%, tenure up to 5 years, subject to lender approval. Prices are indicative as of last verification and must be reconfirmed with the PILLAI AUTO sales team before publishing or quoting to a customer.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="visit" class="tight">
+  <div class="wrap">
+    <div class="cta-banner fade-in">
+      <div>
+        <span class="eyebrow">Test ride, on your schedule</span>
+        <h3>Ride a 450 before you decide.</h3>
+        <p>Walk in at Perungudi, OMR, or ask us for a home test ride. We serve customers across:</p>
+        <div class="region-pills">
+          <span class="pill">Chennai</span>
+          <span class="pill">Pondicherry</span>
+          <span class="pill">Chengalpet</span>
+          <span class="pill">Chidambaram</span>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px; min-width:220px;">
+        <a class="btn btn-solid" href="tel:09240013817">Call 09240013817</a>
+        <a class="btn btn-outline" href="#">Book a Test Ride</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h5>PILLAI AUTO</h5>
+        <p>Authorised Ather Energy dealership on Rajiv Gandhi Salai (OMR), Perungudi, Chennai. Sales &amp; service under one roof.</p>
+        <p>Serving Chennai, Pondicherry, Chengalpet &amp; Chidambaram.</p>
+      </div>
+      <div>
+        <h5>450 Series</h5>
+        <a href="#lineup">450 Apex</a>
+        <a href="#lineup">450X</a>
+        <a href="#lineup">450S</a>
+        <a href="#compare">Compare variants</a>
+      </div>
+      <div>
+        <h5>Get in touch</h5>
+        <a href="tel:09240013817">09240013817</a>
+        <a href="#visit">Book a test ride</a>
+        <a href="#battery">Battery &amp; warranty</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 PILLAI AUTO. Authorised Ather Energy dealer. Specifications sourced from Ather Energy's published data and subject to change.</span>
+      <span>Perungudi, OMR, Chennai</span>
+    </div>
+  </div>
+</footer>
+
+<a class="float-call" href="tel:09240013817" aria-label="Call PILLAI AUTO">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A1F19" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+</a>
+
+<script>
+  // Trim switcher data
+  const trimData = {
+    apex: { name: "450 Apex", topspeed: "100 km/h", range: "157 km", accel: "2.9 s", charge: "5h 45m" },
+    x:    { name: "450X",     topspeed: "90 km/h",  range: "161 km", accel: "3.3 s", charge: "5h 45m" },
+    s:    { name: "450S",     topspeed: "90 km/h",  range: "115 km", accel: "3.9 s", charge: "7h 45m" }
+  };
+
+  const buttons = document.querySelectorAll('.trim-btn');
+  const thumb = document.getElementById('trimThumb');
+  const heroTrimName = document.getElementById('heroTrimName');
+
+  function positionThumb(btn){
+    thumb.style.width = btn.offsetWidth + 'px';
+    thumb.style.transform = `translateX(${btn.offsetLeft - 5}px)`;
+  }
+
+  function setActive(trimKey, btn){
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    positionThumb(btn);
+
+    const d = trimData[trimKey];
+    heroTrimName.textContent = d.name;
+    document.querySelector('[data-spec="topspeed"]').textContent = d.topspeed;
+    document.querySelector('[data-spec="range"]').textContent = d.range;
+    document.querySelector('[data-spec="accel"]').textContent = d.accel;
+    document.querySelector('[data-spec="charge"]').textContent = d.charge;
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => setActive(btn.dataset.trim, btn));
+  });
+
+  window.addEventListener('load', () => positionThumb(document.querySelector('.trim-btn.active')));
+  window.addEventListener('resize', () => positionThumb(document.querySelector('.trim-btn.active')));
+
+  // Fade-in on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
