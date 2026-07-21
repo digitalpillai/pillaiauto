@@ -188,6 +188,9 @@
     background:#fff; border:1px solid var(--line); border-radius:var(--radius);
     padding:26px 24px; transition:border-color .2s, transform .2s;
   }
+  .feat-card.has-img{padding:0; overflow:hidden;}
+  .feat-card.has-img img{width:100%; aspect-ratio:16/9; object-fit:cover; display:block;}
+  .feat-card.has-img .feat-body{padding:22px 24px;}
   .feat-card:hover{border-color:var(--green-400); transform:translateY(-3px);}
   .feat-card .ico{
     width:38px; height:38px; border-radius:10px; background:var(--pine-950);
@@ -526,35 +529,43 @@
     </div>
 
     <div class="feat-grid">
-      <div class="feat-card">
-        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="2"><path d="M12 20V10M6 20v-6M18 20V4"/></svg></div>
-        <h4>Turn-by-turn navigation</h4>
-        <p>Built-in maps on the dashboard so you're never fumbling for your phone at a signal.</p>
+      <div class="feat-card has-img">
+        <img src="450/Ather-450-dash-Google-Map-Platform.webp" alt="Turn-by-turn navigation on the Ather dashboard">
+        <div class="feat-body">
+          <h4>Turn-by-turn navigation</h4>
+          <p>Built-in maps on the dashboard so you're never fumbling for your phone at a signal.</p>
+        </div>
       </div>
       <div class="feat-card">
         <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="2"><path d="M5 13a7 7 0 0 1 14 0M8 13v6a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-3M13 13v6a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-6"/></svg></div>
         <h4>Fall detection &amp; auto motor cut-off</h4>
-        <p>If the scooter senses a fall, power to the motor is cut automatically to prevent accidental acceleration.</p>
+        <p>If the scooter senses a fall, power to the motor is cut automatically to prevent accidental acceleration. See it in action in the Safety section below.</p>
       </div>
-      <div class="feat-card">
-        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="2"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg></div>
-        <h4>ParkSafe, LockSafe &amp; theft alerts</h4>
-        <p>Get an app alert the moment your Ather is moved, tampered with, or towed while parked.</p>
+      <div class="feat-card has-img">
+        <img src="450/Ather-450-dash-Live-Location-Sharing.webp" alt="Live location sharing on the Ather dashboard">
+        <div class="feat-body">
+          <h4>ParkSafe, LockSafe &amp; theft alerts</h4>
+          <p>Get an app alert the moment your Ather is moved, tampered with, or towed while parked.</p>
+        </div>
       </div>
       <div class="feat-card">
         <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="2"><path d="M4 12h4l2-7 4 14 2-7h4"/></svg></div>
         <h4>Regenerative braking</h4>
         <p>Recovers energy on deceleration and feeds it back into the battery — free range, essentially.</p>
       </div>
-      <div class="feat-card">
-        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="2"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4"/></svg></div>
-        <h4>Hill Hold</h4>
-        <p>Holds the scooter steady on an incline without you having to ride the brake lever.</p>
+      <div class="feat-card has-img">
+        <img src="450/450-auto-hold-d.webp" alt="AutoHold hill hold feature on the Ather 450">
+        <div class="feat-body">
+          <h4>Hill Hold</h4>
+          <p>Holds the scooter steady on an incline without you having to ride the brake lever.</p>
+        </div>
       </div>
-      <div class="feat-card">
-        <div class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CFB6D" stroke-width="2"><path d="M7 17 3 13l4-4M3 13h13a5 5 0 0 0 5-5"/></svg></div>
-        <h4>Reverse assist</h4>
-        <p>Back out of a tight parking spot at the press of a button, with taillights alerting people behind you.</p>
+      <div class="feat-card has-img">
+        <img src="450/450-park-assist-d.webp" alt="Reverse assist / Park Assist feature on the Ather 450">
+        <div class="feat-body">
+          <h4>Reverse assist</h4>
+          <p>Back out of a tight parking spot at the press of a button, with taillights alerting people behind you.</p>
+        </div>
       </div>
     </div>
 
