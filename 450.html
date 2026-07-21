@@ -241,7 +241,59 @@
   .price-card li::before{content:"—"; color:var(--green-400);}
   .price-note{font-size:12.5px; color:var(--muted); margin-top:18px;}
 
-  /* CTA banner */
+  /* Voice / video showcase */
+  .voice-panel{
+    background:var(--pine-950); color:var(--cream-50); border-radius:20px;
+    padding:0; overflow:hidden; display:grid; grid-template-columns:1fr 1fr;
+  }
+  @media (max-width:860px){ .voice-panel{grid-template-columns:1fr;} }
+  .voice-panel .voice-copy{padding:44px;}
+  .voice-panel video{width:100%; height:100%; object-fit:cover; display:block;}
+  .voice-bubble{
+    display:inline-block; background:rgba(246,244,236,0.08); border:1px solid var(--line-dark);
+    border-radius:14px; padding:10px 16px; font-size:13.5px; margin:6px 0; color:#D6E4DD;
+  }
+
+  /* App feature grid */
+  .app-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  @media (max-width:760px){ .app-grid{grid-template-columns:repeat(2,1fr);} }
+  .app-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .app-card img{width:100%; aspect-ratio:4/3; object-fit:cover;}
+  .app-card .app-card-body{padding:16px 18px;}
+  .app-card h4{font-size:14.5px; font-weight:600; margin-bottom:4px;}
+  .app-card p{font-size:12.8px; color:var(--muted);}
+
+  /* Charging grid */
+  .charge-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:760px){ .charge-grid{grid-template-columns:1fr;} }
+  .charge-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .charge-card img{width:100%; aspect-ratio:4/3; object-fit:cover;}
+  .charge-card .charge-body{padding:18px 20px;}
+  .charge-card h4{font-size:15px; font-weight:600; margin-bottom:6px;}
+  .charge-card p{font-size:13px; color:var(--muted);}
+
+  /* Halo */
+  .halo-panel{
+    background:linear-gradient(160deg, var(--pine-800), var(--pine-950));
+    color:var(--cream-50); border-radius:20px; display:grid; grid-template-columns:1fr 1fr; overflow:hidden;
+  }
+  @media (max-width:860px){ .halo-panel{grid-template-columns:1fr;} }
+  .halo-panel video{width:100%; height:100%; object-fit:cover; display:block;}
+  .halo-panel .halo-copy{padding:44px;}
+  .halo-tag-list{display:flex; gap:10px; flex-wrap:wrap; margin-top:20px;}
+  .halo-tag{font-size:12.5px; background:rgba(246,244,236,0.08); border:1px solid var(--line-dark); border-radius:999px; padding:7px 14px; color:#CFE0D8;}
+
+  /* FAQ */
+  .faq-item{border-bottom:1px solid var(--line); padding:20px 0;}
+  .faq-item summary{
+    cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--disp); font-weight:600; font-size:15.5px; color:var(--ink-900);
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:'+'; font-size:20px; color:var(--muted); transition:transform .2s;}
+  .faq-item[open] summary::after{transform:rotate(45deg);}
+  .faq-item p{margin-top:12px; font-size:14px; color:var(--muted); max-width:70ch;}
+
   .cta-banner{
     background:var(--pine-950); color:var(--cream-50); border-radius:22px;
     padding:56px 44px; display:flex; align-items:center; justify-content:space-between; gap:32px;
@@ -292,6 +344,7 @@
     <nav class="nav-links">
       <a href="#lineup">Lineup</a>
       <a href="#compare">Compare</a>
+      <a href="#charging">Charging</a>
       <a href="#features">Features</a>
       <a href="#battery">Battery &amp; Warranty</a>
       <a href="#pricing">Pricing</a>
@@ -607,6 +660,184 @@
       <img src="450/2026-450-Gallery-d-5.webp" alt="Ather 450 gallery shot 5" style="border-radius:var(--radius); aspect-ratio:4/3; object-fit:cover; width:100%;">
       <img src="450/Ather-450-Accessories.webp" alt="Ather 450 accessories" style="border-radius:var(--radius); aspect-ratio:4/3; object-fit:cover; width:100%;">
     </div>
+  </div>
+</section>
+
+<!-- VOICE ASSISTANT -->
+<section>
+  <div class="wrap">
+    <div class="section-head fade-in">
+      <span class="eyebrow dark">Talk to it</span>
+      <h2>Ask, and it's done.</h2>
+      <p>Built-in voice control means you can navigate, adjust settings, or check on a call without ever touching the dashboard.</p>
+    </div>
+    <div class="voice-panel fade-in">
+      <video controls preload="metadata">
+        <source src="450/Ather-450-voice-navigate-to-work-m.mp4" type="video/mp4">
+      </video>
+      <div class="voice-copy">
+        <span class="eyebrow">Voice control</span>
+        <h3 style="font-size:24px; margin-top:10px; font-weight:600;">Say it, and your Ather listens.</h3>
+        <div style="margin-top:20px;">
+          <div class="voice-bubble">"Start navigation to work"</div><br>
+          <div class="voice-bubble">"Set traction control to Rain"</div><br>
+          <div class="voice-bubble">"Who's calling?"</div>
+        </div>
+        <p style="margin-top:20px; font-size:13.5px; color:#9CB5AA;">Requires Bluetooth pairing with the Ather app. Ask us to set this up during your test ride.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY IN ACTION -->
+<section style="background:var(--cream-100);">
+  <div class="wrap">
+    <div class="section-head fade-in">
+      <span class="eyebrow dark">Safety, demonstrated</span>
+      <h2>Built to look after you.</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+      <div class="charge-card fade-in">
+        <video controls preload="metadata" style="width:100%; aspect-ratio:4/3; object-fit:cover;">
+          <source src="450/fall-safe.mp4" type="video/mp4">
+        </video>
+        <div class="charge-body">
+          <h4>FallSafe™</h4>
+          <p>If the scooter senses a fall, motor power cuts automatically to prevent accidental acceleration.</p>
+        </div>
+      </div>
+      <div class="charge-card fade-in">
+        <video controls preload="metadata" style="width:100%; aspect-ratio:4/3; object-fit:cover;">
+          <source src="450/emergency-stop.mp4" type="video/mp4">
+        </video>
+        <div class="charge-body">
+          <h4>Emergency Stop Signal</h4>
+          <p>Hard braking triggers a rapid taillight flash, giving riders behind you extra warning.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HALO HELMET -->
+<section class="tight">
+  <div class="wrap">
+    <div class="halo-panel fade-in">
+      <video controls preload="metadata">
+        <source src="450/450-Ather-Halo-d.mp4" type="video/mp4">
+      </video>
+      <div class="halo-copy">
+        <span class="eyebrow">Ather Halo</span>
+        <h3 style="font-size:26px; margin-top:10px; font-weight:600;">A helmet that's actually part of the ride.</h3>
+        <p style="margin-top:14px; color:#B9CCC2; font-size:14.5px;">Pairs with your 450 for call and music control, rider-to-pillion chat, and automatic wear detection — all without reaching for your phone.</p>
+        <div class="halo-tag-list">
+          <span class="halo-tag">Call &amp; music control</span>
+          <span class="halo-tag">ChitChat™ intercom</span>
+          <span class="halo-tag">Auto wear detect</span>
+        </div>
+        <a class="btn btn-solid" style="margin-top:24px;" href="tel:09240013817">Ask about Halo in-store</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHARGING OPTIONS -->
+<section id="charging" style="background:var(--cream-100);">
+  <div class="wrap">
+    <div class="section-head fade-in">
+      <span class="eyebrow dark">Go anywhere, charge everywhere</span>
+      <h2>Three ways to keep your 450 topped up.</h2>
+    </div>
+    <div class="charge-grid">
+      <div class="charge-card fade-in">
+        <img src="450/450-charging-duo-d.webp" alt="Ather Duo home charger">
+        <div class="charge-body">
+          <h4>At home — Ather Duo</h4>
+          <p>Wall-mount it at your parking spot, or carry it in the boot as a portable charger when you're away from home.</p>
+        </div>
+      </div>
+      <div class="charge-card fade-in">
+        <img src="450/450-charging-grid-d.webp" alt="Ather Grid public fast charger">
+        <div class="charge-body">
+          <h4>On the go — Ather Grid</h4>
+          <p>6,000+ public fast-charging points across 370+ cities. Find one, plug in, and track your charge from the app.</p>
+        </div>
+      </div>
+      <div class="charge-card fade-in">
+        <img src="450/450-charging-ANC-d.webp" alt="Ather Neighbourhood Charger">
+        <div class="charge-body">
+          <h4>At work — Neighbourhood Charger</h4>
+          <p>Bring Ather's charging infrastructure to your apartment complex, campus, or workplace.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ONE APP -->
+<section>
+  <div class="wrap">
+    <div class="section-head fade-in">
+      <span class="eyebrow dark">One app, everything Ather</span>
+      <h2>Your scooter, in your pocket.</h2>
+      <p>The Ather app comes free with every 450 and handles the parts you'd otherwise be guessing at.</p>
+    </div>
+    <div class="app-grid">
+      <div class="app-card fade-in">
+        <img src="450/ather-app-Find-My-Scooter.webp" alt="Find My Scooter feature">
+        <div class="app-card-body"><h4>Find My Scooter</h4><p>Lost it in a crowded lot? Locate it in seconds from the app.</p></div>
+      </div>
+      <div class="app-card fade-in">
+        <img src="450/ather-app-Ather-Trip-Planner.webp" alt="Ather Trip Planner feature">
+        <div class="app-card-body"><h4>Trip Planner™</h4><p>Plan longer rides with charging stops mapped in automatically.</p></div>
+      </div>
+      <div class="app-card fade-in">
+        <img src="450/ather-app-Find-Ather-Grid-near-you.webp" alt="Find Ather Grid near you feature">
+        <div class="app-card-body"><h4>Nearest Ather Grid</h4><p>See the closest fast-charging point without leaving the app.</p></div>
+      </div>
+      <div class="app-card fade-in">
+        <img src="450/ather-app-Real-time-Charge-Status.webp" alt="Real-time charge status feature">
+        <div class="app-card-body"><h4>Real-time charge status</h4><p>Check how much charge is left from anywhere, anytime.</p></div>
+      </div>
+      <div class="app-card fade-in">
+        <img src="450/ather-app-Push-Navigation.webp" alt="Push navigation feature">
+        <div class="app-card-body"><h4>Push navigation</h4><p>Set a route on your phone, push it straight to the dashboard.</p></div>
+      </div>
+      <div class="app-card fade-in">
+        <img src="450/ather-app-Ride-Insights.webp" alt="Ride insights feature">
+        <div class="app-card-body"><h4>Ride insights</h4><p>Track distance, efficiency and ride history over time.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--cream-100);">
+  <div class="wrap" style="max-width:820px;">
+    <div class="section-head fade-in">
+      <span class="eyebrow dark">Questions</span>
+      <h2>Your questions, answered.</h2>
+    </div>
+    <details class="faq-item" open>
+      <summary>What's the real difference between the 450X and 450S?</summary>
+      <p>The 450X is the more capable of the two — a bigger optional battery for up to 161 km IDC range, a full touchscreen dashboard, and Warp mode for quicker acceleration. The 450S covers the essentials at a lower price: solid range, Bluetooth, and turn-by-turn navigation on a colour LCD screen. Most first-time buyers we see go with the 450X; budget-conscious daily commuters often prefer the 450S.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How long does a full charge actually take?</summary>
+      <p>On a standard home charger, figure roughly 5h 45m for the 450X and 450 Apex, and about 7h 45m for the 450S — most owners just plug in overnight. On the road, Ather Grid fast-chargers can add around 15 km of range in just 10 minutes.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Can I extend the battery warranty beyond 3 years?</summary>
+      <p>Yes — every 450 ships with a standard 3-year battery warranty, and you can upgrade to Ather's Eight70 add-on through AtherStack Pro for coverage up to 8 years. We can set this up for you at the time of purchase.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do you offer test rides at home?</summary>
+      <p>Yes. Walk into our Perungudi showroom on OMR, or call us to arrange a home test ride if you're anywhere across Chennai, Pondicherry, Chengalpet, or Chidambaram.</p>
+    </details>
+    <details class="faq-item">
+      <summary>What financing options are available?</summary>
+      <p>We offer zero down payment financing with interest rates starting from 3.99% and tenures up to 5 years, subject to lender approval. Exact EMI depends on the variant and your city — our team can work out the numbers with you in-store.</p>
+    </details>
   </div>
 </section>
 
