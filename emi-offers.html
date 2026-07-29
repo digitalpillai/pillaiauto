@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ather EMI, Finance, Exchange & Savings Calculator — Chennai | Pillai Auto — Ather OMR, Chennai</title>
+<meta name="description" content="EMI calculator, petrol-vs-electric savings calculator, Battery-as-a-Service and exchange offers on Ather scooters at Pillai Auto Chennai.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+
+<div class="ticker">
+  <div class="container">
+    <div>⚡ Sales &amp; service across Chennai · Pondicherry · Chengalpet · Chidambaram &nbsp;·&nbsp; <a href="tel:+919240013817">Call 09240013817</a></div>
+    <div class="areas">Open all days · Perungudi, OMR, Chennai</div>
+  </div>
+</div>
+<header class="site">
+  <div class="container navbar">
+    <a class="brand" href="index.html" aria-label="Pillai Auto home">
+      <span class="bolt">⚡</span>
+      <span class="name">PILLAI AUTO<span>Ather OMR · Authorised Dealer</span></span>
+    </a>
+    <button class="hamburger" aria-label="Toggle menu" onclick="document.querySelector('nav.main').classList.toggle('open')">☰</button>
+    <nav class="main" aria-label="Main">
+      <a class="" href="index.html">Home</a>
+      <div class="drop">
+        <button type="button" onclick="this.parentNode.classList.toggle('open')">Electric Scooters <span class="caret">▾</span></button>
+        <div class="menu"><a class="" href="ather-450-apex.html">Ather 450 Apex<small>India's fastest e-scooter</small></a><a class="" href="ather-450x.html">Ather 450X<small>The performance flagship</small></a><a class="" href="ather-450s.html">Ather 450S<small>450 thrills, smarter price</small></a><a class="" href="rizta-z.html">Ather Rizta Z<small>Top family variant</small></a><a class="" href="rizta-s.html">Ather Rizta S<small>The family essential</small></a><a class="" href="compare.html">Compare Scooters<small>All models, side by side</small></a></div>
+      </div>
+      <div class="drop">
+        <button type="button" onclick="this.parentNode.classList.toggle('open')">Ownership <span class="caret">▾</span></button>
+        <div class="menu"><a class="" href="charging.html">Charging & Ather Grid<small>Home + fast charging</small></a><a class="" href="service.html">Service & Maintenance<small>Doorstep-friendly care</small></a><a class="" href="warranty.html">Battery & Warranty<small>Eight70™ explained</small></a><a class="" href="accessories.html">Helmets & Accessories<small>Halo smart helmets & more</small></a><a class=" active" href="emi-offers.html">EMI & Savings<small>Calculators & finance</small></a></div>
+      </div>
+      <a class="" href="about.html">About Us</a>
+      <a class="" href="contact.html">Contact</a>
+      <a class="nav-cta" href="test-ride.html">Book a Test Ride</a>
+    </nav>
+  </div>
+</header>
+<main>
+<div class="container breadcrumb"><a href="index.html">Home</a> &nbsp;›&nbsp; EMI & Savings</div>
+<section class="hero"><div class="container">
+  <div>
+    <div class="eyebrow">Finance · Exchange · Savings</div>
+    <h1>Own an Ather for<br><em>less than your petrol bill.</em></h1>
+    <div class="chargebar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+    <p class="lead">Low-down-payment EMI plans, exchange bonuses on your old two-wheeler, and running costs of roughly ₹10 per full-charge unit. Use the calculators below, then let us beat the numbers in person.</p>
+    <div class="btns"><a class="btn primary" href="contact.html">Get a Personalised Quote</a></div>
+  </div>
+  <div class="hero-media"><div class="ph tall"><div class="inner">
+      <div class="icon">🖼️</div>
+      <div class="label">Finance / offers visual</div>
+      <div class="note">Current offer creative from dealer kit. Replace this block with an official image/video from your Ather dealer marketing kit.</div>
+    </div></div></div>
+</div></section>
+<section class="block"><div class="container">
+  <div class="sec-head"><div class="eyebrow">Calculators</div><h2>Run your own numbers</h2></div>
+  <div class="grid c2">
+    <div class="calc">
+      <h3 style="margin-bottom:18px">EMI estimator</h3>
+      <div class="row"><label>Loan amount <output id="amtO"></output></label>
+        <input type="range" id="amt" min="50000" max="220000" step="5000" value="140000" oninput="emiCalc()"></div>
+      <div class="row"><label>Interest rate <output id="rateO"></output></label>
+        <input type="range" id="rate" min="7" max="16" step="0.5" value="9.5" oninput="emiCalc()"></div>
+      <div class="row"><label>Tenure <output id="tenO"></output></label>
+        <input type="range" id="ten" min="12" max="48" step="6" value="36" oninput="emiCalc()"></div>
+      <div class="result"><div><div class="big" id="emiR"></div><div class="sub" id="emiT"></div></div></div>
+    </div>
+    <div class="calc">
+      <h3 style="margin-bottom:18px">Petrol vs electric savings</h3>
+      <div class="row"><label>Your daily ride <output id="kmO"></output></label>
+        <input type="range" id="km" min="10" max="100" step="5" value="35" oninput="savCalc()"></div>
+      <div class="result" style="margin-top:34px"><div><div class="big" id="savR"></div><div class="sub" id="savT"></div></div></div>
+      <p class="form-note">Assumes 25 riding days/month, a 40 km/l petrol scooter at ₹100/litre, and electricity at ₹10/unit with ~35 km per unit. Your actual savings vary with usage and tariffs.</p>
+    </div>
+  </div>
+</div></section>
+<section class="block alt"><div class="container">
+  <div class="sec-head"><div class="eyebrow">Ways to buy</div><h2>Pick the plan that suits you</h2></div>
+  <div class="grid c3">
+    <div class="card"><div class="ico">💳</div><h3>Standard EMI</h3><p>Tie-ups with leading banks and NBFCs, tenures from 12 to 48 months, quick approval with minimal documents.</p></div>
+    <div class="card"><div class="ico">🔋</div><h3>Battery-as-a-Service</h3><p>Cut the upfront price sharply and pay a monthly battery subscription instead — available on select models.</p></div>
+    <div class="card"><div class="ico">🔁</div><h3>Exchange your petrol scooter</h3><p>Fair on-the-spot valuation for your existing two-wheeler, adjusted straight into your down payment.</p></div>
+  </div>
+  <div class="notice">Prices, interest rates, subsidies and offers change frequently and vary by model, variant and registration city. The calculators above are indicative only — call 09240013817 for today's exact on-road quote and running offers.</div>
+</div></section>
+
+<section class="block tight"><div class="container">
+  <div class="cta-band">
+    <div><h2>Let's make the numbers work.</h2><p>Bring your old scooter for a free valuation — most customers ride out with a lower EMI than their monthly petrol spend.</p></div>
+    <div class="btns">
+      <a class="btn primary" href="contact.html">Get a Quote</a>
+      <a class="btn ghost" href="tel:+919240013817">Call the Showroom</a>
+    </div>
+  </div>
+</div></section>
+
+</main>
+
+<footer class="site">
+  <div class="container">
+    <div class="top">
+      <div>
+        <div class="brandline"><span class="bolt">⚡</span><b>PILLAI AUTO <span style="font-weight:400;color:#B9CDC1">· Ather OMR</span></b></div>
+        <ul>
+          <li>4/331A, Rajiv Gandhi Salai, opposite YMCA School, Ramalinga Nagar, Perungudi, Chennai, Tamil Nadu 600041</li>
+          <li>📞 <a href="tel:+919240013817">09240013817</a></li>
+          <li>Serving Chennai · Pondicherry · Chengalpet · Chidambaram</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Electric Scooters</h4>
+        <ul>
+          <li><a href="ather-450-apex.html">Ather 450 Apex</a></li>
+          <li><a href="ather-450x.html">Ather 450X</a></li>
+          <li><a href="ather-450s.html">Ather 450S</a></li>
+          <li><a href="rizta-z.html">Ather Rizta Z</a></li>
+          <li><a href="rizta-s.html">Ather Rizta S</a></li>
+          <li><a href="compare.html">Compare Models</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ownership</h4>
+        <ul>
+          <li><a href="charging.html">Charging &amp; Ather Grid</a></li>
+          <li><a href="service.html">Service &amp; Maintenance</a></li>
+          <li><a href="warranty.html">Battery &amp; Warranty</a></li>
+          <li><a href="accessories.html">Helmets &amp; Accessories</a></li>
+          <li><a href="emi-offers.html">EMI &amp; Savings</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Dealership</h4>
+        <ul>
+          <li><a href="about.html">About Pillai Auto</a></li>
+          <li><a href="test-ride.html">Book a Test Ride</a></li>
+          <li><a href="contact.html">Contact &amp; Directions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fine">
+      <div>© 2026 PILLAI AUTO (Ather OMR). Authorised sales &amp; service dealer for Ather Energy products.</div>
+      <div class="disclaimer">Ather, Ather 450, Rizta, Ather Grid and related marks are trademarks of Ather Energy Limited. Specifications, IDC range figures and features are indicative, as certified/claimed by the manufacturer, and may change. Prices vary by variant, city and current offers — contact us for today's on-road quote.</div>
+    </div>
+  </div>
+</footer>
+<a class="call-fab" href="tel:+919240013817">📞 09240013817</a>
+
+<script>
+function fmt(n){return '₹' + Math.round(n).toLocaleString('en-IN');}
+function emiCalc(){
+  var P=+document.getElementById('amt').value, r=(+document.getElementById('rate').value)/1200, n=+document.getElementById('ten').value;
+  document.getElementById('amtO').textContent=fmt(P);
+  document.getElementById('rateO').textContent=document.getElementById('rate').value+'% p.a.';
+  document.getElementById('tenO').textContent=n+' months';
+  var emi=P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+  document.getElementById('emiR').textContent=fmt(emi)+' / month';
+  document.getElementById('emiT').textContent='Total payable ≈ '+fmt(emi*n);
+}
+function savCalc(){
+  var km=+document.getElementById('km').value;
+  document.getElementById('kmO').textContent=km+' km/day';
+  var days=25, petrolCost=km*days/40*100;           // 40 km/l @ ₹100/l
+  var evCost=km*days/35*10;                          // ~35 km per unit @ ₹10/unit
+  var save=petrolCost-evCost;
+  document.getElementById('savR').textContent=fmt(save)+' / month';
+  document.getElementById('savT').textContent='≈ '+fmt(save*12)+' saved per year vs a petrol scooter';
+}
+document.addEventListener('DOMContentLoaded',function(){emiCalc();savCalc();});
+</script>
+</body>
+</html>
