@@ -1,0 +1,5 @@
+# robots.txt — Version: V1
+User-agent: *
+Allow: /
+
+Sitemap: https://www.pillaiauto.in/sitemap.xml

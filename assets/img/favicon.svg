@@ -1,0 +1,6 @@
+<!-- assets/img/favicon.svg — Version: V1 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="Pillai Auto">
+  <rect width="48" height="48" rx="11" fill="#08090a"/>
+  <path d="M14 34 L24 13 L34 34" fill="none" stroke="#f2f4f5" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M18.5 27.5 H29.5" stroke="#00e07a" stroke-width="3.6" stroke-linecap="round"/>
+</svg>
