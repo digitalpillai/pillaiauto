@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-build_site.py  —  Version: V4  (12 Nov 2026: pages use self-hosted responsive images via
+build_site.py  —  Version: V5  (12 Nov 2026: builds the Ather guides section via
+tools/build_guides.py; model pages link to related guides.
+V4: pages use self-hosted responsive images via
 tools/media.py; photo-style model heroes; home video skipped on phones.
 V3: model cards pass backup images via data-alt. V2, 10 Nov 2026: Konarc launched — teaser text removed,
 Konarc launch band on home, 3.5 kWh packs, 10-year warranty wording, Nov dates)
@@ -37,7 +39,7 @@ WRITTEN = []
 # ---------------------------------------------------------------------------
 # Page shell
 # ---------------------------------------------------------------------------
-def page(path, title, desc, body, head_extra="", og_img=None, version="V4"):
+def page(path, title, desc, body, head_extra="", og_img=None, version="V5"):
     depth = path.count("/")
     P = "../" * depth
     og = og_img or (B["domain"] + "/assets/img/og-default.png")
@@ -248,6 +250,46 @@ def model_card(m, prefix="{P}"):
 # ---------------------------------------------------------------------------
 # Model pages
 # ---------------------------------------------------------------------------
+def branch_guides(b):
+    """V5: local guides on each showroom page."""
+    from guides_index import guides_for_branch
+    gs = guides_for_branch(b["slug"])
+    if not gs:
+        return ""
+    items = "".join(f'<li><a href="{{P}}guides/{g["slug"]}.html">{g["h1"]}</a></li>' for g in gs)
+    return f"""
+  <section class="band-light">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Local guides</span>
+        <h2>Owning an Ather around {b["city"]}</h2>
+      </div>
+      <ul class="guide-list reveal">{items}</ul>
+      <p class="guide-hub-link"><a href="{{P}}guides/index.html">All Ather guides &rarr;</a></p>
+    </div>
+  </section>"""
+
+
+def model_guides(m):
+    """V5: links from a model page to the guides that feature it (helps those pages get crawled)."""
+    from guides_index import guides_for_model
+    gs = guides_for_model(m["slug"])
+    if not gs:
+        return ""
+    items = "".join(f'<li><a href="{{P}}guides/{g["slug"]}.html">{g["h1"]}</a></li>' for g in gs)
+    return f"""
+  <section class="band-light">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Buying guides</span>
+        <h2>Before you choose the {m["name"]}</h2>
+      </div>
+      <ul class="guide-list reveal">{items}</ul>
+      <p class="guide-hub-link"><a href="{{P}}guides/index.html">All Ather guides &rarr;</a></p>
+    </div>
+  </section>"""
+
+
 def build_model(m):
     path = f"scooters/{m['slug']}.html"
     soon = m["status"] == "coming-soon"
@@ -407,6 +449,7 @@ def build_model(m):
       <div class="grid grid--3 reveal">{related}</div>
     </div>
   </section>
+{model_guides(m)}
 {cta_band("Not sure which one fits?", "Tell us your daily distance and whether you ride two-up. We will narrow it to one.", ("Talk to us", "{P}contact.html"))}
 """
 
@@ -541,6 +584,7 @@ def build_branch(b):
       </div>
     </div>
   </section>
+{branch_guides(b)}
 {cta_band(f"Come and ride one in {b['locality']}", "Free test rides, no obligation. Call ahead and we will have it charged and waiting.")}
 """
 
@@ -2078,6 +2122,8 @@ def main():
         build_branch(b)
     build_contact()
     build_legal()
+    import build_guides            # V5: Ather guides hub + guide pages
+    build_guides.build_all()
     build_meta_files()
     print(f"{len(WRITTEN)} files written:")
     for p in sorted(WRITTEN):
@@ -2085,4 +2131,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import build_site          # run as a module so build_guides shares this page list
+    build_site.main()

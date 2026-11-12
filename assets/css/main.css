@@ -1,8 +1,8 @@
 /* ==========================================================================
    Pillai Auto — Ather dealership website (Chennai · Chengalpattu · Puducherry · Chidambaram)
    File: assets/css/main.css
-   Version: V4
-   Last updated: 12 November 2026 (V4: responsive self-hosted media — model-hero
+   Version: V5
+   Last updated: 12 November 2026 (V5: Ather guides layout. V4: responsive self-hosted media — model-hero
    frame, phone crops, hero still + video layering. V3: card studio backdrop)
    --------------------------------------------------------------------------
    Order is fixed: tokens -> reset -> primitives -> components -> page
@@ -1099,6 +1099,85 @@ input[type="range"]::-moz-range-thumb {
 
 @media (max-width: 380px) {
   .site-nav__logo small { display: none; }
+}
+
+/* --- page: Ather guides (V5) --- */
+.guide-meta { margin-top: var(--space-3); font-size: var(--t-sm); color: var(--c-ink-muted); }
+.guide-meta a { color: var(--c-ink); }
+.guide-band { padding-top: var(--space-5); }
+.guide__media { border-radius: var(--radius-xl); aspect-ratio: 16 / 9; margin-bottom: var(--space-5); background: var(--c-surface-lt); }
+.guide__media img { width: 100%; height: 100%; object-fit: cover; }
+.guide { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: var(--space-6); align-items: start; }
+.guide__aside { position: sticky; top: calc(var(--nav-h) + 16px); display: grid; gap: var(--space-4); }
+
+.prose { max-width: 72ch; font-size: 1.0625rem; line-height: 1.7; color: var(--c-ink-lt); }
+.prose .guide-sec { padding: 0; }
+.prose .guide-sec + .guide-sec { margin-top: var(--space-5); }
+.guide-toc + .guide-sec { margin-top: 0; }
+.prose h2 { font-size: var(--t-xl); line-height: 1.25; margin-bottom: var(--space-3); scroll-margin-top: calc(var(--nav-h) + 16px); }
+.prose h3 { font-size: var(--t-lg); margin: var(--space-4) 0 var(--space-2); }
+.prose p, .prose ul, .prose ol { margin-bottom: var(--space-3); }
+.prose ul, .prose ol { padding-left: 1.3em; }
+.prose li { margin-bottom: 6px; }
+.prose li::marker { color: var(--c-accent-dim); font-weight: 600; }
+.prose a { color: #0a7a46; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.prose a:hover { color: var(--c-ink-lt); }
+.prose strong { color: var(--c-ink-lt); }
+.guide-note { border-left: 3px solid var(--c-accent-dim); background: var(--c-surface-lt); padding: var(--space-3) var(--space-4); border-radius: 0 12px 12px 0; }
+
+.table-scroll { overflow-x: auto; margin: var(--space-3) 0 var(--space-4); border: 1px solid var(--c-line-lt); border-radius: 14px; background: var(--c-surface-lt); -webkit-overflow-scrolling: touch; }
+.guide-table { width: 100%; border-collapse: collapse; font-size: var(--t-sm); line-height: 1.45; }
+.guide-table th, .guide-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--c-line-lt); vertical-align: top; }
+.guide-table thead th { background: #f0f1ee; font-weight: 600; white-space: nowrap; }
+.guide-table tbody th { font-weight: 600; }
+.guide-table tr:last-child > * { border-bottom: 0; }
+
+.guide-toc { background: var(--c-surface-lt); border: 1px solid var(--c-line-lt); border-radius: 16px; padding: var(--space-4); margin-bottom: var(--space-5); }
+.guide-toc__title { font-size: var(--t-sm) !important; text-transform: uppercase; letter-spacing: .08em; color: var(--c-ink-muted-lt) !important; margin-bottom: var(--space-2) !important; }
+.guide-toc ol { margin: 0; columns: 2; column-gap: var(--space-5); font-size: var(--t-sm); }
+.guide-toc li { break-inside: avoid; }
+
+.guide-box { background: var(--c-surface-lt); border: 1px solid var(--c-line-lt); border-radius: 18px; padding: var(--space-4); box-shadow: var(--shadow-lt); color: var(--c-ink-lt); }
+.guide-box__title { font-size: var(--t-lg) !important; margin-bottom: var(--space-3); }
+.guide-box p { color: var(--c-ink-muted-lt); font-size: var(--t-sm); margin-bottom: var(--space-3); }
+.guide-box--accent { border-color: rgba(0,184,98,.35); }
+.guide-box--accent .btn { width: 100%; justify-content: center; }
+.guide-facts { display: grid; gap: 10px; margin: 0; }
+.guide-facts div { display: grid; gap: 2px; padding-bottom: 10px; border-bottom: 1px solid var(--c-line-lt); }
+.guide-facts div:last-child { border-bottom: 0; padding-bottom: 0; }
+.guide-facts dt { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--c-ink-muted-lt); }
+.guide-facts dd { margin: 0; font-weight: 600; }
+.guide-links, .guide-shops { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: var(--t-sm); }
+.guide-links a, .guide-shops a { color: var(--c-ink-lt); font-weight: 500; }
+.guide-shops { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--c-line-lt); }
+.guide-shops li { display: flex; justify-content: space-between; gap: 8px; }
+.guide-shops span, .guide-shops span a { color: var(--c-accent-dim); font-weight: 500; }
+
+.guide-faq { margin-top: var(--space-5); }
+.guide-faq h2 { margin-bottom: var(--space-3); }
+.guide-related { margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--c-line-lt); }
+.guide-related h2 { font-size: var(--t-xl); margin-bottom: var(--space-4); }
+.guide-card { display: block; text-decoration: none; transition: transform var(--ease), box-shadow var(--ease); }
+.guide-card:hover { transform: translateY(-3px); }
+.guide-card .eyebrow { margin-bottom: 8px; }
+.guide-card .card__title { font-size: var(--t-lg); margin-bottom: 6px; }
+.guide-hub-link { margin-top: var(--space-4); font-weight: 600; }
+.guide-hub-link a { color: var(--c-accent-dim); }
+.guide-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--space-3); }
+.guide-list a { display: block; height: 100%; padding: var(--space-4); background: var(--c-surface-lt); border: 1px solid var(--c-line-lt); border-radius: 14px; color: var(--c-ink-lt); font-weight: 600; text-decoration: none; }
+.guide-list a:hover { border-color: var(--c-accent-dim); }
+
+@media (max-width: 1023px) {
+  .guide { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
+  .guide__aside { position: static; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+}
+@media (max-width: 599px) {
+  .prose { font-size: 1rem; }
+  .guide-toc ol { columns: 1; }
+  .guide-table { font-size: 13px; }
+  .guide-table th, .guide-table td { padding: 8px 9px; }
+  .guide-table thead th { white-space: normal; }
+  .guide__media { aspect-ratio: 4 / 3; border-radius: var(--radius-lg); }
 }
 
 /* V4: phone-shaped frames for the art-directed photos */

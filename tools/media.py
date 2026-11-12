@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-media.py  —  Version: V1  (12 Nov 2026)
+media.py  —  Version: V2  (12 Nov 2026: guide images sized for the article column)
 
 Used by build_site.py. Rewrites every https://media.atherenergy.com/<file>
 image in a finished page to the self-hosted responsive copies listed in
@@ -30,12 +30,13 @@ SIZES = {
     "full":      "(max-width: 1260px) calc(100vw - 32px), 1220px",
     "colours":   "(max-width: 940px) calc(100vw - 48px), 900px",
     "bleed":     "100vw",
+    "guide":     "(max-width: 1260px) calc(100vw - 32px), 1220px",
 }
 # Context markers, nearest one before the <img> wins.
 MARKERS = [
     ("model-card__media", "card"), ("card--media", "card"), ("model-hero", "full"),
     ("statement__media", "full"), ("colours__stage", "colours"), ("hero__media", "bleed"),
-    ("media--wide", "card"), ("halo__media", "full"),
+    ("media--wide", "card"), ("halo__media", "full"), ("guide__media", "guide"),
 ]
 ART_DIRECTED = {"full", "colours", "bleed"}      # these get the phone-shaped version
 EAGER = {"model-hero"}                            # above the fold: load first

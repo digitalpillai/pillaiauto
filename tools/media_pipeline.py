@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-media_pipeline.py  —  Version: V1  (12 Nov 2026)
+media_pipeline.py  —  Version: V2  (12 Nov 2026: also scans the guide content files)
 
 Turns the downloaded Ather media library into responsive, self-hosted images
 for the Pillai Auto site.
@@ -31,7 +31,9 @@ from urllib.parse import unquote
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT_DIR = os.path.join(ROOT, "assets", "media")
 MANIFEST = os.path.join(OUT_DIR, "manifest.json")
-SCAN = ["tools/site_data.py", "tools/build_site.py", "partials/nav.html", "partials/footer.html"]
+SCAN = ["tools/site_data.py", "tools/build_site.py", "partials/nav.html", "partials/footer.html",
+        "tools/guides_models.py", "tools/guides_compare.py", "tools/guides_features.py",
+        "tools/guides_ownership.py", "tools/guides_local.py"]
 URL_RE = re.compile(r'(?:M\s*\+\s*"|\{M\}|https://media\.atherenergy\.com/)([^"\'\s<>]+?\.(?:webp|png|jpe?g|avif))', re.I)
 
 QUALITY = 78

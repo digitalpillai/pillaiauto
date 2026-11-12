@@ -15,18 +15,22 @@ accessories and showrooms. No corporate pages, no investor or press sections, no
 
 | File | Version | What it is |
 |---|---|---|
-| `assets/css/main.css` | **V4** | The only stylesheet |
+| `assets/css/main.css` | **V5** | The only stylesheet |
 | `assets/js/main.js` | **V4** | The only script |
 | `partials/head.html` | **V2** | Shared `<head>` block |
 | `partials/nav.html` | **V3** | Offer strip + header nav with dropdowns |
-| `partials/footer.html` | **V3** | Footer with all four branches |
+| `partials/footer.html` | **V4** | Footer with all four branches (+ Ather guides link) |
 | `tools/site_data.py` | **V4** | Branch and model data — the single source of truth |
-| `tools/build_site.py` | **V4** | Generates every HTML page from that data |
-| `tools/media_pipeline.py` | **V1** | Builds responsive images from the Ather media library |
-| `tools/media.py` | **V1** | Used by build_site.py to swap in those images |
+| `tools/build_site.py` | **V5** | Generates every HTML page from that data |
+| `tools/build_guides.py` | **V1** | Builds the Ather guides hub and guide pages, with a quality check |
+| `tools/guides_index.py` | **V1** | Collects the guides; which guides each model and showroom page links to |
+| `tools/guides_models.py`, `guides_compare.py`, `guides_features.py`, `guides_ownership.py`, `guides_local.py` | **V1** | The guide content (51 pages) |
+| `tools/media_pipeline.py` | **V2** | Builds responsive images from the Ather media library |
+| `tools/media.py` | **V2** | Used by build_site.py to swap in those images |
 | `assets/media/` | generated | Self-hosted WebP images + `manifest.json` |
 | `tools/sync_partials.py` | **V1** | Injects the partials into every page |
-| all 25 `*.html` pages | **V4** | Generated output — this is what you deploy |
+| all 25 main `*.html` pages | **V5** | Generated output — this is what you deploy |
+| `guides/*.html` (52 pages) | **V1** | Ather guides hub + 51 guides |
 | `robots.txt` | **V1** | Crawler rules |
 | `sitemap.xml` | **V2** | Crawler file (lastmod 2026-11-10) |
 | `assets/img/og-default.png` | **V2** | Social share card (1200×630) |
@@ -176,6 +180,36 @@ To change a picture, put another Ather file name in `tools/site_data.py` (`card`
 or a colour image) and run the three commands. The pipeline finds the file in the library,
 makes the sizes and the phone version, and removes files no longer used. Anything it can't
 find keeps loading from Ather, with the labelled placeholder as before if that fails.
+
+## Ather guides (SEO pages)
+
+`guides/` holds a hub page and 51 guides written for buyers in Chennai, Chengalpattu,
+Puducherry and Chidambaram. They are not in the main menu: the footer has one
+"Ather guides" link to the hub, each model page lists its related guides, each showroom
+page lists its local guides, and every guide links to related guides. All are in
+`sitemap.xml`.
+
+| Group | Pages | File |
+|---|---|---|
+| Choosing your Ather | 12 | `tools/guides_models.py` |
+| Ather vs Ather | 8 | `tools/guides_compare.py` |
+| Features explained | 12 | `tools/guides_features.py` |
+| Owning an Ather | 15 | `tools/guides_ownership.py` |
+| Routes and commutes | 4 | `tools/guides_local.py` |
+
+**Editing a guide:** change its text in the content file and run `python tools/build_site.py`
+then `python tools/sync_partials.py`. The build refuses to finish if two guides share a
+title, a description is the wrong length, a page falls under 300 words, a link points to a
+guide that doesn't exist, or two pages overlap by more than 25%.
+
+**Keep these current (check every quarter):**
+- Prices and specs come from `site_data.py` and Ather's spec sheets (10–12 Nov 2026).
+- Tamil Nadu's 100% EV road tax exemption runs to 31 Dec 2027.
+- Fuel prices in the cost guides: Chennai ₹107.77 (9 Nov 2026), Puducherry ₹103.58 (1 Nov 2026).
+- Puducherry EV registration charges are deliberately not printed — the showroom quotes them.
+
+**Still to add:** 24 on-road price pages (6 models × 4 regions) once the showrooms
+provide on-road price sheets.
 
 ## Enquiry forms
 
