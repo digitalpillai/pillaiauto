@@ -1,8 +1,9 @@
 /* ==========================================================================
    Pillai Auto — Ather dealership website
    File: assets/js/main.js
-   Version: V4
-   Last updated: 12 November 2026 (V4: colour picker swaps responsive srcsets;
+   Version: V5
+   Last updated: 12 November 2026 (V5: WhatsApp for all outlets → 73581 05818.
+   V4: colour picker swaps responsive srcsets;
    home video loads on tablets/laptops only, still photo on phones.
    V3: image fallback tries data-alt backups)
    --------------------------------------------------------------------------
@@ -22,7 +23,7 @@
      0. Config — the only place that knows business details.
      ---------------------------------------------------------------------- */
   var CONFIG = {
-    whatsapp: '918925815877',        // digits only, no + and no spaces
+    whatsapp: '917358105818',        // digits only, no + and no spaces — all outlets
     phone:    '+918925815877'
   };
 

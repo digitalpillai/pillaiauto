@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-site_data.py  —  Version: V4  (12 Nov 2026: cards = studio shots, heroes = lifestyle
+site_data.py  —  Version: V5  (12 Nov 2026: every WhatsApp link goes to 73581 05818.
+V4: cards = studio shots, heroes = lifestyle
 photos with phone versions, served from assets/media. V3: card backups. V2, 10 Nov: Konarc launched; specs, prices, warranty updated)
 Single source of truth for everything repeated across the Pillai Auto site:
 the four branches and the scooter line-up.
@@ -17,7 +18,7 @@ BUSINESS = {
     "domain": "https://www.pillaiauto.in",
     "phone_display": "+91 89258 15877",
     "phone_e164": "+918925815877",
-    "whatsapp": "918925815877",
+    "whatsapp": "917358105818",
     "email": "sales@pillaiauto.in",          # TODO(client): confirm
     "hours": "Mon – Sat, 9:30 am – 7:30 pm · Sunday, 10:00 am – 6:00 pm",
 }
@@ -39,7 +40,7 @@ BRANCHES = [
         "pin": "600041",
         "phone_display": "+91 89258 15877",
         "phone_e164": "+918925815877",
-        "whatsapp": "918925815877",
+        "whatsapp": "917358105818",
         "lat": "12.9601", "lng": "80.2545",
         "blurb": "Our main showroom and the flagship Ather experience centre on OMR. "
                  "Full line-up on the floor, test rides from the door, service bays "
@@ -59,7 +60,7 @@ BRANCHES = [
         "pin": "603001",
         "phone_display": "+91 89258 15877",   # TODO(client): branch number
         "phone_e164": "+918925815877",
-        "whatsapp": "918925815877",
+        "whatsapp": "917358105818",
         "lat": "12.6819", "lng": "79.9864",
         "blurb": "On the GST Road at Pulipakkam, convenient for Chengalpattu town, "
                  "Maraimalai Nagar and the Mahindra City belt.",
@@ -78,7 +79,7 @@ BRANCHES = [
         "pin": "605004",
         "phone_display": "+91 89258 15877",   # TODO(client): branch number
         "phone_e164": "+918925815877",
-        "whatsapp": "918925815877",
+        "whatsapp": "917358105818",
         "lat": "11.9416", "lng": "79.8083",
         "blurb": "The authorised Ather showroom for Puducherry, on 100 Ft Road at "
                  "Sundarraja Nagar. Sales, service and fast charging in one place.",
@@ -96,7 +97,7 @@ BRANCHES = [
         "pin": "608102",
         "phone_display": "+91 89258 15877",   # TODO(client): branch number
         "phone_e164": "+918925815877",
-        "whatsapp": "918925815877",
+        "whatsapp": "917358105818",
         "lat": "11.3990", "lng": "79.6912",
         "blurb": "Serving Chidambaram and the wider Cuddalore district from the "
                  "bye-pass road, with sales, service and delivery across the region.",
