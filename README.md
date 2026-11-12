@@ -114,10 +114,10 @@ Search the project for `TODO(client)`.
    **WhatsApp for every outlet: +91 73581 05818.** Numbers live in `tools/site_data.py`; the
    footer's branch numbers and the header call button are in `partials/footer.html` and
    `partials/nav.html`; the forms' fallback number is in `assets/js/main.js`.
-3. **Email address.** `sales@pillaiauto.in` is a placeholder.
+3. **Email.** The site deliberately shows no email address — contact is by phone and WhatsApp only.
 4. **Opening hours.** Currently Mon–Sat 9:30–19:30, Sun 10:00–18:00, the same for all four.
-5. **Grievance officer** in `privacy.html` — a named person and a working email address are
-   a statutory requirement under the DPDP Act, 2023.
+5. **Grievance officer** in `privacy.html` — add the name of the person responsible for
+   grievances under the DPDP Act, 2023 (contact is by phone; no email is shown).
 6. **On-road rates.** `price-chennai.html` carries `data-rto="0.04"` and `data-ins="0.055"`
    on the `#onroad` form. These are placeholders. Set them to the figures you actually
    quote, including any Tamil Nadu EV road-tax concession, and check Puducherry separately —

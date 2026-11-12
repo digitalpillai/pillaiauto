@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-build_site.py  —  Version: V7  (12 Nov 2026: 404 page uses the main number from site_data.
+build_site.py  —  Version: V8  (12 Nov 2026: all email addresses removed.
+V7: 404 page uses the main number from site_data.
 V6: business data includes the Pillai Auto logo.
 V5: builds the Ather guides section via
 tools/build_guides.py; model pages link to related guides.
@@ -41,7 +42,7 @@ WRITTEN = []
 # ---------------------------------------------------------------------------
 # Page shell
 # ---------------------------------------------------------------------------
-def page(path, title, desc, body, head_extra="", og_img=None, version="V7"):
+def page(path, title, desc, body, head_extra="", og_img=None, version="V8"):
     depth = path.count("/")
     P = "../" * depth
     og = og_img or (B["domain"] + "/assets/img/og-default.png")
@@ -1893,11 +1894,10 @@ def build_contact():
     <div class="container">
       <span class="eyebrow">Contact</span>
       <h1>Talk to Pillai Auto</h1>
-      <p class="lede">One number reaches all four showrooms, and WhatsApp is usually faster than email. Whatever you send, a person reads it.</p>
+      <p class="lede">Call your nearest showroom, or WhatsApp us &mdash; it is usually the fastest way to reach us. Whatever you send, a person reads it.</p>
       <div class="btn-row" style="margin-top:var(--space-5)">
         <a class="btn btn--lg" href="tel:{TEL}">Call {PHONE[4:]}</a>
         <a class="btn btn--wa btn--lg" href="https://wa.me/{WA}?text=Hi%20Pillai%20Auto" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="btn btn--ghost btn--lg" href="mailto:{B["email"]}">Email us</a>
       </div>
     </div>
   </section>
@@ -1921,7 +1921,6 @@ def build_contact():
               </table>
             </div>
             <p class="form-note" style="margin-top:var(--space-4)"><strong>Hours:</strong> {B["hours"]}</p>
-            <p class="form-note" style="margin-top:var(--space-2)"><strong>Email:</strong> <a href="mailto:{B["email"]}">{B["email"]}</a></p>
           </div>
         </div>
       </div>
@@ -1974,7 +1973,7 @@ def build_legal():
         <p>If we later add analytics or advertising tags, this section will name them and the identifiers they set before those tags go live.</p>
 
         <h2 style="font-size:var(--t-xl)">The basis for processing</h2>
-        <p>We process your data on the basis of your consent, given when you contact us. You can withdraw that consent at any time using the phone number or email below. Withdrawal does not affect anything lawfully done before it.</p>
+        <p>We process your data on the basis of your consent, given when you contact us. You can withdraw that consent at any time using the phone number below. Withdrawal does not affect anything lawfully done before it.</p>
 
         <h2 style="font-size:var(--t-xl)">Who else sees it</h2>
         <ul>
@@ -1992,9 +1991,8 @@ def build_legal():
         <p>Under the Digital Personal Data Protection Act, 2023 you may ask us for access to your personal data, correction or completion of it, erasure of data we no longer need, and you may nominate someone to exercise these rights on your behalf. You may also raise a grievance about how we handled your data.</p>
 
         <h2 style="font-size:var(--t-xl)">Grievance officer</h2>
-        <!-- TODO(client): a named individual and a working email address are a statutory requirement. Replace before launch. -->
+        <!-- TODO(client): add the name of the person responsible for grievances before launch. -->
         <p>Name: <strong>[to be filled in by Pillai Auto]</strong><br>
-        Email: <a href="mailto:grievance@pillaiauto.in">grievance@pillaiauto.in</a><br>
         Address: {BRANCHES[0]["street"]}, {BRANCHES[0]["locality"]} {BRANCHES[0]["pin"]}<br>
         Phone: <a href="tel:{TEL}">{PHONE}</a></p>
         <p>We aim to acknowledge grievances within 7 working days and resolve them within 30 days.</p>
@@ -2052,7 +2050,7 @@ def build_legal():
         <p>These terms are governed by the laws of India. The courts at Chennai have exclusive jurisdiction.</p>
 
         <h2 style="font-size:var(--t-xl)">Contact</h2>
-        <p><a href="tel:{TEL}">{PHONE}</a> &middot; <a href="mailto:{B["email"]}">{B["email"]}</a></p>
+        <p><a href="tel:{TEL}">{PHONE}</a> &middot; <a href="https://wa.me/{WA}" target="_blank" rel="noopener">WhatsApp</a></p>
 
         <p class="form-note" style="margin-top:var(--space-5)">This is a starting draft prepared for Pillai Auto. It is not legal advice and should be reviewed before the site goes live.</p>
       </div>

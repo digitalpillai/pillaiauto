@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-site_data.py  —  Version: V6  (12 Nov 2026: branch phone numbers from each Google Business
+site_data.py  —  Version: V7  (12 Nov 2026: email address removed.
+V6: branch phone numbers from each Google Business
 Profile; main number = Chennai OMR. V5: every WhatsApp link goes to 73581 05818.
 V4: cards = studio shots, heroes = lifestyle
 photos with phone versions, served from assets/media. V3: card backups. V2, 10 Nov: Konarc launched; specs, prices, warranty updated)
@@ -20,7 +21,6 @@ BUSINESS = {
     "phone_display": "+91 92400 13817",      # main number = Chennai OMR (header, 404, forms)
     "phone_e164": "+919240013817",
     "whatsapp": "917358105818",
-    "email": "sales@pillaiauto.in",          # TODO(client): confirm
     "hours": "Mon – Sat, 9:30 am – 7:30 pm · Sunday, 10:00 am – 6:00 pm",
 }
 
