@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-site_data.py  —  Version: V5  (12 Nov 2026: every WhatsApp link goes to 73581 05818.
+site_data.py  —  Version: V6  (12 Nov 2026: branch phone numbers from each Google Business
+Profile; main number = Chennai OMR. V5: every WhatsApp link goes to 73581 05818.
 V4: cards = studio shots, heroes = lifestyle
 photos with phone versions, served from assets/media. V3: card backups. V2, 10 Nov: Konarc launched; specs, prices, warranty updated)
 Single source of truth for everything repeated across the Pillai Auto site:
@@ -16,8 +17,8 @@ BUSINESS = {
     "name": "Pillai Auto",
     "legal": "Pillai Auto Private Limited",
     "domain": "https://www.pillaiauto.in",
-    "phone_display": "+91 89258 15877",
-    "phone_e164": "+918925815877",
+    "phone_display": "+91 92400 13817",      # main number = Chennai OMR (header, 404, forms)
+    "phone_e164": "+919240013817",
     "whatsapp": "917358105818",
     "email": "sales@pillaiauto.in",          # TODO(client): confirm
     "hours": "Mon – Sat, 9:30 am – 7:30 pm · Sunday, 10:00 am – 6:00 pm",
@@ -38,8 +39,8 @@ BRANCHES = [
         "street": "4/331A, Rajiv Gandhi Salai (OMR), Kottivakkam",
         "locality": "Chennai",
         "pin": "600041",
-        "phone_display": "+91 89258 15877",
-        "phone_e164": "+918925815877",
+        "phone_display": "+91 92400 13817",   # from Google Business Profile, 12 Nov 2026
+        "phone_e164": "+919240013817",
         "whatsapp": "917358105818",
         "lat": "12.9601", "lng": "80.2545",
         "blurb": "Our main showroom and the flagship Ather experience centre on OMR. "
@@ -58,8 +59,8 @@ BRANCHES = [
         "street": "SF. No. 86/2A1, GST Pulipakkam Road",
         "locality": "Chengalpattu",
         "pin": "603001",
-        "phone_display": "+91 89258 15877",   # TODO(client): branch number
-        "phone_e164": "+918925815877",
+        "phone_display": "+91 88840 24249",   # from Google Business Profile, 12 Nov 2026
+        "phone_e164": "+918884024249",
         "whatsapp": "917358105818",
         "lat": "12.6819", "lng": "79.9864",
         "blurb": "On the GST Road at Pulipakkam, convenient for Chengalpattu town, "
@@ -77,8 +78,8 @@ BRANCHES = [
         "street": "No. 27, Sundarraja Nagar, 100 Ft Road",
         "locality": "Puducherry",
         "pin": "605004",
-        "phone_display": "+91 89258 15877",   # TODO(client): branch number
-        "phone_e164": "+918925815877",
+        "phone_display": "+91 92400 13873",   # from Google Business Profile, 12 Nov 2026
+        "phone_e164": "+919240013873",
         "whatsapp": "917358105818",
         "lat": "11.9416", "lng": "79.8083",
         "blurb": "The authorised Ather showroom for Puducherry, on 100 Ft Road at "
@@ -95,8 +96,8 @@ BRANCHES = [
         "street": "Cuddalore Bye-Pass Road, Thillainayagapuram (beside Oxford English School)",
         "locality": "Chidambaram",
         "pin": "608102",
-        "phone_display": "+91 89258 15877",   # TODO(client): branch number
-        "phone_e164": "+918925815877",
+        "phone_display": "+91 92400 83604",   # from Google Business Profile, 12 Nov 2026
+        "phone_e164": "+919240083604",
         "whatsapp": "917358105818",
         "lat": "11.3990", "lng": "79.6912",
         "blurb": "Serving Chidambaram and the wider Cuddalore district from the "

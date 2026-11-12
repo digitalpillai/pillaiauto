@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-build_site.py  —  Version: V6  (12 Nov 2026: business data includes the Pillai Auto logo.
+build_site.py  —  Version: V7  (12 Nov 2026: 404 page uses the main number from site_data.
+V6: business data includes the Pillai Auto logo.
 V5: builds the Ather guides section via
 tools/build_guides.py; model pages link to related guides.
 V4: pages use self-hosted responsive images via
@@ -40,7 +41,7 @@ WRITTEN = []
 # ---------------------------------------------------------------------------
 # Page shell
 # ---------------------------------------------------------------------------
-def page(path, title, desc, body, head_extra="", og_img=None, version="V6"):
+def page(path, title, desc, body, head_extra="", og_img=None, version="V7"):
     depth = path.count("/")
     P = "../" * depth
     og = og_img or (B["domain"] + "/assets/img/og-default.png")
@@ -2077,7 +2078,7 @@ def build_legal():
   </section>
 """
     page("404.html", "Page not found | Pillai Auto",
-         "That page does not exist. Browse the Ather line-up at Pillai Auto or call +91 89258 15877.",
+         f"That page does not exist. Browse the Ather line-up at Pillai Auto or call {PHONE}.",
          nf, head_extra='<meta name="robots" content="noindex">')
 
 

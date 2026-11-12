@@ -1,8 +1,9 @@
 /* ==========================================================================
    Pillai Auto — Ather dealership website
    File: assets/js/main.js
-   Version: V5
-   Last updated: 12 November 2026 (V5: WhatsApp for all outlets → 73581 05818.
+   Version: V6
+   Last updated: 12 November 2026 (V6: main phone → Chennai OMR 92400 13817.
+   V5: WhatsApp for all outlets → 73581 05818.
    V4: colour picker swaps responsive srcsets;
    home video loads on tablets/laptops only, still photo on phones.
    V3: image fallback tries data-alt backups)
@@ -24,7 +25,7 @@
      ---------------------------------------------------------------------- */
   var CONFIG = {
     whatsapp: '917358105818',        // digits only, no + and no spaces — all outlets
-    phone:    '+918925815877'
+    phone:    '+919240013817'        // Chennai OMR
   };
 
   /* ----------------------------------------------------------------------

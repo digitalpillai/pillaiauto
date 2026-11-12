@@ -108,10 +108,12 @@ Search the project for `TODO(client)`.
 1. **Branch addresses.** Taken from public Ather dealer listings. Check each against the
    matching Google Business Profile, byte for byte — a mismatch is a common cause of weak
    local ranking. They live in `tools/site_data.py`.
-2. **Branch phone numbers.** All four currently show `+91 89258 15877`. If Chengalpattu,
-   Puducherry and Chidambaram have their own numbers, put them in `site_data.py`
-   (`phone_display`, `phone_e164`, `whatsapp`) — the enquiry forms route to whichever
-   branch the visitor picks, so this matters.
+2. **Phone and WhatsApp numbers** (12 Nov 2026, from each Google Business Profile):
+   Chennai OMR +91 92400 13817 (also the main number in the header and 404 page) ·
+   Chengalpattu +91 88840 24249 · Puducherry +91 92400 13873 · Chidambaram +91 92400 83604.
+   **WhatsApp for every outlet: +91 73581 05818.** Numbers live in `tools/site_data.py`; the
+   footer's branch numbers and the header call button are in `partials/footer.html` and
+   `partials/nav.html`; the forms' fallback number is in `assets/js/main.js`.
 3. **Email address.** `sales@pillaiauto.in` is a placeholder.
 4. **Opening hours.** Currently Mon–Sat 9:30–19:30, Sun 10:00–18:00, the same for all four.
 5. **Grievance officer** in `privacy.html` — a named person and a working email address are
