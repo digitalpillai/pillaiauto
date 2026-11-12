@@ -15,13 +15,14 @@ accessories and showrooms. No corporate pages, no investor or press sections, no
 
 | File | Version | What it is |
 |---|---|---|
-| `assets/css/main.css` | **V5** | The only stylesheet |
+| `assets/css/main.css` | **V6** | The only stylesheet |
 | `assets/js/main.js` | **V4** | The only script |
-| `partials/head.html` | **V2** | Shared `<head>` block |
-| `partials/nav.html` | **V3** | Offer strip + header nav with dropdowns |
-| `partials/footer.html` | **V4** | Footer with all four branches (+ Ather guides link) |
+| `partials/head.html` | **V3** | Shared `<head>` block (icons + manifest) |
+| `partials/nav.html` | **V4** | Offer strip + header nav with dropdowns + Pillai Auto logo |
+| `partials/footer.html` | **V5** | Footer with logo, all four branches and Ather guides link |
 | `tools/site_data.py` | **V4** | Branch and model data — the single source of truth |
-| `tools/build_site.py` | **V5** | Generates every HTML page from that data |
+| `tools/build_site.py` | **V6** | Generates every HTML page from that data |
+| `tools/make_logo.py` | **V1** | Builds all logo files from `assets/brand/pillai-auto-logo-source.jpg` |
 | `tools/build_guides.py` | **V1** | Builds the Ather guides hub and guide pages, with a quality check |
 | `tools/guides_index.py` | **V1** | Collects the guides; which guides each model and showroom page links to |
 | `tools/guides_models.py`, `guides_compare.py`, `guides_features.py`, `guides_ownership.py`, `guides_local.py` | **V1** | The guide content (51 pages) |
@@ -33,8 +34,10 @@ accessories and showrooms. No corporate pages, no investor or press sections, no
 | `guides/*.html` (52 pages) | **V1** | Ather guides hub + 51 guides |
 | `robots.txt` | **V1** | Crawler rules |
 | `sitemap.xml` | **V2** | Crawler file (lastmod 2026-11-10) |
-| `assets/img/og-default.png` | **V2** | Social share card (1200×630) |
-| `assets/img/favicon.svg` | **V1** | Tab icon |
+| `assets/img/og-default.png` | **V3** | Social share card with the Pillai Auto logo (1200×630) |
+| `assets/img/logo-mark.svg`, `logo-mark-on-dark.svg` | **V1** | The logo as vectors, for light and dark backgrounds |
+| `assets/img/favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest` | **V1** | Tab, phone home-screen and Android icons |
+| `assets/img/favicon.svg` | **V2** | Tab icon (Pillai Auto mark on cream) |
 
 Bump a version in the file's header comment and in this table when you change it.
 
@@ -180,6 +183,17 @@ To change a picture, put another Ather file name in `tools/site_data.py` (`card`
 or a colour image) and run the three commands. The pipeline finds the file in the library,
 makes the sizes and the phone version, and removes files no longer used. Anything it can't
 find keeps loading from Ather, with the labelled placeholder as before if that fails.
+
+## Logo
+
+The Pillai Auto logo (`assets/brand/pillai-auto-logo-source.jpg`) was traced into a vector, so it
+stays sharp at every size. In the header and footer it is drawn inline: its upper (black) half
+takes the text colour, so it shows white on the dark site and black on light backgrounds; the
+lower half keeps the logo green, #41F130. Header size: 40 px on laptops and tablets, 34 px on
+phones, 32 px on very narrow phones.
+
+If the logo ever changes, replace the source image, run `python tools/make_logo.py` (needs
+`potrace`), paste the new paths into the partials — or ask for it to be redone — and rebuild.
 
 ## Ather guides (SEO pages)
 

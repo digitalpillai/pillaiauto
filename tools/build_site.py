@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-build_site.py  —  Version: V5  (12 Nov 2026: builds the Ather guides section via
+build_site.py  —  Version: V6  (12 Nov 2026: business data includes the Pillai Auto logo.
+V5: builds the Ather guides section via
 tools/build_guides.py; model pages link to related guides.
 V4: pages use self-hosted responsive images via
 tools/media.py; photo-style model heroes; home video skipped on phones.
@@ -39,7 +40,7 @@ WRITTEN = []
 # ---------------------------------------------------------------------------
 # Page shell
 # ---------------------------------------------------------------------------
-def page(path, title, desc, body, head_extra="", og_img=None, version="V5"):
+def page(path, title, desc, body, head_extra="", og_img=None, version="V6"):
     depth = path.count("/")
     P = "../" * depth
     og = og_img or (B["domain"] + "/assets/img/og-default.png")
@@ -598,6 +599,7 @@ def build_branch(b):
   "telephone": "{b['phone_e164']}",
   "priceRange": "₹₹",
   "image": "{B['domain']}/assets/img/og-default.png",
+  "logo": "{B['domain']}/assets/img/icon-512.png",
   "address": {{
     "@type": "PostalAddress",
     "streetAddress": "{b['street']}",
@@ -887,6 +889,7 @@ def build_home():
   "telephone": "{TEL}",
   "priceRange": "₹₹",
   "image": "{B['domain']}/assets/img/og-default.png",
+  "logo": "{B['domain']}/assets/img/icon-512.png",
   "address": {{
     "@type": "PostalAddress",
     "streetAddress": "{BRANCHES[0]['street']}",
