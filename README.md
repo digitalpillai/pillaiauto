@@ -15,15 +15,18 @@ accessories and showrooms. No corporate pages, no investor or press sections, no
 
 | File | Version | What it is |
 |---|---|---|
-| `assets/css/main.css` | **V2** | The only stylesheet |
-| `assets/js/main.js` | **V2** | The only script |
+| `assets/css/main.css` | **V4** | The only stylesheet |
+| `assets/js/main.js` | **V4** | The only script |
 | `partials/head.html` | **V2** | Shared `<head>` block |
 | `partials/nav.html` | **V3** | Offer strip + header nav with dropdowns |
 | `partials/footer.html` | **V3** | Footer with all four branches |
-| `tools/site_data.py` | **V2** | Branch and model data — the single source of truth |
-| `tools/build_site.py` | **V2** | Generates every HTML page from that data |
+| `tools/site_data.py` | **V4** | Branch and model data — the single source of truth |
+| `tools/build_site.py` | **V4** | Generates every HTML page from that data |
+| `tools/media_pipeline.py` | **V1** | Builds responsive images from the Ather media library |
+| `tools/media.py` | **V1** | Used by build_site.py to swap in those images |
+| `assets/media/` | generated | Self-hosted WebP images + `manifest.json` |
 | `tools/sync_partials.py` | **V1** | Injects the partials into every page |
-| all 25 `*.html` pages | **V2** | Generated output — this is what you deploy |
+| all 25 `*.html` pages | **V4** | Generated output — this is what you deploy |
 | `robots.txt` | **V1** | Crawler rules |
 | `sitemap.xml` | **V2** | Crawler file (lastmod 2026-11-10) |
 | `assets/img/og-default.png` | **V2** | Social share card (1200×630) |
@@ -143,21 +146,36 @@ update the offer strip in `partials/nav.html`, and re-run the two scripts.
 
 ## Images and video
 
-All product photography and video loads live from Ather's own servers
-(`https://media.atherenergy.com/...`). 36 distinct files, every one checked against a real
-Ather page. Two consequences:
+Since 12 November 2026 every image is **self-hosted** in `assets/media/`, built from the
+Ather media library (`D:\Website\downloaded_media\atherenergy.com`). Only the two
+videos still stream from Ather, because they are not in the library.
 
-- The site needs an internet connection to show them. Offline, each frame falls back to a
-  labelled placeholder rather than a broken-image icon.
-- If Ather renames a file, that one frame goes to its placeholder. Nothing else breaks.
+**What each visitor gets**
 
-To move to your own photography, put files in `assets/img/` and change the URLs in
-`tools/site_data.py` — that is where nearly all of them live.
+- **Right size per screen.** Every image exists in several widths. Phones download a
+  small file, laptops a large one (`srcset`/`sizes`). On a phone the home page's images
+  total about 0.4 MB.
+- **Phone-shaped photos.** Where Ather made a portrait version (`…-m.webp`, `…Mob.webp`),
+  phones get it instead of a thin strip of a wide photo: model heroes, the Konarc
+  banner, the home hero and the colour picker.
+- **Studio shots on model cards.** Ather's transparent cut-outs, tightly cropped to 4:3
+  on a light studio backdrop.
+- **No page jumping.** Every image declares its real width and height.
+- **Lighter video.** The home video loads only on screens 768 px and wider, never with
+  data-saver or reduced motion. Phones see a still photo and can tap play.
 
-Videos are lazy-loaded: nothing downloads until the section scrolls into view, and each
-clip pauses when it scrolls out.
+**Updating images**
 
----
+```bash
+python tools/media_pipeline.py --lib "D:\Website\downloaded_media\atherenergy.com"
+python tools/build_site.py
+python tools/sync_partials.py
+```
+
+To change a picture, put another Ather file name in `tools/site_data.py` (`card`, `hero`
+or a colour image) and run the three commands. The pipeline finds the file in the library,
+makes the sizes and the phone version, and removes files no longer used. Anything it can't
+find keeps loading from Ather, with the labelled placeholder as before if that fails.
 
 ## Enquiry forms
 

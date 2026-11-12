@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-build_site.py  —  Version: V3  (12 Nov 2026: model cards pass backup images
-via data-alt. V2, 10 Nov 2026: Konarc launched — teaser text removed,
+build_site.py  —  Version: V4  (12 Nov 2026: pages use self-hosted responsive images via
+tools/media.py; photo-style model heroes; home video skipped on phones.
+V3: model cards pass backup images via data-alt. V2, 10 Nov 2026: Konarc launched — teaser text removed,
 Konarc launch band on home, 3.5 kWh packs, 10-year warranty wording, Nov dates)
 Generates the Pillai Auto site's HTML from tools/site_data.py.
 
@@ -23,6 +24,7 @@ right number of "../" for the page's folder depth.
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from site_data import BUSINESS, BRANCHES, MODELS, M, by_slug, on_sale, rupees
+import media   # V4: self-hosted responsive images (tools/media.py)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 B = BUSINESS
@@ -35,7 +37,7 @@ WRITTEN = []
 # ---------------------------------------------------------------------------
 # Page shell
 # ---------------------------------------------------------------------------
-def page(path, title, desc, body, head_extra="", og_img=None, version="V3"):
+def page(path, title, desc, body, head_extra="", og_img=None, version="V4"):
     depth = path.count("/")
     P = "../" * depth
     og = og_img or (B["domain"] + "/assets/img/og-default.png")
@@ -89,6 +91,7 @@ def page(path, title, desc, body, head_extra="", og_img=None, version="V3"):
 </html>
 """
     html = html.replace("{P}", P)
+    html = media.rewrite(html, P, B["domain"])   # local srcset/<picture> where the media library has the file
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     with open(full, "w", encoding="utf-8") as f:
@@ -279,8 +282,8 @@ def build_model(m):
         colour_block = ""
     else:
         hero_block = f"""
-      <div class="media reveal" data-media style="border-radius:var(--radius-xl);background:radial-gradient(120% 90% at 50% 10%, #23272d 0%, #0b0d0f 70%)">
-        <img src="{m["hero"]}" alt="{m["name"]}" width="1600" height="1000" loading="lazy" decoding="async" style="object-fit:contain;padding:var(--space-5)">
+      <div class="media model-hero reveal" data-media>
+        <img src="{m["hero"]}" alt="{m["name"]}" width="1600" height="1000" loading="lazy" decoding="async">
         <div class="media__fallback">{m["name"]}</div>
       </div>"""
         swatches = "".join(
@@ -630,11 +633,10 @@ def build_home():
     body = f"""
   <section class="hero" id="top">
     <div class="hero__media media" data-media>
-      <video id="hero-video" poster="{M}ather-450-overtones-new-d.webp"
-             autoplay muted loop playsinline preload="metadata"
-             aria-label="Ather 450 riding footage">
-        <source src="{M}Desk_450%20Overtune.mp4" type="video/mp4">
-      </video>
+      <img class="hero__still" src="{M}ather-450-overtones-new-d.webp" alt="" width="1600" height="900" decoding="async">
+      <video id="hero-video" muted loop playsinline preload="none"
+             data-src="{M}Desk_450%20Overtune.mp4" data-min-width="768"
+             aria-label="Ather 450 riding footage"></video>
       <div class="media__fallback">Ather at Pillai Auto</div>
     </div>
     <div class="hero__scrim" aria-hidden="true"></div>

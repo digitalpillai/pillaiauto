@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-site_data.py  —  Version: V3  (12 Nov 2026: model cards use studio colour shots with
-backup images. V2, 10 Nov: Konarc launched; specs, prices, warranty updated)
+site_data.py  —  Version: V4  (12 Nov 2026: cards = studio shots, heroes = lifestyle
+photos with phone versions, served from assets/media. V3: card backups. V2, 10 Nov: Konarc launched; specs, prices, warranty updated)
 Single source of truth for everything repeated across the Pillai Auto site:
 the four branches and the scooter line-up.
 
@@ -131,9 +131,9 @@ MODELS = [
                  "Introductory price from ₹99,999.",
         "price": 99999,
         "price_note": "Introductory ex-showroom, Konarc S",
-        "hero": M + "PDPKVDesktop.webp",
-        "card": M + "1-Celestial-Gold-desk.webp",                 # studio colour shot
-        "card_alts": [M + "3-Quartz-White-desk.webp", M + "4-Majestic-Grey-desk.webp"],
+        "hero": M + "PDPKVDesktop.webp",   # lifestyle photo, phone version picked automatically
+        "card": M + "1-Celestial-Gold-desk.webp",   # studio shot (media library)
+        "card_alts": [],
         "stats": [("200", "km", "IDC range*"), ("70", "km/h", "Top speed"),
                   ("31", "L", "Boot space"), ("2", "hr", "Home charge 0–80%")],
         "specs": [
@@ -183,9 +183,9 @@ MODELS = [
                  "The 450 Apex is the one you buy when the commute is also the fun part.",
         "price": 194946,                       # TODO(client): Ather doesn't publish an Apex price online — confirm
         "price_note": "Ex-showroom, indicative",
-        "hero": M + "Ather-450-Apex-optin.webp",
-        "card": M + "450%20Apex%20-%20%20-%20Product%20card.png",   # studio product card
-        "card_alts": [M + "Ather-450-Apex-optin.webp"],
+        "hero": M + "Ather-450-apex-electric-scooter-model.webp",   # lifestyle photo, phone version picked automatically
+        "card": M + "450xahr-indium-blue-electric-scooter.webp",   # studio shot (media library)
+        "card_alts": [],
         "stats": [("2.9", "s", "0 – 40 km/h"), ("100", "km/h", "Top speed"),
                   ("165", "km", "IDC range"), ("7", "kW", "Peak power")],
         "specs": [
@@ -202,7 +202,7 @@ MODELS = [
             ("Software", "AtherStack Pro included"),
             ("Battery warranty", WARRANTY),
         ],
-        "colours": [("Indium Blue", "#2f5d92", M + "Ather-450-Apex-optin.webp")],
+        "colours": [("Indium Blue", "#2f5d92", M + "450xahr-indium-blue-electric-scooter.webp")],
         "highlights": [
             ("Warp+", "A dedicated mode that unlocks the full 7 kW. 0–40 km/h in 2.9 seconds."),
             ("Infinite Cruise", "City Cruise, Hill Control and Crawl Control take the effort out of OMR stop-go traffic."),
@@ -224,9 +224,9 @@ MODELS = [
                  "we keep most stock of.",
         "price": 148998,
         "price_note": "Ex-showroom, indicative",
-        "hero": M + "ather-450-overtones-new-d.webp",
-        "card": M + "450x-mono-true-red-d.webp",   # studio colour shot
-        "card_alts": [M + "450x-mono-cosmic-black-d.webp", M + "450x-overtones-still-white-d.webp"],
+        "hero": M + "Ather-450-electric-scooter-front-view.webp",   # lifestyle photo, phone version picked automatically
+        "card": M + "450x-hyper-sand-electric-scooter.webp",   # studio shot (media library)
+        "card_alts": [],
         "stats": [("3.3", "s", "0 – 40 km/h"), ("90", "km/h", "Top speed"),
                   ("161", "km", "IDC range"), ("6.4", "kW", "Peak power")],
         "specs": [
@@ -274,9 +274,9 @@ MODELS = [
                  "cheaper — and it is still a proper 450.",
         "price": 135999,
         "price_note": "Ex-showroom, indicative",
-        "hero": M + "450s-hyper-sand-d.webp",
-        "card": M + "450x-overtones-still-white-d.webp",   # studio colour shot
-        "card_alts": [M + "450s-hyper-sand-d.webp", M + "450x-matte-stealth-blue-d.webp"],
+        "hero": M + "Ather-450X-vs-Ather-450S-electric-scooter-model.webp",   # lifestyle photo, phone version picked automatically
+        "card": M + "450s-cosmic-black-electric-scooter.webp",   # studio shot (media library)
+        "card_alts": [],
         "stats": [("3.9", "s", "0 – 40 km/h"), ("90", "km/h", "Top speed"),
                   ("161", "km", "IDC range"), ("5.4", "kW", "Peak power")],
         "specs": [
@@ -321,9 +321,9 @@ MODELS = [
                  "the school-run and grocery-run scooter that happens to be electric.",
         "price": 136999,
         "price_note": "Ex-showroom, indicative",
-        "hero": M + "Rizta-Terracotta-Red-Duo-New-1.webp",
-        "card": M + "Blue-Duo.png",   # studio colour shot
-        "card_alts": [M + "Grey-Duo.png", M + "Yellow-Duo.png"],
+        "hero": M + "Ather-Rizta-family-electric-scooter.webp",   # lifestyle photo, phone version picked automatically
+        "card": M + "rizz1-terracotta-red-dt-electric-scooter.webp",   # studio shot (media library)
+        "card_alts": [],
         "stats": [("80", "km/h", "Top speed"), ("161", "km", "IDC range"),
                   ("56", "L", "Total storage"), ("4.3", "kW", "Peak power")],
         "specs": [
@@ -375,9 +375,9 @@ MODELS = [
                  "into the Rizta family.",
         "price": 121999,
         "price_note": "Ex-showroom, indicative",
-        "hero": M + "White-Mono.png",
-        "card": M + "White-Mono.png",   # studio colour shot
-        "card_alts": [M + "Grey-Mono.png", M + "Blue-Mono.png"],
+        "hero": M + "Ather-Rizta-family-electric-scooter-floor-board.webp",   # lifestyle photo, phone version picked automatically
+        "card": M + "rizs1-pangong-blue-mono-electric-scooter.webp",   # studio shot (media library)
+        "card_alts": [],
         "stats": [("80", "km/h", "Top speed"), ("161", "km", "IDC range"),
                   ("56", "L", "Total storage"), ("4.3", "kW", "Peak power")],
         "specs": [

@@ -1,8 +1,9 @@
 /* ==========================================================================
    Pillai Auto — Ather dealership website (Chennai · Chengalpattu · Puducherry · Chidambaram)
    File: assets/css/main.css
-   Version: V3
-   Last updated: 12 November 2026 (V3: studio backdrop on model-card images)
+   Version: V4
+   Last updated: 12 November 2026 (V4: responsive self-hosted media — model-hero
+   frame, phone crops, hero still + video layering. V3: card studio backdrop)
    --------------------------------------------------------------------------
    Order is fixed: tokens -> reset -> primitives -> components -> page
    sections -> media queries. Keep it that way; it is what stops
@@ -330,6 +331,7 @@ section.is-flush { padding-block: 0; }
   background: var(--c-surface);
 }
 .media img, .media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+picture { display: contents; }   /* V4: <picture> wrappers don't change layout */
 .media--tall { aspect-ratio: 3 / 4; }
 .media--square { aspect-ratio: 1 / 1; }
 .media--wide { aspect-ratio: 16 / 9; }
@@ -546,8 +548,7 @@ section.is-flush { padding-block: 0; }
 }
 .model-card__media img {
   width: 100%; height: auto; aspect-ratio: 4 / 3;
-  object-fit: contain; object-position: center bottom;
-  padding: var(--space-4) var(--space-4) var(--space-2);
+  object-fit: cover; object-position: center;            /* V4: studio crops fill the frame */
 }
 .model-card__media .media__fallback { color: #6b7076; }
 .model-card__badge {
@@ -753,7 +754,9 @@ section.is-flush { padding-block: 0; }
 .hero__media { position: absolute; inset: 0; border-radius: 0; }
 /* if the remote hero clip fails, keep the label clear of the headline */
 .hero__media .media__fallback { place-items: start center; padding-top: calc(var(--space-6) + 1rem); }
-.hero__media img, .hero__media video { width: 100%; height: 100%; object-fit: cover; }
+.hero__media img, .hero__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero__media video { opacity: 0; transition: opacity .6s ease; }        /* V4: fades in over the still */
+.hero__media video.is-playing { opacity: 1; }
 .hero__scrim {
   position: absolute; inset: 0;
   background:
@@ -805,6 +808,10 @@ section.is-flush { padding-block: 0; }
 .statement { position: relative; overflow: hidden; }
 .statement__media { border-radius: var(--radius-xl); overflow: hidden; position: relative; }
 .statement__media img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+
+/* --- page: model hero photo (V4) --- */
+.model-hero { border-radius: var(--radius-xl); aspect-ratio: 3 / 2; background: var(--c-surface); }
+.model-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 55%; }
 .statement__copy {
   position: relative; z-index: 2; text-align: center; max-width: 40ch; margin: 0 auto var(--space-6);
 }
@@ -1092,6 +1099,14 @@ input[type="range"]::-moz-range-thumb {
 
 @media (max-width: 380px) {
   .site-nav__logo small { display: none; }
+}
+
+/* V4: phone-shaped frames for the art-directed photos */
+@media (max-width: 767px) {
+  .model-hero { aspect-ratio: 4 / 5; border-radius: var(--radius-lg); }
+  .statement__media img { aspect-ratio: 4 / 5; object-position: center 45%; }
+  .hero__media img { object-position: center 40%; }
+  .colours__stage { padding: var(--space-3); min-height: 0; border-radius: var(--radius-lg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
