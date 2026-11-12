@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 """
-build_site.py  —  Version: V1
+build_site.py  —  Version: V8  (12 Nov 2026: all email addresses removed.
+V7: 404 page uses the main number from site_data.
+V6: business data includes the Pillai Auto logo.
+V5: builds the Ather guides section via
+tools/build_guides.py; model pages link to related guides.
+V4: pages use self-hosted responsive images via
+tools/media.py; photo-style model heroes; home video skipped on phones.
+V3: model cards pass backup images via data-alt. V2, 10 Nov 2026: Konarc launched — teaser text removed,
+Konarc launch band on home, 3.5 kWh packs, 10-year warranty wording, Nov dates)
 Generates the Pillai Auto site's HTML from tools/site_data.py.
 
     python tools/build_site.py          # write every page
@@ -21,6 +29,7 @@ right number of "../" for the page's folder depth.
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from site_data import BUSINESS, BRANCHES, MODELS, M, by_slug, on_sale, rupees
+import media   # V4: self-hosted responsive images (tools/media.py)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 B = BUSINESS
@@ -33,7 +42,7 @@ WRITTEN = []
 # ---------------------------------------------------------------------------
 # Page shell
 # ---------------------------------------------------------------------------
-def page(path, title, desc, body, head_extra="", og_img=None, version="V1"):
+def page(path, title, desc, body, head_extra="", og_img=None, version="V8"):
     depth = path.count("/")
     P = "../" * depth
     og = og_img or (B["domain"] + "/assets/img/og-default.png")
@@ -87,6 +96,7 @@ def page(path, title, desc, body, head_extra="", og_img=None, version="V1"):
 </html>
 """
     html = html.replace("{P}", P)
+    html = media.rewrite(html, P, B["domain"])   # local srcset/<picture> where the media library has the file
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     with open(full, "w", encoding="utf-8") as f:
@@ -207,19 +217,20 @@ def cta_band(heading, text, primary=("Book a test ride", "{P}test-ride.html")):
 
 def model_card(m, prefix="{P}"):
     soon = m["status"] == "coming-soon"
-    badge = ('<span class="model-card__badge model-card__badge--soon">Launching 29 Aug</span>'
+    badge = (f'<span class="model-card__badge model-card__badge--soon">Launching {m.get("launch_date", "soon")}</span>'
              if soon else
              (f'<span class="model-card__badge">{m["eyebrow"]}</span>' if m["order"] <= 2 else ""))
     if m["card"]:
         media = (f'<div class="model-card__media media" data-media>{badge}'
-                 f'<img src="{m["card"]}" alt="{m["name"]}" width="800" height="600" loading="lazy" decoding="async">'
+                 f'<img src="{m["card"]}" alt="{m["name"]}" width="800" height="600" loading="lazy" decoding="async"'
+                 + (f' data-alt="{"|".join(m["card_alts"])}"' if m.get("card_alts") else "") + '>'
                  f'<div class="media__fallback">{m["name"]}</div></div>')
     else:
         media = (f'<div class="model-card__media" style="display:grid;place-items:center;min-height:210px">{badge}'
-                 f'<span style="font-family:var(--f-display);font-size:var(--t-lg);color:var(--c-ink-muted)">Revealed 29 Aug 2026</span></div>')
+                 f'<span style="font-family:var(--f-display);font-size:var(--t-lg);color:var(--c-ink-muted)">Coming soon</span></div>')
     price = (f'<div class="model-card__price">&#8377;{rupees(m["price"])}<small>{m["price_note"]}</small></div>'
              if m["price"] else
-             '<div class="model-card__price">Price TBA<small>Announced 29 August 2026</small></div>')
+             '<div class="model-card__price">Price TBA<small>Not yet announced</small></div>')
     stats = "".join(f'<span><b>{v}</b> {u} {l}</span>' for v, u, l in m["stats"][:3])
     return f"""
         <article class="model-card">
@@ -242,6 +253,46 @@ def model_card(m, prefix="{P}"):
 # ---------------------------------------------------------------------------
 # Model pages
 # ---------------------------------------------------------------------------
+def branch_guides(b):
+    """V5: local guides on each showroom page."""
+    from guides_index import guides_for_branch
+    gs = guides_for_branch(b["slug"])
+    if not gs:
+        return ""
+    items = "".join(f'<li><a href="{{P}}guides/{g["slug"]}.html">{g["h1"]}</a></li>' for g in gs)
+    return f"""
+  <section class="band-light">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Local guides</span>
+        <h2>Owning an Ather around {b["city"]}</h2>
+      </div>
+      <ul class="guide-list reveal">{items}</ul>
+      <p class="guide-hub-link"><a href="{{P}}guides/index.html">All Ather guides &rarr;</a></p>
+    </div>
+  </section>"""
+
+
+def model_guides(m):
+    """V5: links from a model page to the guides that feature it (helps those pages get crawled)."""
+    from guides_index import guides_for_model
+    gs = guides_for_model(m["slug"])
+    if not gs:
+        return ""
+    items = "".join(f'<li><a href="{{P}}guides/{g["slug"]}.html">{g["h1"]}</a></li>' for g in gs)
+    return f"""
+  <section class="band-light">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Buying guides</span>
+        <h2>Before you choose the {m["name"]}</h2>
+      </div>
+      <ul class="guide-list reveal">{items}</ul>
+      <p class="guide-hub-link"><a href="{{P}}guides/index.html">All Ather guides &rarr;</a></p>
+    </div>
+  </section>"""
+
+
 def build_model(m):
     path = f"scooters/{m['slug']}.html"
     soon = m["status"] == "coming-soon"
@@ -267,8 +318,8 @@ def build_model(m):
       <div class="soon reveal">
         <span class="soon__date">Launching {m["launch_date"]}</span>
         <h2 style="font-size:var(--t-2xl)">Ather has not shown it yet</h2>
-        <p class="lede" style="margin:var(--space-3) auto 0">Everything below is from pre-launch press reports. Nothing here is confirmed by Ather, and prices in particular are guesswork until Community Day.</p>
-        <div class="soon__countdown" id="countdown" data-target="2026-08-29T00:00:00+05:30"></div>
+        <p class="lede" style="margin:var(--space-3) auto 0">Everything below is from press reports. Nothing here is confirmed by Ather, and prices in particular are guesswork until launch day.</p>
+        <div class="soon__countdown" id="countdown" data-target="{m.get('launch_iso', '')}"></div>
         <div class="btn-row" style="justify-content:center;margin-top:var(--space-5)">
           <a class="btn btn--lg" href="#enquire">Register your interest</a>
         </div>
@@ -276,8 +327,8 @@ def build_model(m):
         colour_block = ""
     else:
         hero_block = f"""
-      <div class="media reveal" data-media style="border-radius:var(--radius-xl);background:radial-gradient(120% 90% at 50% 10%, #23272d 0%, #0b0d0f 70%)">
-        <img src="{m["hero"]}" alt="{m["name"]}" width="1600" height="1000" loading="lazy" decoding="async" style="object-fit:contain;padding:var(--space-5)">
+      <div class="media model-hero reveal" data-media>
+        <img src="{m["hero"]}" alt="{m["name"]}" width="1600" height="1000" loading="lazy" decoding="async">
         <div class="media__fallback">{m["name"]}</div>
       </div>"""
         swatches = "".join(
@@ -308,7 +359,7 @@ def build_model(m):
     price_line = (f'<div class="stat__value">&#8377;{rupees(m["price"])}</div>'
                   f'<div class="stat__label">{m["price_note"]}</div>'
                   if m["price"] else
-                  '<div class="stat__value">TBA</div><div class="stat__label">Announced 29 Aug 2026</div>')
+                  '<div class="stat__value">TBA</div><div class="stat__label">Not yet announced</div>')
 
     others = [x for x in MODELS if x["slug"] != m["slug"]][:3]
     related = "".join(model_card(x) for x in others)
@@ -357,7 +408,7 @@ def build_model(m):
       <div class="section-head reveal">
         <span class="eyebrow">Specifications</span>
         <h2>{m["name"]} spec sheet</h2>
-        <p class="lede">{"Reported figures only — Ather confirms the real numbers on 29 August 2026." if soon else "Manufacturer figures. Range is IDC-tested; real-world range in Chennai traffic is lower."}</p>
+        <p class="lede">{"Reported figures only — not yet confirmed by Ather." if soon else "Manufacturer figures. Range is IDC-tested; real-world range in Chennai traffic is lower."}</p>
       </div>
       <table class="spec-sheet reveal">
         <caption class="visually-hidden">{m["name"]} specifications</caption>
@@ -401,6 +452,7 @@ def build_model(m):
       <div class="grid grid--3 reveal">{related}</div>
     </div>
   </section>
+{model_guides(m)}
 {cta_band("Not sure which one fits?", "Tell us your daily distance and whether you ride two-up. We will narrow it to one.", ("Talk to us", "{P}contact.html"))}
 """
 
@@ -426,7 +478,7 @@ def build_model(m):
     title = (f"{m['name']} — Launch Date & Expected Price | Pillai Auto"
              if soon else
              f"{m['name']} Price in Chennai & Specs | Pillai Auto")
-    desc = (f"Ather Konarc launches 29 August 2026. Register interest with Pillai Auto, authorised Ather dealer in Chennai, Chengalpattu, Puducherry and Chidambaram."
+    desc = (f"{m['name']} launches soon. Register interest with Pillai Auto, authorised Ather dealer in Chennai, Chengalpattu, Puducherry and Chidambaram."
             if soon else
             f"{m['name']} at Pillai Auto: {m['stats'][0][0]} {m['stats'][0][1]} {m['stats'][0][2].lower()}, ex-showroom from ₹{rupees(m['price'])}. Book a free test ride in Chennai.")
 
@@ -535,6 +587,7 @@ def build_branch(b):
       </div>
     </div>
   </section>
+{branch_guides(b)}
 {cta_band(f"Come and ride one in {b['locality']}", "Free test rides, no obligation. Call ahead and we will have it charged and waiting.")}
 """
 
@@ -548,6 +601,7 @@ def build_branch(b):
   "telephone": "{b['phone_e164']}",
   "priceRange": "₹₹",
   "image": "{B['domain']}/assets/img/og-default.png",
+  "logo": "{B['domain']}/assets/img/icon-512.png",
   "address": {{
     "@type": "PostalAddress",
     "streetAddress": "{b['street']}",
@@ -590,19 +644,19 @@ def build_home():
     faqs = [
         ("Which Ather should I buy for a Chennai commute?",
          "If you ride alone and want the full feature set, the 450X. If you carry a pillion, "
-         "school bags or groceries, the Rizta Z. If the budget is the deciding factor, the 450S "
-         "or the Rizta S. Tell us your daily distance and we will narrow it in one call."),
+         "school bags or groceries, the Rizta Z. If the budget is the deciding factor, the new Konarc "
+         "from ₹99,999, or the 450S or Rizta S. Tell us your daily distance and we will narrow it in one call."),
         ("What is the on-road price in Chennai?",
          "On-road adds Tamil Nadu RTO charges, insurance and any accessories to the ex-showroom price. "
          "Use the estimator on our price page for a close figure, then ask us for a written quote — "
          "that is the number that binds."),
         ("How far will it really go on one charge?",
-         "The IDC figures are lab numbers. In Chennai traffic most riders see roughly 90–110 km from "
-         "the 3.7 kWh pack on the 450, and a little more on the Rizta because it is geared gentler. "
+         "The IDC figures are lab numbers. In Chennai traffic most riders see roughly 105–130 km from "
+         "the 3.5 kWh pack on the 450 (Ather's TrueRange is 130 km), and a little more on the Rizta because it is geared gentler. "
          "Air conditioning of the commute — traffic, flyovers, riding mode — moves it."),
         ("Where can I charge?",
          "At home on the bundled charger overnight, and on Ather Grid fast chargers around the city "
-         "for about 30 km of range in ten minutes. We will map the chargers on your route before you buy."),
+         "for up to 30 km of range in ten minutes on the 3.5 kWh 450X, Apex and Rizta Z (15 km on the others). We will map the chargers on your route before you buy."),
         ("Do you handle finance and exchange?",
          "Yes. Our finance desk works with multiple lenders, zero down payment options are available, "
          "and most approvals come back the same day. We also take exchanges on petrol two-wheelers."),
@@ -627,11 +681,10 @@ def build_home():
     body = f"""
   <section class="hero" id="top">
     <div class="hero__media media" data-media>
-      <video id="hero-video" poster="{M}ather-450-overtones-new-d.webp"
-             autoplay muted loop playsinline preload="metadata"
-             aria-label="Ather 450 riding footage">
-        <source src="{M}Desk_450%20Overtune.mp4" type="video/mp4">
-      </video>
+      <img class="hero__still" src="{M}ather-450-overtones-new-d.webp" alt="" width="1600" height="900" decoding="async">
+      <video id="hero-video" muted loop playsinline preload="none"
+             data-src="{M}Desk_450%20Overtune.mp4" data-min-width="768"
+             aria-label="Ather 450 riding footage"></video>
       <div class="media__fallback">Ather at Pillai Auto</div>
     </div>
     <div class="hero__scrim" aria-hidden="true"></div>
@@ -648,7 +701,7 @@ def build_home():
       <div class="hero__stats">
         <div class="stat"><div class="stat__value" data-count="6">0</div><div class="stat__label">Models in stock</div></div>
         <div class="stat"><div class="stat__value" data-count="4">0</div><div class="stat__label">Showrooms</div></div>
-        <div class="stat"><div class="stat__value">&#8377;1.21<span>L</span></div><div class="stat__label">From, ex-showroom</div></div>
+        <div class="stat"><div class="stat__value">&#8377;99,999</div><div class="stat__label">From, ex-showroom</div></div>
         <div class="stat"><div class="stat__value">Free</div><div class="stat__label">Test rides</div></div>
       </div>
 
@@ -661,12 +714,34 @@ def build_home():
     </div>
   </section>
 
+  <section class="statement" id="konarc-launch">
+    <div class="container">
+      <div class="statement__copy reveal">
+        <span class="eyebrow">Just launched &middot; on the floor now</span>
+        <h2>Meet the Ather Konarc</h2>
+        <p class="statement__lines">
+          <span>Up to 200 km IDC range. Two-hour home charging.</span>
+          <span>Metal body, 14-inch front wheel, service once a year.</span>
+          <span>Introductory price from &#8377;99,999 ex-showroom.</span>
+        </p>
+        <div class="btn-row" style="justify-content:center;margin-top:var(--space-5)">
+          <a class="btn btn--lg" href="{{P}}scooters/ather-konarc.html">Explore Konarc</a>
+          <a class="btn btn--ghost btn--lg" href="{{P}}test-ride.html?model=Ather+Konarc">Book a test ride</a>
+        </div>
+      </div>
+      <div class="statement__media media reveal" data-media>
+        <img src="{M}homepagekv.webp" alt="Ather Konarc" width="1600" height="1000" loading="lazy" decoding="async">
+        <div class="media__fallback">Ather Konarc</div>
+      </div>
+    </div>
+  </section>
+
   <section id="models">
     <div class="container">
       <div class="section-head reveal">
         <span class="eyebrow">The line-up</span>
         <h2>Six scooters. One of them is yours.</h2>
-        <p class="lede">From the &#8377;1,21,499 Rizta S to the 100 km/h 450 Apex. Prices are indicative ex-showroom &mdash; tap through for the on-road figure.</p>
+        <p class="lede">From the new &#8377;99,999 Konarc to the 100 km/h 450 Apex. Prices are indicative ex-showroom &mdash; tap through for the on-road figure.</p>
       </div>
       <div class="grid grid--3 reveal">{cards}</div>
       <div class="btn-row" style="margin-top:var(--space-5)">
@@ -816,6 +891,7 @@ def build_home():
   "telephone": "{TEL}",
   "priceRange": "₹₹",
   "image": "{B['domain']}/assets/img/og-default.png",
+  "logo": "{B['domain']}/assets/img/icon-512.png",
   "address": {{
     "@type": "PostalAddress",
     "streetAddress": "{BRANCHES[0]['street']}",
@@ -835,7 +911,7 @@ def build_home():
 """
     page("index.html",
          "Ather Scooters in Chennai — Price & Test Ride | Pillai Auto",
-         "Authorised Ather dealer in Chennai, Chengalpattu, Puducherry and Chidambaram. Ather 450 and Rizta from ₹1,21,499 ex-showroom. Free test rides.",
+         "Authorised Ather dealer in Chennai, Chengalpattu, Puducherry and Chidambaram. Ather Konarc, 450 and Rizta from ₹99,999 ex-showroom. Free test rides.",
          body, head_extra=ld)
 
 
@@ -855,7 +931,7 @@ def build_scooters_index():
     <div class="container">
       <span class="eyebrow">The whole line-up</span>
       <h1>Every Ather we sell</h1>
-      <p class="lede">Two families and one newcomer. The 450 is the performance side, the Rizta is the practical side, and the Konarc arrives on 29 August 2026.</p>
+      <p class="lede">Three families. The new Konarc is the everyday one, the 450 is the performance side and the Rizta is the practical side.</p>
       <div class="btn-row" style="margin-top:var(--space-5)">
         <a class="btn btn--lg" href="{{P}}compare.html">Compare side by side</a>
         <a class="btn btn--ghost btn--lg" href="{{P}}price-chennai.html">On-road prices</a>
@@ -870,6 +946,17 @@ def build_scooters_index():
         If you carry a pillion, a child or shopping most days, look at the Rizta &mdash; 56 litres of
         storage and a flat floorboard change what the scooter can do.
       </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">New &middot; just launched</span>
+        <h2>Ather Konarc &mdash; everyday first</h2>
+        <p class="lede">Ather's newest scooter on the EL platform — metal body, 14-inch front wheel, from &#8377;99,999 introductory.</p>
+      </div>
+      <div class="grid grid--3 reveal">{famkon}</div>
     </div>
   </section>
 
@@ -895,21 +982,11 @@ def build_scooters_index():
     </div>
   </section>
 
-  <section>
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">New</span>
-        <h2>Ather Konarc</h2>
-        <p class="lede">Ather's mass-market scooter on the new EL platform, revealed 29 August 2026.</p>
-      </div>
-      <div class="grid grid--3 reveal">{famkon}</div>
-    </div>
-  </section>
 {cta_band("Still deciding?", "Ride two of them back to back at any showroom. That usually settles it.")}
 """
     page("scooters/index.html",
          "All Ather Scooters & Prices | Pillai Auto Chennai",
-         "Every Ather model we stock in Chennai: 450 Apex, 450X, 450S, Rizta Z, Rizta S and the upcoming Konarc — specs, prices and free test rides.",
+         "Every Ather model we stock in Chennai: 450 Apex, 450X, 450S, Rizta Z, Rizta S and the new Konarc — specs, prices and free test rides.",
          body, head_extra=crumb_ld(cr, 1))
 
 
@@ -979,7 +1056,7 @@ def build_compare():
         </table>
       </div>
       <p class="form-note" style="margin-top:var(--space-4)">
-        Konarc figures are pre-launch reports and are not confirmed by Ather. Feature availability changes with model year &mdash; confirm current specification at the showroom.
+        Konarc figures are for the Konarc S; the Konarc Z is listed by Ather as coming soon. Feature availability changes with model year &mdash; confirm current specification at the showroom.
       </p>
     </div>
   </section>
@@ -1095,8 +1172,8 @@ def build_price():
         </table>
       </div>
       <p class="form-note" style="margin-top:var(--space-4)">
-        Prices indicative, August 2026, and subject to change by Ather Energy without notice.
-        The Ather Konarc is not priced yet &mdash; it is announced on 29 August 2026.
+        Prices indicative, November 2026, and subject to change by Ather Energy without notice.
+        The Konarc price is Ather's introductory ex-showroom price for the base Konarc S.
       </p>
     </div>
   </section>
@@ -1375,7 +1452,7 @@ def build_service():
       <div class="grid grid--3 reveal">
         <article class="card"><h3 class="card__title">Periodic service</h3><p class="card__text">Scheduled service as Ather specifies it, with a digital record that follows the vehicle across all four of our showrooms.</p></article>
         <article class="card"><h3 class="card__title">Battery health</h3><p class="card__text">Range dropped? We read the pack's actual state of health rather than guessing, and tell you what is normal degradation and what is not.</p></article>
-        <article class="card"><h3 class="card__title">Warranty work</h3><p class="card__text">Eight70 battery warranty and component warranty claims handled here. You do not have to deal with Ather yourself.</p></article>
+        <article class="card"><h3 class="card__title">Warranty work</h3><p class="card__text">Battery warranty (3 years standard, extendable up to 10 years / 1,00,000 km) and component warranty claims handled here. You do not have to deal with Ather yourself.</p></article>
         <article class="card"><h3 class="card__title">Genuine parts only</h3><p class="card__text">Ather-genuine parts and accessories. Using anything else can affect your warranty, so we do not.</p></article>
         <article class="card"><h3 class="card__title">Software updates</h3><p class="card__text">AtherStack updates, dashboard faults and connectivity problems sorted at the bay.</p></article>
         <article class="card"><h3 class="card__title">Pick-up and drop</h3><p class="card__text">Available in most areas each showroom serves. Ask when you book &mdash; it depends on the day and your PIN code.</p></article>
@@ -1692,7 +1769,7 @@ def build_charging():
         <h2>The honest version</h2>
       </div>
       <div class="grid grid--2 reveal">
-        <article class="card"><h3 class="card__title">You will not charge every day</h3><p class="card__text">A 20 km commute on the 3.7 kWh pack means charging roughly twice a week. Most owners settle into plugging in on a Sunday and a Wednesday and stop thinking about it.</p></article>
+        <article class="card"><h3 class="card__title">You will not charge every day</h3><p class="card__text">A 20 km commute on the 3.5 kWh pack means charging roughly twice a week. Most owners settle into plugging in on a Sunday and a Wednesday and stop thinking about it.</p></article>
         <article class="card"><h3 class="card__title">Apartment parking is the real question</h3><p class="card__text">If you can reach a socket in your parking spot, you are set. If not, talk to us before you buy — we have worked through this with a lot of Chennai buyers and there are usually options.</p></article>
         <article class="card"><h3 class="card__title">Fast charging is for exceptions</h3><p class="card__text">It is there for the day you forgot, or the ride to Puducherry. Using it occasionally is fine; using it daily is not how the pack likes to live.</p></article>
         <article class="card"><h3 class="card__title">Your electricity bill will move a little</h3><p class="card__text">A full charge is a few units. Against a petrol scooter it is not close — that is the single biggest running-cost difference, and it shows up every month.</p></article>
@@ -1718,10 +1795,12 @@ def build_charging():
             <h3 style="margin-bottom:var(--space-4)">Rough charging times</h3>
             <table class="spec-sheet">
               <tbody>
-                <tr><th scope="row">450, 3.7 kWh, home charger</th><td>About 5 hr 15 min, 0&ndash;100%</td></tr>
-                <tr><th scope="row">450, 2.9 kWh, home charger</th><td>About 8 hr, 0&ndash;100%</td></tr>
-                <tr><th scope="row">Rizta, 3.7 kWh, home charger</th><td>About 5 hr 15 min, 0&ndash;100%</td></tr>
-                <tr><th scope="row">450 on Ather Grid</th><td>About 30 km of range in 10 minutes</td></tr>
+                <tr><th scope="row">Konarc, combined charger</th><td>2 hr &ndash; 3 hr 10 min, 0&ndash;80%</td></tr>
+                <tr><th scope="row">450, 3.5 kWh, 900 W charger</th><td>About 4 hr 30 min, 0&ndash;100%</td></tr>
+                <tr><th scope="row">450, 2.9 kWh, 450 W charger</th><td>About 6 hr 30 min, 0&ndash;100%</td></tr>
+                <tr><th scope="row">Rizta, 3.5 kWh, 900 W charger</th><td>About 4 hr 30 min, 0&ndash;100%</td></tr>
+                <tr><th scope="row">Rizta, 450 W charger</th><td>About 7 hr 25 min, 0&ndash;100%</td></tr>
+                <tr><th scope="row">Ather Grid fast charging</th><td>Up to 30 km in 10 min (3.5 kWh 450X, Apex, Rizta Z); 15 km on most others</td></tr>
               </tbody>
             </table>
             <p class="form-note" style="margin-top:var(--space-4)">Manufacturer figures. Real times vary with ambient temperature, pack age and supply voltage.</p>
@@ -1815,11 +1894,10 @@ def build_contact():
     <div class="container">
       <span class="eyebrow">Contact</span>
       <h1>Talk to Pillai Auto</h1>
-      <p class="lede">One number reaches all four showrooms, and WhatsApp is usually faster than email. Whatever you send, a person reads it.</p>
+      <p class="lede">Call your nearest showroom, or WhatsApp us &mdash; it is usually the fastest way to reach us. Whatever you send, a person reads it.</p>
       <div class="btn-row" style="margin-top:var(--space-5)">
         <a class="btn btn--lg" href="tel:{TEL}">Call {PHONE[4:]}</a>
         <a class="btn btn--wa btn--lg" href="https://wa.me/{WA}?text=Hi%20Pillai%20Auto" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="btn btn--ghost btn--lg" href="mailto:{B["email"]}">Email us</a>
       </div>
     </div>
   </section>
@@ -1843,7 +1921,6 @@ def build_contact():
               </table>
             </div>
             <p class="form-note" style="margin-top:var(--space-4)"><strong>Hours:</strong> {B["hours"]}</p>
-            <p class="form-note" style="margin-top:var(--space-2)"><strong>Email:</strong> <a href="mailto:{B["email"]}">{B["email"]}</a></p>
           </div>
         </div>
       </div>
@@ -1896,7 +1973,7 @@ def build_legal():
         <p>If we later add analytics or advertising tags, this section will name them and the identifiers they set before those tags go live.</p>
 
         <h2 style="font-size:var(--t-xl)">The basis for processing</h2>
-        <p>We process your data on the basis of your consent, given when you contact us. You can withdraw that consent at any time using the phone number or email below. Withdrawal does not affect anything lawfully done before it.</p>
+        <p>We process your data on the basis of your consent, given when you contact us. You can withdraw that consent at any time using the phone number below. Withdrawal does not affect anything lawfully done before it.</p>
 
         <h2 style="font-size:var(--t-xl)">Who else sees it</h2>
         <ul>
@@ -1914,9 +1991,8 @@ def build_legal():
         <p>Under the Digital Personal Data Protection Act, 2023 you may ask us for access to your personal data, correction or completion of it, erasure of data we no longer need, and you may nominate someone to exercise these rights on your behalf. You may also raise a grievance about how we handled your data.</p>
 
         <h2 style="font-size:var(--t-xl)">Grievance officer</h2>
-        <!-- TODO(client): a named individual and a working email address are a statutory requirement. Replace before launch. -->
+        <!-- TODO(client): add the name of the person responsible for grievances before launch. -->
         <p>Name: <strong>[to be filled in by Pillai Auto]</strong><br>
-        Email: <a href="mailto:grievance@pillaiauto.in">grievance@pillaiauto.in</a><br>
         Address: {BRANCHES[0]["street"]}, {BRANCHES[0]["locality"]} {BRANCHES[0]["pin"]}<br>
         Phone: <a href="tel:{TEL}">{PHONE}</a></p>
         <p>We aim to acknowledge grievances within 7 working days and resolve them within 30 days.</p>
@@ -1943,7 +2019,7 @@ def build_legal():
     <div class="container" style="max-width:820px">
       <span class="eyebrow">Legal</span>
       <h1 style="font-size:var(--t-2xl)">Terms of use</h1>
-      <p class="lede" style="margin-top:var(--space-3)">Last updated 22 August 2026.</p>
+      <p class="lede" style="margin-top:var(--space-3)">Last updated 10 November 2026.</p>
 
       <div class="stack" style="margin-top:var(--space-5)">
         <h2 style="font-size:var(--t-xl)">Who we are</h2>
@@ -1955,8 +2031,8 @@ def build_legal():
         <h2 style="font-size:var(--t-xl)">Specifications and range</h2>
         <p>Range figures are IDC-tested values published by the manufacturer. Real-world range varies with riding style, load, terrain, tyre pressure, weather and riding mode. Features and specifications change with model year and variant. Confirm the current specification with us before you book.</p>
 
-        <h2 style="font-size:var(--t-xl)">Ather Konarc</h2>
-        <p>Information published here about the Ather Konarc before its launch on 29 August 2026 comes from press reports and is expressly not confirmed by Ather Energy. Do not rely on it when making a purchase decision.</p>
+        <h2 style="font-size:var(--t-xl)">Introductory prices</h2>
+        <p>Introductory prices, such as the launch price of the Ather Konarc, are set by Ather Energy and may be withdrawn or revised without notice.</p>
 
         <h2 style="font-size:var(--t-xl)">Finance illustrations</h2>
         <p>The EMI calculator and running-cost comparison are illustrations. They are not loan offers, credit approvals or a guarantee of running cost. Pillai Auto is not a lender and does not provide financial advice; approval and terms rest with the financing partner.</p>
@@ -1974,7 +2050,7 @@ def build_legal():
         <p>These terms are governed by the laws of India. The courts at Chennai have exclusive jurisdiction.</p>
 
         <h2 style="font-size:var(--t-xl)">Contact</h2>
-        <p><a href="tel:{TEL}">{PHONE}</a> &middot; <a href="mailto:{B["email"]}">{B["email"]}</a></p>
+        <p><a href="tel:{TEL}">{PHONE}</a> &middot; <a href="https://wa.me/{WA}" target="_blank" rel="noopener">WhatsApp</a></p>
 
         <p class="form-note" style="margin-top:var(--space-5)">This is a starting draft prepared for Pillai Auto. It is not legal advice and should be reviewed before the site goes live.</p>
       </div>
@@ -1982,7 +2058,7 @@ def build_legal():
   </section>
 """
     page("terms.html", "Terms of Use | Pillai Auto",
-         "Terms governing use of the Pillai Auto website, including pricing, specification, Konarc pre-launch and finance disclaimers.",
+         "Terms governing use of the Pillai Auto website, including pricing, specification, introductory-price and finance disclaimers.",
          terms, head_extra=crumb_ld(cr2, 0))
 
     nf = f"""
@@ -2000,7 +2076,7 @@ def build_legal():
   </section>
 """
     page("404.html", "Page not found | Pillai Auto",
-         "That page does not exist. Browse the Ather line-up at Pillai Auto or call +91 89258 15877.",
+         f"That page does not exist. Browse the Ather line-up at Pillai Auto or call {PHONE}.",
          nf, head_extra='<meta name="robots" content="noindex">')
 
 
@@ -2020,7 +2096,7 @@ def build_meta_files():
             continue
         loc = B["domain"] + "/" + ("" if p == "index.html" else p)
         pr = prio.get(p, "0.3" if p in ("privacy.html", "terms.html") else "0.7")
-        urls.append(f"  <url>\n    <loc>{loc}</loc>\n    <lastmod>2026-08-22</lastmod>\n"
+        urls.append(f"  <url>\n    <loc>{loc}</loc>\n    <lastmod>2026-11-10</lastmod>\n"
                     f"    <changefreq>weekly</changefreq>\n    <priority>{pr}</priority>\n  </url>")
     with open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<!-- sitemap.xml — Version: V1 -->\n'
@@ -2048,6 +2124,8 @@ def main():
         build_branch(b)
     build_contact()
     build_legal()
+    import build_guides            # V5: Ather guides hub + guide pages
+    build_guides.build_all()
     build_meta_files()
     print(f"{len(WRITTEN)} files written:")
     for p in sorted(WRITTEN):
@@ -2055,4 +2133,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import build_site          # run as a module so build_guides shares this page list
+    build_site.main()

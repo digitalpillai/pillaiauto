@@ -1,0 +1,2044 @@
+{
+ "1-celestial-gold-desk.webp": {
+  "h": 2160,
+  "m": {
+   "h": 2088,
+   "variants": [
+    [
+     "assets/media/1-celestial-gold-mob-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/1-celestial-gold-mob-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/1-celestial-gold-mob-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/1-celestial-gold-mob-mob-1280.webp",
+     1280
+    ]
+   ],
+   "w": 1280
+  },
+  "variants": [
+   [
+    "assets/media/1-celestial-gold-desk-480.webp",
+    480
+   ],
+   [
+    "assets/media/1-celestial-gold-desk-800.webp",
+    800
+   ],
+   [
+    "assets/media/1-celestial-gold-desk-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/1-celestial-gold-desk-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/1-celestial-gold-desk-2000.webp",
+    2000
+   ]
+  ],
+  "w": 3840
+ },
+ "1-celestial-gold-desk.webp#card": {
+  "h": 2009,
+  "variants": [
+   [
+    "assets/media/1-celestial-gold-desk-card-400.webp",
+    400
+   ],
+   [
+    "assets/media/1-celestial-gold-desk-card-640.webp",
+    640
+   ],
+   [
+    "assets/media/1-celestial-gold-desk-card-800.webp",
+    800
+   ],
+   [
+    "assets/media/1-celestial-gold-desk-card-1200.webp",
+    1200
+   ]
+  ],
+  "w": 2842
+ },
+ "1tow&theftalerts.webp": {
+  "h": 1500,
+  "m": {
+   "h": 1280,
+   "variants": [
+    [
+     "assets/media/1tow-theftalertsmob-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/1tow-theftalertsmob-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/1tow-theftalertsmob-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/1tow-theftalertsmob-mob-1280.webp",
+     1280
+    ]
+   ],
+   "w": 1280
+  },
+  "variants": [
+   [
+    "assets/media/1tow-theftalerts-480.webp",
+    480
+   ],
+   [
+    "assets/media/1tow-theftalerts-800.webp",
+    800
+   ],
+   [
+    "assets/media/1tow-theftalerts-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/1tow-theftalerts-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/1tow-theftalerts-2000.webp",
+    2000
+   ]
+  ],
+  "w": 2640
+ },
+ "2-lumen-copper-desk.webp": {
+  "h": 2160,
+  "m": {
+   "h": 2088,
+   "variants": [
+    [
+     "assets/media/2-lumen-copper-mob-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/2-lumen-copper-mob-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/2-lumen-copper-mob-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/2-lumen-copper-mob-mob-1280.webp",
+     1280
+    ]
+   ],
+   "w": 1280
+  },
+  "variants": [
+   [
+    "assets/media/2-lumen-copper-desk-480.webp",
+    480
+   ],
+   [
+    "assets/media/2-lumen-copper-desk-800.webp",
+    800
+   ],
+   [
+    "assets/media/2-lumen-copper-desk-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/2-lumen-copper-desk-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/2-lumen-copper-desk-2000.webp",
+    2000
+   ]
+  ],
+  "w": 3840
+ },
+ "3-quartz-white-desk.webp": {
+  "h": 2160,
+  "m": {
+   "h": 2088,
+   "variants": [
+    [
+     "assets/media/4-quartz-white-mob-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/4-quartz-white-mob-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/4-quartz-white-mob-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/4-quartz-white-mob-mob-1280.webp",
+     1280
+    ]
+   ],
+   "w": 1280
+  },
+  "variants": [
+   [
+    "assets/media/3-quartz-white-desk-480.webp",
+    480
+   ],
+   [
+    "assets/media/3-quartz-white-desk-800.webp",
+    800
+   ],
+   [
+    "assets/media/3-quartz-white-desk-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/3-quartz-white-desk-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/3-quartz-white-desk-2000.webp",
+    2000
+   ]
+  ],
+  "w": 3840
+ },
+ "3autoholdateverystop.webp": {
+  "h": 1500,
+  "m": {
+   "h": 1280,
+   "variants": [
+    [
+     "assets/media/3autoholdateverystopmob-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/3autoholdateverystopmob-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/3autoholdateverystopmob-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/3autoholdateverystopmob-mob-1280.webp",
+     1280
+    ]
+   ],
+   "w": 1280
+  },
+  "variants": [
+   [
+    "assets/media/3autoholdateverystop-480.webp",
+    480
+   ],
+   [
+    "assets/media/3autoholdateverystop-800.webp",
+    800
+   ],
+   [
+    "assets/media/3autoholdateverystop-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/3autoholdateverystop-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/3autoholdateverystop-2000.webp",
+    2000
+   ]
+  ],
+  "w": 2640
+ },
+ "4-majestic-grey-desk.webp": {
+  "h": 2160,
+  "m": {
+   "h": 2088,
+   "variants": [
+    [
+     "assets/media/3-majestic-grey-mob-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/3-majestic-grey-mob-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/3-majestic-grey-mob-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/3-majestic-grey-mob-mob-1280.webp",
+     1280
+    ]
+   ],
+   "w": 1280
+  },
+  "variants": [
+   [
+    "assets/media/4-majestic-grey-desk-480.webp",
+    480
+   ],
+   [
+    "assets/media/4-majestic-grey-desk-800.webp",
+    800
+   ],
+   [
+    "assets/media/4-majestic-grey-desk-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/4-majestic-grey-desk-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/4-majestic-grey-desk-2000.webp",
+    2000
+   ]
+  ],
+  "w": 3840
+ },
+ "450-bodyguard-d.webp": {
+  "h": 1200,
+  "variants": [
+   [
+    "assets/media/450-bodyguard-d-480.webp",
+    480
+   ],
+   [
+    "assets/media/450-bodyguard-d-800.webp",
+    800
+   ],
+   [
+    "assets/media/450-bodyguard-d-1059.webp",
+    1059
+   ]
+  ],
+  "w": 1059
+ },
+ "450-charging-d.webp": {
+  "h": 1140,
+  "variants": [
+   [
+    "assets/media/450-charging-d-480.webp",
+    480
+   ],
+   [
+    "assets/media/450-charging-d-800.webp",
+    800
+   ],
+   [
+    "assets/media/450-charging-d-840.webp",
+    840
+   ]
+  ],
+  "w": 840
+ },
+ "450-charging-duo-d.webp": {
+  "h": 600,
+  "m": {
+   "h": 600,
+   "variants": [
+    [
+     "assets/media/450-charging-duo-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/450-charging-duo-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/450-charging-duo-m-mob-816.webp",
+     816
+    ]
+   ],
+   "w": 816
+  },
+  "variants": [
+   [
+    "assets/media/450-charging-duo-d-480.webp",
+    480
+   ],
+   [
+    "assets/media/450-charging-duo-d-792.webp",
+    792
+   ]
+  ],
+  "w": 792
+ },
+ "450-charging-grid-d.webp": {
+  "h": 600,
+  "m": {
+   "h": 609,
+   "variants": [
+    [
+     "assets/media/450-charging-grid-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/450-charging-grid-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/450-charging-grid-m-mob-816.webp",
+     816
+    ]
+   ],
+   "w": 816
+  },
+  "variants": [
+   [
+    "assets/media/450-charging-grid-d-480.webp",
+    480
+   ],
+   [
+    "assets/media/450-charging-grid-d-792.webp",
+    792
+   ]
+  ],
+  "w": 792
+ },
+ "450-floor-mat-d.webp": {
+  "h": 1200,
+  "variants": [
+   [
+    "assets/media/450-floor-mat-d-480.webp",
+    480
+   ],
+   [
+    "assets/media/450-floor-mat-d-800.webp",
+    800
+   ],
+   [
+    "assets/media/450-floor-mat-d-1062.webp",
+    1062
+   ]
+  ],
+  "w": 1062
+ },
+ "450-park-assist-d.webp": {
+  "h": 1140,
+  "m": {
+   "h": 1140,
+   "variants": [
+    [
+     "assets/media/450-park-assist-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/450-park-assist-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/450-park-assist-m-mob-840.webp",
+     840
+    ]
+   ],
+   "w": 840
+  },
+  "variants": [
+   [
+    "assets/media/450-park-assist-d-480.webp",
+    480
+   ],
+   [
+    "assets/media/450-park-assist-d-800.webp",
+    800
+   ],
+   [
+    "assets/media/450-park-assist-d-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/450-park-assist-d-1497.webp",
+    1497
+   ]
+  ],
+  "w": 1497
+ },
+ "450-seat-cover-d.webp": {
+  "h": 1200,
+  "variants": [
+   [
+    "assets/media/450-seat-cover-d-480.webp",
+    480
+   ],
+   [
+    "assets/media/450-seat-cover-d-800.webp",
+    800
+   ],
+   [
+    "assets/media/450-seat-cover-d-1059.webp",
+    1059
+   ]
+  ],
+  "w": 1059
+ },
+ "450s-cosmic-black-electric-scooter.webp": {
+  "h": 2285,
+  "variants": [
+   [
+    "assets/media/450s-cosmic-black-electric-scooter-480.webp",
+    480
+   ],
+   [
+    "assets/media/450s-cosmic-black-electric-scooter-800.webp",
+    800
+   ],
+   [
+    "assets/media/450s-cosmic-black-electric-scooter-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/450s-cosmic-black-electric-scooter-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/450s-cosmic-black-electric-scooter-2000.webp",
+    2000
+   ]
+  ],
+  "w": 2543
+ },
+ "450s-cosmic-black-electric-scooter.webp#card": {
+  "h": 2326,
+  "variants": [
+   [
+    "assets/media/450s-cosmic-black-electric-scooter-card-400.webp",
+    400
+   ],
+   [
+    "assets/media/450s-cosmic-black-electric-scooter-card-640.webp",
+    640
+   ],
+   [
+    "assets/media/450s-cosmic-black-electric-scooter-card-800.webp",
+    800
+   ],
+   [
+    "assets/media/450s-cosmic-black-electric-scooter-card-1200.webp",
+    1200
+   ]
+  ],
+  "w": 3102
+ },
+ "450s-hyper-sand-d.webp": {
+  "h": 1208,
+  "m": {
+   "h": 480,
+   "variants": [
+    [
+     "assets/media/450s-hyper-sand-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/450s-hyper-sand-m-mob-640.webp",
+     640
+    ]
+   ],
+   "w": 640
+  },
+  "variants": [
+   [
+    "assets/media/450s-hyper-sand-d-480.webp",
+    480
+   ],
+   [
+    "assets/media/450s-hyper-sand-d-800.webp",
+    800
+   ],
+   [
+    "assets/media/450s-hyper-sand-d-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/450s-hyper-sand-d-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/450s-hyper-sand-d-2000.webp",
+    2000
+   ]
+  ],
+  "w": 2200
+ },
+ "450x-hyper-sand-electric-scooter.webp": {
+  "h": 2285,
+  "variants": [
+   [
+    "assets/media/450x-hyper-sand-electric-scooter-480.webp",
+    480
+   ],
+   [
+    "assets/media/450x-hyper-sand-electric-scooter-800.webp",
+    800
+   ],
+   [
+    "assets/media/450x-hyper-sand-electric-scooter-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/450x-hyper-sand-electric-scooter-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/450x-hyper-sand-electric-scooter-2000.webp",
+    2000
+   ]
+  ],
+  "w": 2543
+ },
+ "450x-hyper-sand-electric-scooter.webp#card": {
+  "h": 2326,
+  "variants": [
+   [
+    "assets/media/450x-hyper-sand-electric-scooter-card-400.webp",
+    400
+   ],
+   [
+    "assets/media/450x-hyper-sand-electric-scooter-card-640.webp",
+    640
+   ],
+   [
+    "assets/media/450x-hyper-sand-electric-scooter-card-800.webp",
+    800
+   ],
+   [
+    "assets/media/450x-hyper-sand-electric-scooter-card-1200.webp",
+    1200
+   ]
+  ],
+  "w": 3102
+ },
+ "450x-matte-stealth-blue-d.webp": {
+  "h": 1208,
+  "m": {
+   "h": 1350,
+   "variants": [
+    [
+     "assets/media/450x-matte-stealth-blue-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/450x-matte-stealth-blue-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/450x-matte-stealth-blue-m-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/450x-matte-stealth-blue-m-mob-1200.webp",
+     1200
+    ]
+   ],
+   "w": 1200
+  },
+  "variants": [
+   [
+    "assets/media/450x-matte-stealth-blue-d-480.webp",
+    480
+   ],
+   [
+    "assets/media/450x-matte-stealth-blue-d-800.webp",
+    800
+   ],
+   [
+    "assets/media/450x-matte-stealth-blue-d-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/450x-matte-stealth-blue-d-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/450x-matte-stealth-blue-d-2000.webp",
+    2000
+   ]
+  ],
+  "w": 2200
+ },
+ "450x-mono-cosmic-black-d.webp": {
+  "h": 1208,
+  "m": {
+   "h": 1350,
+   "variants": [
+    [
+     "assets/media/450x-mono-cosmic-black-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/450x-mono-cosmic-black-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/450x-mono-cosmic-black-m-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/450x-mono-cosmic-black-m-mob-1200.webp",
+     1200
+    ]
+   ],
+   "w": 1200
+  },
+  "variants": [
+   [
+    "assets/media/450x-mono-cosmic-black-d-480.webp",
+    480
+   ],
+   [
+    "assets/media/450x-mono-cosmic-black-d-800.webp",
+    800
+   ],
+   [
+    "assets/media/450x-mono-cosmic-black-d-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/450x-mono-cosmic-black-d-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/450x-mono-cosmic-black-d-2000.webp",
+    2000
+   ]
+  ],
+  "w": 2200
+ },
+ "450x-mono-true-red-d.webp": {
+  "h": 1208,
+  "m": {
+   "h": 1350,
+   "variants": [
+    [
+     "assets/media/450x-mono-true-red-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/450x-mono-true-red-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/450x-mono-true-red-m-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/450x-mono-true-red-m-mob-1200.webp",
+     1200
+    ]
+   ],
+   "w": 1200
+  },
+  "variants": [
+   [
+    "assets/media/450x-mono-true-red-d-480.webp",
+    480
+   ],
+   [
+    "assets/media/450x-mono-true-red-d-800.webp",
+    800
+   ],
+   [
+    "assets/media/450x-mono-true-red-d-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/450x-mono-true-red-d-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/450x-mono-true-red-d-2000.webp",
+    2000
+   ]
+  ],
+  "w": 2200
+ },
+ "450x-overtones-lunar-grey-d.webp": {
+  "h": 1208,
+  "m": {
+   "h": 1350,
+   "variants": [
+    [
+     "assets/media/450x-overtones-lunar-grey-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/450x-overtones-lunar-grey-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/450x-overtones-lunar-grey-m-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/450x-overtones-lunar-grey-m-mob-1200.webp",
+     1200
+    ]
+   ],
+   "w": 1200
+  },
+  "variants": [
+   [
+    "assets/media/450x-overtones-lunar-grey-d-480.webp",
+    480
+   ],
+   [
+    "assets/media/450x-overtones-lunar-grey-d-800.webp",
+    800
+   ],
+   [
+    "assets/media/450x-overtones-lunar-grey-d-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/450x-overtones-lunar-grey-d-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/450x-overtones-lunar-grey-d-2000.webp",
+    2000
+   ]
+  ],
+  "w": 2200
+ },
+ "450x-overtones-space-grey-d.webp": {
+  "h": 1208,
+  "m": {
+   "h": 1350,
+   "variants": [
+    [
+     "assets/media/450x-overtones-space-grey-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/450x-overtones-space-grey-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/450x-overtones-space-grey-m-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/450x-overtones-space-grey-m-mob-1200.webp",
+     1200
+    ]
+   ],
+   "w": 1200
+  },
+  "variants": [
+   [
+    "assets/media/450x-overtones-space-grey-d-480.webp",
+    480
+   ],
+   [
+    "assets/media/450x-overtones-space-grey-d-800.webp",
+    800
+   ],
+   [
+    "assets/media/450x-overtones-space-grey-d-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/450x-overtones-space-grey-d-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/450x-overtones-space-grey-d-2000.webp",
+    2000
+   ]
+  ],
+  "w": 2200
+ },
+ "450x-overtones-still-white-d.webp": {
+  "h": 1208,
+  "m": {
+   "h": 1350,
+   "variants": [
+    [
+     "assets/media/450x-overtones-still-white-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/450x-overtones-still-white-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/450x-overtones-still-white-m-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/450x-overtones-still-white-m-mob-1200.webp",
+     1200
+    ]
+   ],
+   "w": 1200
+  },
+  "variants": [
+   [
+    "assets/media/450x-overtones-still-white-d-480.webp",
+    480
+   ],
+   [
+    "assets/media/450x-overtones-still-white-d-800.webp",
+    800
+   ],
+   [
+    "assets/media/450x-overtones-still-white-d-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/450x-overtones-still-white-d-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/450x-overtones-still-white-d-2000.webp",
+    2000
+   ]
+  ],
+  "w": 2200
+ },
+ "450x-touchscreen-dashboard.webp": {
+  "h": 1140,
+  "variants": [
+   [
+    "assets/media/450x-touchscreen-dashboard-480.webp",
+    480
+   ],
+   [
+    "assets/media/450x-touchscreen-dashboard-800.webp",
+    800
+   ],
+   [
+    "assets/media/450x-touchscreen-dashboard-855.webp",
+    855
+   ]
+  ],
+  "w": 855
+ },
+ "450xahr-indium-blue-electric-scooter.webp": {
+  "h": 2298,
+  "variants": [
+   [
+    "assets/media/450xahr-indium-blue-electric-scooter-480.webp",
+    480
+   ],
+   [
+    "assets/media/450xahr-indium-blue-electric-scooter-800.webp",
+    800
+   ],
+   [
+    "assets/media/450xahr-indium-blue-electric-scooter-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/450xahr-indium-blue-electric-scooter-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/450xahr-indium-blue-electric-scooter-2000.webp",
+    2000
+   ]
+  ],
+  "w": 2796
+ },
+ "450xahr-indium-blue-electric-scooter.webp#card": {
+  "h": 2390,
+  "variants": [
+   [
+    "assets/media/450xahr-indium-blue-electric-scooter-card-400.webp",
+    400
+   ],
+   [
+    "assets/media/450xahr-indium-blue-electric-scooter-card-640.webp",
+    640
+   ],
+   [
+    "assets/media/450xahr-indium-blue-electric-scooter-card-800.webp",
+    800
+   ],
+   [
+    "assets/media/450xahr-indium-blue-electric-scooter-card-1200.webp",
+    1200
+   ]
+  ],
+  "w": 3187
+ },
+ "4metalbodysteelunibodychassis.webp": {
+  "h": 1408,
+  "m": {
+   "h": 1440,
+   "variants": [
+    [
+     "assets/media/4metalbodysteelunibodychassismob-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/4metalbodysteelunibodychassismob-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/4metalbodysteelunibodychassismob-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/4metalbodysteelunibodychassismob-mob-1248.webp",
+     1248
+    ]
+   ],
+   "w": 1248
+  },
+  "variants": [
+   [
+    "assets/media/4metalbodysteelunibodychassis-480.webp",
+    480
+   ],
+   [
+    "assets/media/4metalbodysteelunibodychassis-800.webp",
+    800
+   ],
+   [
+    "assets/media/4metalbodysteelunibodychassis-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/4metalbodysteelunibodychassis-1520.webp",
+    1520
+   ]
+  ],
+  "w": 1520
+ },
+ "accessories-ather-desktop.webp": {
+  "h": 1209,
+  "m": {
+   "h": 1140,
+   "variants": [
+    [
+     "assets/media/accessories-ather-mobile-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/accessories-ather-mobile-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/accessories-ather-mobile-mob-840.webp",
+     840
+    ]
+   ],
+   "w": 840
+  },
+  "variants": [
+   [
+    "assets/media/accessories-ather-desktop-480.webp",
+    480
+   ],
+   [
+    "assets/media/accessories-ather-desktop-800.webp",
+    800
+   ],
+   [
+    "assets/media/accessories-ather-desktop-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/accessories-ather-desktop-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/accessories-ather-desktop-1626.webp",
+    1626
+   ]
+  ],
+  "w": 1626
+ },
+ "apex-with-cruise.webp": {
+  "h": 2100,
+  "m": {
+   "h": 2052,
+   "variants": [
+    [
+     "assets/media/apex-with-cruise-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/apex-with-cruise-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/apex-with-cruise-m-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/apex-with-cruise-m-mob-1080.webp",
+     1080
+    ]
+   ],
+   "w": 1080
+  },
+  "variants": [
+   [
+    "assets/media/apex-with-cruise-480.webp",
+    480
+   ],
+   [
+    "assets/media/apex-with-cruise-800.webp",
+    800
+   ],
+   [
+    "assets/media/apex-with-cruise-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/apex-with-cruise-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/apex-with-cruise-2000.webp",
+    2000
+   ]
+  ],
+  "w": 4320
+ },
+ "ather-450-apex-electric-scooter-model.webp": {
+  "h": 1200,
+  "m": {
+   "h": 1050,
+   "variants": [
+    [
+     "assets/media/ather-450-apex-electric-scooter-model-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/ather-450-apex-electric-scooter-model-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/ather-450-apex-electric-scooter-model-m-mob-870.webp",
+     870
+    ]
+   ],
+   "w": 870
+  },
+  "variants": [
+   [
+    "assets/media/ather-450-apex-electric-scooter-model-480.webp",
+    480
+   ],
+   [
+    "assets/media/ather-450-apex-electric-scooter-model-800.webp",
+    800
+   ],
+   [
+    "assets/media/ather-450-apex-electric-scooter-model-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/ather-450-apex-electric-scooter-model-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/ather-450-apex-electric-scooter-model-1842.webp",
+    1842
+   ]
+  ],
+  "w": 1842
+ },
+ "ather-450-dash-google-map-platform.webp": {
+  "h": 1468,
+  "variants": [
+   [
+    "assets/media/ather-450-dash-google-map-platform-480.webp",
+    480
+   ],
+   [
+    "assets/media/ather-450-dash-google-map-platform-800.webp",
+    800
+   ],
+   [
+    "assets/media/ather-450-dash-google-map-platform-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/ather-450-dash-google-map-platform-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/ather-450-dash-google-map-platform-2000.webp",
+    2000
+   ]
+  ],
+  "w": 3080
+ },
+ "ather-450-dash-live-location-sharing.webp": {
+  "h": 1468,
+  "variants": [
+   [
+    "assets/media/ather-450-dash-live-location-sharing-480.webp",
+    480
+   ],
+   [
+    "assets/media/ather-450-dash-live-location-sharing-800.webp",
+    800
+   ],
+   [
+    "assets/media/ather-450-dash-live-location-sharing-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/ather-450-dash-live-location-sharing-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/ather-450-dash-live-location-sharing-2000.webp",
+    2000
+   ]
+  ],
+  "w": 3080
+ },
+ "ather-450-electric-scooter-front-view.webp": {
+  "h": 1200,
+  "m": {
+   "h": 1050,
+   "variants": [
+    [
+     "assets/media/ather-450-electric-scooter-front-view-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/ather-450-electric-scooter-front-view-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/ather-450-electric-scooter-front-view-m-mob-870.webp",
+     870
+    ]
+   ],
+   "w": 870
+  },
+  "variants": [
+   [
+    "assets/media/ather-450-electric-scooter-front-view-480.webp",
+    480
+   ],
+   [
+    "assets/media/ather-450-electric-scooter-front-view-800.webp",
+    800
+   ],
+   [
+    "assets/media/ather-450-electric-scooter-front-view-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/ather-450-electric-scooter-front-view-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/ather-450-electric-scooter-front-view-1842.webp",
+    1842
+   ]
+  ],
+  "w": 1842
+ },
+ "ather-450-overtones-new-d.webp": {
+  "h": 2124,
+  "m": {
+   "h": 2154,
+   "variants": [
+    [
+     "assets/media/ather-450-overtones-new-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/ather-450-overtones-new-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/ather-450-overtones-new-m-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/ather-450-overtones-new-m-mob-1107.webp",
+     1107
+    ]
+   ],
+   "w": 1107
+  },
+  "variants": [
+   [
+    "assets/media/ather-450-overtones-new-d-480.webp",
+    480
+   ],
+   [
+    "assets/media/ather-450-overtones-new-d-800.webp",
+    800
+   ],
+   [
+    "assets/media/ather-450-overtones-new-d-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/ather-450-overtones-new-d-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/ather-450-overtones-new-d-2000.webp",
+    2000
+   ]
+  ],
+  "w": 4320
+ },
+ "ather-450x-vs-ather-450s-electric-scooter-model.webp": {
+  "h": 1200,
+  "m": {
+   "h": 1050,
+   "variants": [
+    [
+     "assets/media/ather-450x-vs-ather-450s-electric-scooter-model-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/ather-450x-vs-ather-450s-electric-scooter-model-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/ather-450x-vs-ather-450s-electric-scooter-model-m-mob-870.webp",
+     870
+    ]
+   ],
+   "w": 870
+  },
+  "variants": [
+   [
+    "assets/media/ather-450x-vs-ather-450s-electric-scooter-model-480.webp",
+    480
+   ],
+   [
+    "assets/media/ather-450x-vs-ather-450s-electric-scooter-model-800.webp",
+    800
+   ],
+   [
+    "assets/media/ather-450x-vs-ather-450s-electric-scooter-model-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/ather-450x-vs-ather-450s-electric-scooter-model-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/ather-450x-vs-ather-450s-electric-scooter-model-1842.webp",
+    1842
+   ]
+  ],
+  "w": 1842
+ },
+ "ather-app-find-ather-grid-near-you.webp": {
+  "h": 1440,
+  "variants": [
+   [
+    "assets/media/ather-app-find-ather-grid-near-you-480.webp",
+    480
+   ],
+   [
+    "assets/media/ather-app-find-ather-grid-near-you-675.webp",
+    675
+   ]
+  ],
+  "w": 675
+ },
+ "ather-app-real-time-charge-status.webp": {
+  "h": 1440,
+  "variants": [
+   [
+    "assets/media/ather-app-real-time-charge-status-480.webp",
+    480
+   ],
+   [
+    "assets/media/ather-app-real-time-charge-status-675.webp",
+    675
+   ]
+  ],
+  "w": 675
+ },
+ "ather-rizta-family-e-scooter-2026.webp": {
+  "h": 774,
+  "m": {
+   "h": 675,
+   "variants": [
+    [
+     "assets/media/ather-rizta-family-e-scooter-2026-m-mob-416.webp",
+     416
+    ]
+   ],
+   "w": 416
+  },
+  "variants": [
+   [
+    "assets/media/ather-rizta-family-e-scooter-2026-480.webp",
+    480
+   ],
+   [
+    "assets/media/ather-rizta-family-e-scooter-2026-800.webp",
+    800
+   ],
+   [
+    "assets/media/ather-rizta-family-e-scooter-2026-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/ather-rizta-family-e-scooter-2026-1494.webp",
+    1494
+   ]
+  ],
+  "w": 1494
+ },
+ "ather-rizta-family-electric-scooter-floor-board.webp": {
+  "h": 1200,
+  "m": {
+   "h": 1050,
+   "variants": [
+    [
+     "assets/media/ather-rizta-family-electric-scooter-floor-board-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/ather-rizta-family-electric-scooter-floor-board-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/ather-rizta-family-electric-scooter-floor-board-m-mob-870.webp",
+     870
+    ]
+   ],
+   "w": 870
+  },
+  "variants": [
+   [
+    "assets/media/ather-rizta-family-electric-scooter-floor-board-480.webp",
+    480
+   ],
+   [
+    "assets/media/ather-rizta-family-electric-scooter-floor-board-800.webp",
+    800
+   ],
+   [
+    "assets/media/ather-rizta-family-electric-scooter-floor-board-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/ather-rizta-family-electric-scooter-floor-board-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/ather-rizta-family-electric-scooter-floor-board-1842.webp",
+    1842
+   ]
+  ],
+  "w": 1842
+ },
+ "ather-rizta-family-electric-scooter.webp": {
+  "h": 1200,
+  "m": {
+   "h": 1050,
+   "variants": [
+    [
+     "assets/media/ather-rizta-family-electric-scooter-m-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/ather-rizta-family-electric-scooter-m-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/ather-rizta-family-electric-scooter-m-mob-870.webp",
+     870
+    ]
+   ],
+   "w": 870
+  },
+  "variants": [
+   [
+    "assets/media/ather-rizta-family-electric-scooter-480.webp",
+    480
+   ],
+   [
+    "assets/media/ather-rizta-family-electric-scooter-800.webp",
+    800
+   ],
+   [
+    "assets/media/ather-rizta-family-electric-scooter-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/ather-rizta-family-electric-scooter-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/ather-rizta-family-electric-scooter-1842.webp",
+    1842
+   ]
+  ],
+  "w": 1842
+ },
+ "blue-duo.png": {
+  "h": 1440,
+  "variants": [
+   [
+    "assets/media/blue-duo-480.webp",
+    480
+   ],
+   [
+    "assets/media/blue-duo-800.webp",
+    800
+   ],
+   [
+    "assets/media/blue-duo-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/blue-duo-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/blue-duo-1612.webp",
+    1612
+   ]
+  ],
+  "w": 1612
+ },
+ "blue-mono.png": {
+  "h": 1440,
+  "variants": [
+   [
+    "assets/media/blue-mono-480.webp",
+    480
+   ],
+   [
+    "assets/media/blue-mono-800.webp",
+    800
+   ],
+   [
+    "assets/media/blue-mono-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/blue-mono-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/blue-mono-1624.webp",
+    1624
+   ]
+  ],
+  "w": 1624
+ },
+ "desk-charge-your-way.webp": {
+  "h": 768,
+  "variants": [
+   [
+    "assets/media/desk-charge-your-way-480.webp",
+    480
+   ],
+   [
+    "assets/media/desk-charge-your-way-800.webp",
+    800
+   ],
+   [
+    "assets/media/desk-charge-your-way-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/desk-charge-your-way-1440.webp",
+    1440
+   ]
+  ],
+  "w": 1440
+ },
+ "easy-on-ather-desktop.webp": {
+  "h": 1528,
+  "variants": [
+   [
+    "assets/media/easy-on-ather-desktop-480.webp",
+    480
+   ],
+   [
+    "assets/media/easy-on-ather-desktop-800.webp",
+    800
+   ],
+   [
+    "assets/media/easy-on-ather-desktop-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/easy-on-ather-desktop-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/easy-on-ather-desktop-2000.webp",
+    2000
+   ]
+  ],
+  "w": 2880
+ },
+ "green-duo.png": {
+  "h": 1440,
+  "variants": [
+   [
+    "assets/media/green-duo-480.webp",
+    480
+   ],
+   [
+    "assets/media/green-duo-800.webp",
+    800
+   ],
+   [
+    "assets/media/green-duo-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/green-duo-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/green-duo-1606.webp",
+    1606
+   ]
+  ],
+  "w": 1606
+ },
+ "grey-duo.png": {
+  "h": 1440,
+  "variants": [
+   [
+    "assets/media/grey-duo-480.webp",
+    480
+   ],
+   [
+    "assets/media/grey-duo-800.webp",
+    800
+   ],
+   [
+    "assets/media/grey-duo-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/grey-duo-1594.webp",
+    1594
+   ]
+  ],
+  "w": 1594
+ },
+ "grey-mono.png": {
+  "h": 1440,
+  "variants": [
+   [
+    "assets/media/grey-mono-480.webp",
+    480
+   ],
+   [
+    "assets/media/grey-mono-800.webp",
+    800
+   ],
+   [
+    "assets/media/grey-mono-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/grey-mono-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/grey-mono-1636.webp",
+    1636
+   ]
+  ],
+  "w": 1636
+ },
+ "halo-auto-wear-detect-desktop.webp": {
+  "h": 1244,
+  "m": {
+   "h": 798,
+   "variants": [
+    [
+     "assets/media/halo-auto-wear-detect-mobile-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/halo-auto-wear-detect-mobile-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/halo-auto-wear-detect-mobile-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/halo-auto-wear-detect-mobile-mob-1100.webp",
+     1100
+    ]
+   ],
+   "w": 1100
+  },
+  "variants": [
+   [
+    "assets/media/halo-auto-wear-detect-desktop-480.webp",
+    480
+   ],
+   [
+    "assets/media/halo-auto-wear-detect-desktop-800.webp",
+    800
+   ],
+   [
+    "assets/media/halo-auto-wear-detect-desktop-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/halo-auto-wear-detect-desktop-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/halo-auto-wear-detect-desktop-1940.webp",
+    1940
+   ]
+  ],
+  "w": 1940
+ },
+ "homepagekv.webp": {
+  "h": 2301,
+  "m": {
+   "h": 2880,
+   "variants": [
+    [
+     "assets/media/pdpkvmob-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/pdpkvmob-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/pdpkvmob-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/pdpkvmob-mob-1280.webp",
+     1280
+    ]
+   ],
+   "w": 1440
+  },
+  "variants": [
+   [
+    "assets/media/homepagekv-480.webp",
+    480
+   ],
+   [
+    "assets/media/homepagekv-800.webp",
+    800
+   ],
+   [
+    "assets/media/homepagekv-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/homepagekv-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/homepagekv-2000.webp",
+    2000
+   ]
+  ],
+  "w": 4320
+ },
+ "konarc-gallery-t-desk-2.webp": {
+  "h": 612,
+  "variants": [
+   [
+    "assets/media/konarc-gallery-t-desk-2-480.webp",
+    480
+   ],
+   [
+    "assets/media/konarc-gallery-t-desk-2-724.webp",
+    724
+   ]
+  ],
+  "w": 724
+ },
+ "konarc-gallery-t-desk-4.webp": {
+  "h": 614,
+  "variants": [
+   [
+    "assets/media/konarc-gallery-t-desk-4-480.webp",
+    480
+   ],
+   [
+    "assets/media/konarc-gallery-t-desk-4-800.webp",
+    800
+   ],
+   [
+    "assets/media/konarc-gallery-t-desk-4-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/konarc-gallery-t-desk-4-1480.webp",
+    1480
+   ]
+  ],
+  "w": 1480
+ },
+ "pdpkvdesktop.webp": {
+  "h": 2322,
+  "m": {
+   "h": 2880,
+   "variants": [
+    [
+     "assets/media/pdpkvmob-mob-480.webp",
+     480
+    ],
+    [
+     "assets/media/pdpkvmob-mob-720.webp",
+     720
+    ],
+    [
+     "assets/media/pdpkvmob-mob-960.webp",
+     960
+    ],
+    [
+     "assets/media/pdpkvmob-mob-1280.webp",
+     1280
+    ]
+   ],
+   "w": 1440
+  },
+  "variants": [
+   [
+    "assets/media/pdpkvdesktop-480.webp",
+    480
+   ],
+   [
+    "assets/media/pdpkvdesktop-800.webp",
+    800
+   ],
+   [
+    "assets/media/pdpkvdesktop-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/pdpkvdesktop-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/pdpkvdesktop-2000.webp",
+    2000
+   ]
+  ],
+  "w": 4320
+ },
+ "rizs1-pangong-blue-mono-electric-scooter.webp": {
+  "h": 2603,
+  "variants": [
+   [
+    "assets/media/rizs1-pangong-blue-mono-electric-scooter-480.webp",
+    480
+   ],
+   [
+    "assets/media/rizs1-pangong-blue-mono-electric-scooter-800.webp",
+    800
+   ],
+   [
+    "assets/media/rizs1-pangong-blue-mono-electric-scooter-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/rizs1-pangong-blue-mono-electric-scooter-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/rizs1-pangong-blue-mono-electric-scooter-2000.webp",
+    2000
+   ]
+  ],
+  "w": 2809
+ },
+ "rizs1-pangong-blue-mono-electric-scooter.webp#card": {
+  "h": 2650,
+  "variants": [
+   [
+    "assets/media/rizs1-pangong-blue-mono-electric-scooter-card-400.webp",
+    400
+   ],
+   [
+    "assets/media/rizs1-pangong-blue-mono-electric-scooter-card-640.webp",
+    640
+   ],
+   [
+    "assets/media/rizs1-pangong-blue-mono-electric-scooter-card-800.webp",
+    800
+   ],
+   [
+    "assets/media/rizs1-pangong-blue-mono-electric-scooter-card-1200.webp",
+    1200
+   ]
+  ],
+  "w": 3534
+ },
+ "rizta-red-super-matte (1).webp": {
+  "h": 1279,
+  "variants": [
+   [
+    "assets/media/rizta-red-super-matte-1-480.webp",
+    480
+   ],
+   [
+    "assets/media/rizta-red-super-matte-1-800.webp",
+    800
+   ],
+   [
+    "assets/media/rizta-red-super-matte-1-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/rizta-red-super-matte-1-1405.webp",
+    1405
+   ]
+  ],
+  "w": 1405
+ },
+ "rizta-terracotta-red-duo-new-1.webp": {
+  "h": 1602,
+  "variants": [
+   [
+    "assets/media/rizta-terracotta-red-duo-new-1-480.webp",
+    480
+   ],
+   [
+    "assets/media/rizta-terracotta-red-duo-new-1-800.webp",
+    800
+   ],
+   [
+    "assets/media/rizta-terracotta-red-duo-new-1-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/rizta-terracotta-red-duo-new-1-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/rizta-terracotta-red-duo-new-1-1761.webp",
+    1761
+   ]
+  ],
+  "w": 1761
+ },
+ "rizz1-terracotta-red-dt-electric-scooter.webp": {
+  "h": 3998,
+  "variants": [
+   [
+    "assets/media/rizz1-terracotta-red-dt-electric-scooter-480.webp",
+    480
+   ],
+   [
+    "assets/media/rizz1-terracotta-red-dt-electric-scooter-800.webp",
+    800
+   ],
+   [
+    "assets/media/rizz1-terracotta-red-dt-electric-scooter-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/rizz1-terracotta-red-dt-electric-scooter-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/rizz1-terracotta-red-dt-electric-scooter-2000.webp",
+    2000
+   ]
+  ],
+  "w": 4398
+ },
+ "rizz1-terracotta-red-dt-electric-scooter.webp#card": {
+  "h": 4141,
+  "variants": [
+   [
+    "assets/media/rizz1-terracotta-red-dt-electric-scooter-card-400.webp",
+    400
+   ],
+   [
+    "assets/media/rizz1-terracotta-red-dt-electric-scooter-card-640.webp",
+    640
+   ],
+   [
+    "assets/media/rizz1-terracotta-red-dt-electric-scooter-card-800.webp",
+    800
+   ],
+   [
+    "assets/media/rizz1-terracotta-red-dt-electric-scooter-card-1200.webp",
+    1200
+   ]
+  ],
+  "w": 5522
+ },
+ "white-mono.png": {
+  "h": 1440,
+  "variants": [
+   [
+    "assets/media/white-mono-480.webp",
+    480
+   ],
+   [
+    "assets/media/white-mono-800.webp",
+    800
+   ],
+   [
+    "assets/media/white-mono-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/white-mono-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/white-mono-1649.webp",
+    1649
+   ]
+  ],
+  "w": 1649
+ },
+ "yellow-duo.png": {
+  "h": 1440,
+  "variants": [
+   [
+    "assets/media/yellow-duo-480.webp",
+    480
+   ],
+   [
+    "assets/media/yellow-duo-800.webp",
+    800
+   ],
+   [
+    "assets/media/yellow-duo-1200.webp",
+    1200
+   ],
+   [
+    "assets/media/yellow-duo-1600.webp",
+    1600
+   ],
+   [
+    "assets/media/yellow-duo-1606.webp",
+    1606
+   ]
+  ],
+  "w": 1606
+ }
+}

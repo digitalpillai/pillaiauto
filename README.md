@@ -3,7 +3,7 @@
 Static site. Plain HTML, CSS and JavaScript. No build step, no framework, no npm install.
 Open `index.html` in a browser and it runs.
 
-25 pages, built 22 August 2026, for the four Pillai Auto showrooms:
+25 pages, built 22 August 2026 and updated 10 November 2026, for the four Pillai Auto showrooms:
 **Chennai (OMR) · Chengalpattu · Puducherry · Chidambaram.**
 
 Content is deliberately narrow: vehicles, prices, test rides, finance, service, charging,
@@ -15,18 +15,29 @@ accessories and showrooms. No corporate pages, no investor or press sections, no
 
 | File | Version | What it is |
 |---|---|---|
-| `assets/css/main.css` | **V2** | The only stylesheet |
-| `assets/js/main.js` | **V2** | The only script |
-| `partials/head.html` | **V2** | Shared `<head>` block |
-| `partials/nav.html` | **V2** | Offer strip + header nav with dropdowns |
-| `partials/footer.html` | **V2** | Footer with all four branches |
-| `tools/site_data.py` | **V1** | Branch and model data — the single source of truth |
-| `tools/build_site.py` | **V1** | Generates every HTML page from that data |
+| `assets/css/main.css` | **V8** | The only stylesheet |
+| `assets/js/main.js` | **V4** | The only script |
+| `partials/head.html` | **V3** | Shared `<head>` block (icons + manifest) |
+| `partials/nav.html` | **V5** | Offer strip + header nav with dropdowns + Pillai Auto logo |
+| `partials/footer.html` | **V6** | Footer with logo, all four branches and Ather guides link |
+| `tools/site_data.py` | **V4** | Branch and model data — the single source of truth |
+| `tools/build_site.py` | **V6** | Generates every HTML page from that data |
+| `tools/make_logo.py` | **V2** | Builds all logo files from `assets/brand/pillai-auto-logo-source.jpg` |
+| `tools/build_guides.py` | **V1** | Builds the Ather guides hub and guide pages, with a quality check |
+| `tools/guides_index.py` | **V1** | Collects the guides; which guides each model and showroom page links to |
+| `tools/guides_models.py`, `guides_compare.py`, `guides_features.py`, `guides_ownership.py`, `guides_local.py` | **V1** | The guide content (51 pages) |
+| `tools/media_pipeline.py` | **V2** | Builds responsive images from the Ather media library |
+| `tools/media.py` | **V2** | Used by build_site.py to swap in those images |
+| `assets/media/` | generated | Self-hosted WebP images + `manifest.json` |
 | `tools/sync_partials.py` | **V1** | Injects the partials into every page |
-| all 25 `*.html` pages | **V1** | Generated output — this is what you deploy |
-| `robots.txt`, `sitemap.xml` | **V1** | Crawler files |
-| `assets/img/og-default.png` | **V2** | Social share card (1200×630) |
-| `assets/img/favicon.svg` | **V1** | Tab icon |
+| all 25 main `*.html` pages | **V5** | Generated output — this is what you deploy |
+| `guides/*.html` (52 pages) | **V1** | Ather guides hub + 51 guides |
+| `robots.txt` | **V1** | Crawler rules |
+| `sitemap.xml` | **V2** | Crawler file (lastmod 2026-11-10) |
+| `assets/img/og-default.png` | **V4** | Social share card: the logo as supplied, on its own cream (1200×630) |
+| `assets/img/logo.svg` | **V1** | The logo as a sharp vector, identical to the supplied image |
+| `assets/img/favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest` | **V1** | Tab, phone home-screen and Android icons |
+| `assets/img/favicon.svg` | **V3** | Tab icon: the logo with the same cream extended to a square |
 
 Bump a version in the file's header comment and in this table when you change it.
 
@@ -42,7 +53,7 @@ scooters/ather-450x.html
 scooters/ather-450s.html
 scooters/ather-rizta-z.html
 scooters/ather-rizta-s.html
-scooters/ather-konarc.html      Pre-launch — see the warning below
+scooters/ather-konarc.html      Launched — see the Konarc note below
 compare.html                    All six side by side
 price-chennai.html              On-road price estimator + ex-showroom table
 emi-calculator.html             EMI sliders + running-cost comparison
@@ -97,57 +108,128 @@ Search the project for `TODO(client)`.
 1. **Branch addresses.** Taken from public Ather dealer listings. Check each against the
    matching Google Business Profile, byte for byte — a mismatch is a common cause of weak
    local ranking. They live in `tools/site_data.py`.
-2. **Branch phone numbers.** All four currently show `+91 89258 15877`. If Chengalpattu,
-   Puducherry and Chidambaram have their own numbers, put them in `site_data.py`
-   (`phone_display`, `phone_e164`, `whatsapp`) — the enquiry forms route to whichever
-   branch the visitor picks, so this matters.
-3. **Email address.** `sales@pillaiauto.in` is a placeholder.
+2. **Phone and WhatsApp numbers** (12 Nov 2026, from each Google Business Profile):
+   Chennai OMR +91 92400 13817 (also the main number in the header and 404 page) ·
+   Chengalpattu +91 88840 24249 · Puducherry +91 92400 13873 · Chidambaram +91 92400 83604.
+   **WhatsApp for every outlet: +91 73581 05818.** Numbers live in `tools/site_data.py`; the
+   footer's branch numbers and the header call button are in `partials/footer.html` and
+   `partials/nav.html`; the forms' fallback number is in `assets/js/main.js`.
+3. **Email.** The site deliberately shows no email address — contact is by phone and WhatsApp only.
 4. **Opening hours.** Currently Mon–Sat 9:30–19:30, Sun 10:00–18:00, the same for all four.
-5. **Grievance officer** in `privacy.html` — a named person and a working email address are
-   a statutory requirement under the DPDP Act, 2023.
+5. **Grievance officer** in `privacy.html` — add the name of the person responsible for
+   grievances under the DPDP Act, 2023 (contact is by phone; no email is shown).
 6. **On-road rates.** `price-chennai.html` carries `data-rto="0.04"` and `data-ins="0.055"`
    on the `#onroad` form. These are placeholders. Set them to the figures you actually
    quote, including any Tamil Nadu EV road-tax concession, and check Puducherry separately —
    its rates differ.
-7. **Prices.** All in `site_data.py`, indicative ex-showroom as of August 2026.
-8. **The offer strip** in `partials/nav.html` — change or delete it when the offer ends.
+7. **Prices.** All in `site_data.py`, indicative ex-showroom as of 10 November 2026.
+   Ather does not publish a 450 Apex price online, so ₹1,94,946 is carried over from August — confirm it.
+8. **The offer strip** in `partials/nav.html` — currently the Konarc launch; change it when the introductory price ends.
 9. **Legal drafts.** `privacy.html` and `terms.html` are starting drafts, not legal advice.
 
 ---
 
-## The Ather Konarc page — please read
+## The Ather Konarc page
 
-You asked for a full page using reported specs. It is built, but the Konarc has **not
-launched yet** — Ather reveals it on **29 August 2026**, a week after this site was made.
+The Konarc has launched. As of 10 November 2026 the page is a normal model page built
+from Ather's published specification sheet for the **Konarc S** (2.1 / 2.7 / 3.5 kWh), at
+Ather's **introductory price of ₹99,999** ex-showroom. The Konarc Z (touchscreen, AeBS,
+MagicKey) is listed by Ather as coming soon — add it to `site_data.py` when it is priced.
 
-Every figure on that page comes from pre-launch press coverage, not from Ather. The page
-says so prominently, tags each unconfirmed spec with an "unconfirmed" badge, and counts down
-to launch instead of pretending to know the price. That is deliberate: a dealer site quoting
-a wrong price is a problem you have to live with afterwards.
+When the introductory price ends, change `price` for the Konarc in `tools/site_data.py`,
+update the offer strip in `partials/nav.html`, and re-run the two scripts.
 
-**On 29 August, open `tools/site_data.py`, find the Konarc entry, replace `status`,
-`price`, `specs`, `colours` and the media URLs with the real ones, and re-run the two
-scripts.** The page will convert itself from a teaser into a normal model page.
+### What changed on 10 November 2026
 
----
+- Konarc: launched — full specs, four colours with Ather images, home-page launch band,
+  first on the scooters page, offer strip and menu label updated.
+- 450 and Rizta: larger battery is now 3.5 kWh (was listed as 3.7); TrueRange added;
+  charging times from Ather's current sheets; Infinite Cruise on 450X/Apex; SkidControl,
+  Crash Alert and Tamil dashboard on Rizta Z.
+- 450S corrected: 5.4 kW / 22 Nm, no traction control, no Magic Twist, 15 km in 10 min.
+- Prices: 450X ₹1,48,998 (was ₹1,52,498), Rizta S ₹1,21,999 (was ₹1,21,499).
+- Battery warranty everywhere: 3 yr / 30,000 km standard, extendable up to 10 yr /
+  1,00,000 km (replaces "up to 8 years / Eight70").
+- Images: Konarc assets added; 450X Hyper Sand and the 450S colour switcher now use
+  the filenames on Ather's current 450 page.
 
 ## Images and video
 
-All product photography and video loads live from Ather's own servers
-(`https://media.atherenergy.com/...`). 36 distinct files, every one checked against a real
-Ather page. Two consequences:
+Since 12 November 2026 every image is **self-hosted** in `assets/media/`, built from the
+Ather media library (`D:\Website\downloaded_media\atherenergy.com`). Only the two
+videos still stream from Ather, because they are not in the library.
 
-- The site needs an internet connection to show them. Offline, each frame falls back to a
-  labelled placeholder rather than a broken-image icon.
-- If Ather renames a file, that one frame goes to its placeholder. Nothing else breaks.
+**What each visitor gets**
 
-To move to your own photography, put files in `assets/img/` and change the URLs in
-`tools/site_data.py` — that is where nearly all of them live.
+- **Right size per screen.** Every image exists in several widths. Phones download a
+  small file, laptops a large one (`srcset`/`sizes`). On a phone the home page's images
+  total about 0.4 MB.
+- **Phone-shaped photos.** Where Ather made a portrait version (`…-m.webp`, `…Mob.webp`),
+  phones get it instead of a thin strip of a wide photo: model heroes, the Konarc
+  banner, the home hero and the colour picker.
+- **Studio shots on model cards.** Ather's transparent cut-outs, tightly cropped to 4:3
+  on a light studio backdrop.
+- **No page jumping.** Every image declares its real width and height.
+- **Lighter video.** The home video loads only on screens 768 px and wider, never with
+  data-saver or reduced motion. Phones see a still photo and can tap play.
 
-Videos are lazy-loaded: nothing downloads until the section scrolls into view, and each
-clip pauses when it scrolls out.
+**Updating images**
 
----
+```bash
+python tools/media_pipeline.py --lib "D:\Website\downloaded_media\atherenergy.com"
+python tools/build_site.py
+python tools/sync_partials.py
+```
+
+To change a picture, put another Ather file name in `tools/site_data.py` (`card`, `hero`
+or a colour image) and run the three commands. The pipeline finds the file in the library,
+makes the sizes and the phone version, and removes files no longer used. Anything it can't
+find keeps loading from Ather, with the labelled placeholder as before if that fails.
+
+## Logo
+
+**Rule: the Pillai Auto logo is always used exactly as supplied** — cream background
+(#FDF1C9), black (#000000) and green (#40F12F), same shape and proportions (1390 × 1132).
+Never recolour it, round its corners, remove its background or place a variant on dark.
+
+The supplied image (`assets/brand/pillai-auto-logo-source.jpg`) is traced into a vector so it
+stays sharp; the vector matches the original to within JPEG noise. It appears in the header
+(40 px tall on laptops and tablets, 36 px on phones, 32 px on very narrow phones), in the footer,
+as the browser-tab and home-screen icons, and in the share image. Square icons only add more of
+the same cream above and below, because browsers and phones require a square.
+
+If the logo ever changes, replace the source image, run `python tools/make_logo.py` (needs
+`potrace`), and rebuild.
+
+## Ather guides (SEO pages)
+
+`guides/` holds a hub page and 51 guides written for buyers in Chennai, Chengalpattu,
+Puducherry and Chidambaram. They are not in the main menu: the footer has one
+"Ather guides" link to the hub, each model page lists its related guides, each showroom
+page lists its local guides, and every guide links to related guides. All are in
+`sitemap.xml`.
+
+| Group | Pages | File |
+|---|---|---|
+| Choosing your Ather | 12 | `tools/guides_models.py` |
+| Ather vs Ather | 8 | `tools/guides_compare.py` |
+| Features explained | 12 | `tools/guides_features.py` |
+| Owning an Ather | 15 | `tools/guides_ownership.py` |
+| Routes and commutes | 4 | `tools/guides_local.py` |
+
+**Editing a guide:** change its text in the content file and run `python tools/build_site.py`
+then `python tools/sync_partials.py`. The build refuses to finish if two guides share a
+title, a description is the wrong length, a page falls under 300 words, a link points to a
+guide that doesn't exist, or two pages overlap by more than 25%.
+
+**Keep these current (check every quarter):**
+- Prices and specs come from `site_data.py` and Ather's spec sheets (10–12 Nov 2026).
+- Tamil Nadu's 100% EV road tax exemption runs to 31 Dec 2027.
+- Fuel prices in the cost guides: Chennai ₹107.77 (9 Nov 2026), Puducherry ₹103.58 (1 Nov 2026).
+- Puducherry EV registration charges are deliberately not printed — the showroom quotes them.
+
+**Still to add:** 24 on-road price pages (6 models × 4 regions) once the showrooms
+provide on-road price sheets.
 
 ## Enquiry forms
 
@@ -200,7 +282,7 @@ All asset paths are relative, so the site also works from a subfolder
 - [ ] WhatsApp routing tested from each branch dropdown option
 - [ ] On-road RTO and insurance rates set to your actual figures
 - [ ] Prices current
-- [ ] Konarc page updated after 29 August
+- [x] Konarc page updated after launch (10 Nov 2026)
 - [ ] Opened on a real phone, not just a resized desktop window
 - [ ] Google Business Profile name, address and phone match each showroom page exactly
 - [ ] `sitemap.xml` submitted in Google Search Console

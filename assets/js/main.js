@@ -1,8 +1,13 @@
 /* ==========================================================================
    Pillai Auto — Ather dealership website
    File: assets/js/main.js
-   Version: V2
-   Last updated: 22 August 2026
+   Version: V7
+   Last updated: 12 November 2026 (V7: full menu from 1100px, matching the bigger header name.
+   V6: main phone → Chennai OMR 92400 13817.
+   V5: WhatsApp for all outlets → 73581 05818.
+   V4: colour picker swaps responsive srcsets;
+   home video loads on tablets/laptops only, still photo on phones.
+   V3: image fallback tries data-alt backups)
    --------------------------------------------------------------------------
    No dependencies, no build step. Every module below is optional: if its
    markup is missing the module exits quietly, so this same file can be
@@ -20,8 +25,8 @@
      0. Config — the only place that knows business details.
      ---------------------------------------------------------------------- */
   var CONFIG = {
-    whatsapp: '918925815877',        // digits only, no + and no spaces
-    phone:    '+918925815877'
+    whatsapp: '917358105818',        // digits only, no + and no spaces — all outlets
+    phone:    '+919240013817'        // Chennai OMR
   };
 
   /* ----------------------------------------------------------------------
@@ -147,6 +152,15 @@
      ---------------------------------------------------------------------- */
   (function mediaFallback() {
     function fail(node) {
+      // V3: try the next backup image in data-alt="url1|url2" before giving up
+      var alts = node.getAttribute && node.getAttribute('data-alt');
+      if (alts) {
+        var list = alts.split('|');
+        var next = list.shift();
+        if (list.length) node.setAttribute('data-alt', list.join('|'));
+        else node.removeAttribute('data-alt');
+        if (next) { node.src = next; return; }
+      }
       var frame = node.closest('[data-media]');
       if (frame) frame.classList.add('has-error');
     }
@@ -155,7 +169,12 @@
       if (img.complete && img.naturalWidth === 0 && img.getAttribute('src')) fail(img);
     });
     $$('[data-media] video').forEach(function (v) {
-      v.addEventListener('error', function () { fail(v); }, true);
+      v.addEventListener('error', function () {
+        // V4: if a still photo sits under the video, keep showing it
+        var still = v.parentNode.querySelector('img');
+        if (still && still.naturalWidth) { v.style.display = 'none'; return; }
+        fail(v);
+      }, true);
     });
   }());
 
@@ -208,9 +227,19 @@
       btn.setAttribute('aria-label', paused ? 'Play background video' : 'Pause background video');
     }
 
-    if (REDUCED) { v.pause(); }
+    // V4: only fetch the video on wider screens without data-saver; phones keep the still photo
+    var conn = navigator.connection || {};
+    var minW = parseInt(v.dataset.minWidth || '0', 10);
+    function load() {
+      if (v.dataset.loaded || !v.dataset.src) return;
+      v.src = v.dataset.src; v.dataset.loaded = '1'; v.load();
+    }
+    function start() { load(); var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    v.addEventListener('playing', function () { v.classList.add('is-playing'); });
+    if (!REDUCED && !conn.saveData && window.innerWidth >= minW) start();
+
     btn.addEventListener('click', function () {
-      if (v.paused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      if (v.paused) { start(); }
       else { v.pause(); }
       sync();
     });
@@ -320,8 +349,16 @@
         stage.classList.remove('has-error');
         img.classList.add('is-swapping');
 
+        var source = $('source', stage);
         var pre = new Image();
+        if (btn.dataset.srcset) { pre.sizes = img.sizes; pre.srcset = btn.dataset.srcset; }
         pre.onload = function () {
+          // V4: swap the whole responsive set, phone version included
+          if (btn.dataset.srcset) img.srcset = btn.dataset.srcset;
+          if (source) {
+            if (btn.dataset.srcsetM) source.srcset = btn.dataset.srcsetM;
+            else source.removeAttribute('srcset');
+          }
           img.src = btn.dataset.img;
           img.alt = model.trim() + ' in ' + btn.dataset.name;
           img.classList.remove('is-swapping');
@@ -657,7 +694,7 @@
   (function navMenus() {
     var menus = $$('.site-nav .menu');
     if (!menus.length) return;
-    var desktop = function () { return window.innerWidth >= 900; };
+    var desktop = function () { return window.innerWidth >= 1100; };   // V7: matches the CSS header breakpoint
 
     menus.forEach(function (d) {
       d.addEventListener('toggle', function () {

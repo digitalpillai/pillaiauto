@@ -1,8 +1,10 @@
 /* ==========================================================================
    Pillai Auto — Ather dealership website (Chennai · Chengalpattu · Puducherry · Chidambaram)
    File: assets/css/main.css
-   Version: V2
-   Last updated: 22 August 2026
+   Version: V8
+   Last updated: 12 November 2026 (V8: company name in the header twice as big; compact header below 1100px.
+   V7: logo used exactly as supplied. V6: Pillai Auto logo in header and footer. V5: Ather guides layout. V4: responsive self-hosted media — model-hero
+   frame, phone crops, hero still + video layering. V3: card studio backdrop)
    --------------------------------------------------------------------------
    Order is fixed: tokens -> reset -> primitives -> components -> page
    sections -> media queries. Keep it that way; it is what stops
@@ -67,7 +69,7 @@
   --ease:      260ms cubic-bezier(.22,.61,.36,1);
   --ease-slow: 620ms cubic-bezier(.22,.61,.36,1);
   --container: 1220px;
-  --nav-h:     64px;
+  --nav-h:     72px;   /* V8: taller header for the bigger company name (64px on phones) */
   --subnav-h:  56px;
 }
 
@@ -232,16 +234,17 @@ section.is-flush { padding-block: 0; }
   gap: var(--space-4); min-height: var(--nav-h);
 }
 .site-nav__logo {
-  display: flex; align-items: center; gap: var(--space-2);
+  display: flex; align-items: center; gap: 10px;
   text-decoration: none; flex: none;
 }
-.site-nav__logo svg { width: 34px; height: 34px; }
+/* V7: the Pillai Auto logo exactly as supplied — 1390 x 1132, cream background kept, never recoloured */
+.brand-logo { display: block; flex: none; height: 40px; width: auto; aspect-ratio: 1390 / 1132; }
 .site-nav__logo b {
-  font-family: var(--f-display); font-size: 1.05rem;
-  letter-spacing: .04em; font-weight: 700; line-height: 1;
+  font-family: var(--f-display); font-size: 2.1rem;   /* V8: twice the previous 1.05rem */
+  letter-spacing: .03em; font-weight: 700; line-height: 1; white-space: nowrap;
 }
 .site-nav__logo small {
-  display: block; font-size: 10px; letter-spacing: .16em;
+  display: block; margin-top: 5px; font-size: 11px; letter-spacing: .16em;
   text-transform: uppercase; color: var(--c-ink-muted); font-weight: 500;
 }
 .site-nav__list {
@@ -330,6 +333,7 @@ section.is-flush { padding-block: 0; }
   background: var(--c-surface);
 }
 .media img, .media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+picture { display: contents; }   /* V4: <picture> wrappers don't change layout */
 .media--tall { aspect-ratio: 3 / 4; }
 .media--square { aspect-ratio: 1 / 1; }
 .media--wide { aspect-ratio: 16 / 9; }
@@ -540,8 +544,15 @@ section.is-flush { padding-block: 0; }
   transition: transform var(--ease), border-color var(--ease);
 }
 .model-card:hover { transform: translateY(-4px); border-color: var(--c-line-strong); }
-.model-card__media { position: relative; background: radial-gradient(120% 90% at 50% 20%, #23272d, #0d0f11); }
-.model-card__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; padding: var(--space-4); }
+.model-card__media {
+  position: relative; border-radius: 0;
+  background: linear-gradient(180deg, #f1f1ef 0%, #e6e6e3 72%, #f4f4f2 100%);   /* V3: studio backdrop */
+}
+.model-card__media img {
+  width: 100%; height: auto; aspect-ratio: 4 / 3;
+  object-fit: cover; object-position: center;            /* V4: studio crops fill the frame */
+}
+.model-card__media .media__fallback { color: #6b7076; }
 .model-card__badge {
   position: absolute; top: 12px; left: 12px; z-index: 2;
   padding: 4px 10px; border-radius: 999px;
@@ -692,6 +703,13 @@ section.is-flush { padding-block: 0; }
   color: var(--c-ink-muted);
 }
 .site-footer a { color: inherit; text-decoration: none; }
+.site-footer__brand {                                   /* V6: logo row */
+  display: inline-flex; align-items: center; gap: 16px; color: var(--c-ink) !important;
+  margin-bottom: var(--space-5); text-decoration: none !important;
+}
+.site-footer__brand .brand-logo { height: 60px; }
+.site-footer__brand b { display: block; font-family: var(--f-display); font-size: 1.25rem; letter-spacing: .04em; line-height: 1.1; }
+.site-footer__brand small { display: block; margin-top: 4px; color: var(--c-ink-muted); font-size: var(--t-sm); }
 .site-footer a:hover { color: var(--c-ink); text-decoration: underline; }
 .site-footer h4 {
   font-size: var(--t-xs); letter-spacing: .16em; text-transform: uppercase;
@@ -745,7 +763,9 @@ section.is-flush { padding-block: 0; }
 .hero__media { position: absolute; inset: 0; border-radius: 0; }
 /* if the remote hero clip fails, keep the label clear of the headline */
 .hero__media .media__fallback { place-items: start center; padding-top: calc(var(--space-6) + 1rem); }
-.hero__media img, .hero__media video { width: 100%; height: 100%; object-fit: cover; }
+.hero__media img, .hero__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero__media video { opacity: 0; transition: opacity .6s ease; }        /* V4: fades in over the still */
+.hero__media video.is-playing { opacity: 1; }
 .hero__scrim {
   position: absolute; inset: 0;
   background:
@@ -797,6 +817,10 @@ section.is-flush { padding-block: 0; }
 .statement { position: relative; overflow: hidden; }
 .statement__media { border-radius: var(--radius-xl); overflow: hidden; position: relative; }
 .statement__media img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+
+/* --- page: model hero photo (V4) --- */
+.model-hero { border-radius: var(--radius-xl); aspect-ratio: 3 / 2; background: var(--c-surface); }
+.model-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 55%; }
 .statement__copy {
   position: relative; z-index: 2; text-align: center; max-width: 40ch; margin: 0 auto var(--space-6);
 }
@@ -1049,7 +1073,8 @@ input[type="range"]::-moz-range-thumb {
   .statement__copy { margin-bottom: var(--space-6); }
 }
 
-@media (max-width: 899px) {
+/* V8: compact header (menu button) below 1100px, so the bigger name never crowds the menu */
+@media (max-width: 1099px) {
   .site-nav__toggle { display: block; }
   .site-nav__list {
     display: none; position: absolute; left: 0; right: 0;
@@ -1077,13 +1102,118 @@ input[type="range"]::-moz-range-thumb {
   .cta-full { display: none; }
   .cta-short { display: inline; }
   .site-nav__actions .btn { padding: 8px 13px; min-height: 36px; }
-  .site-nav__logo svg { width: 30px; height: 30px; }
-  .site-nav__logo b { font-size: .95rem; }
-  .site-nav__logo small { font-size: 9px; letter-spacing: .1em; }
+  .site-nav__logo .brand-logo { height: 36px; }
+  .site-nav__logo b { font-size: 1.9rem; }
+  .site-nav__logo small { font-size: 9px; letter-spacing: .1em; margin-top: 4px; }
+  :root { --nav-h: 64px; }
+}
+/* V8: on phones the name gets as big as the row allows next to the Test ride and menu buttons */
+@media (max-width: 479px) { .site-nav__logo b { font-size: 1.7rem; } }
+@media (max-width: 413px) { .site-nav__logo b { font-size: 1.5rem; } }
+@media (max-width: 389px) { .site-nav__logo b { font-size: 1.375rem; } }
+@media (max-width: 374px) { .site-nav__logo b { font-size: 1.25rem; } }
+@media (max-width: 359px) {                     /* smallest phones: tighten the row so nothing spills off-screen */
+  .site-nav__inner { gap: 8px; }
+  .site-nav__logo { gap: 7px; }
+  .site-nav__logo b { font-size: 1.125rem; }
+  .site-nav__logo .brand-logo { height: 28px; }
+  .site-nav__actions { gap: 6px; }
+  .site-nav__actions .btn { padding: 7px 10px; font-size: 13px; }
 }
 
 @media (max-width: 380px) {
   .site-nav__logo small { display: none; }
+  .site-nav__logo .brand-logo { height: 32px; }
+}
+@media (max-width: 599px) {
+  .site-footer__brand .brand-logo { height: 48px; }
+}
+
+/* --- page: Ather guides (V5) --- */
+.guide-meta { margin-top: var(--space-3); font-size: var(--t-sm); color: var(--c-ink-muted); }
+.guide-meta a { color: var(--c-ink); }
+.guide-band { padding-top: var(--space-5); }
+.guide__media { border-radius: var(--radius-xl); aspect-ratio: 16 / 9; margin-bottom: var(--space-5); background: var(--c-surface-lt); }
+.guide__media img { width: 100%; height: 100%; object-fit: cover; }
+.guide { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: var(--space-6); align-items: start; }
+.guide__aside { position: sticky; top: calc(var(--nav-h) + 16px); display: grid; gap: var(--space-4); }
+
+.prose { max-width: 72ch; font-size: 1.0625rem; line-height: 1.7; color: var(--c-ink-lt); }
+.prose .guide-sec { padding: 0; }
+.prose .guide-sec + .guide-sec { margin-top: var(--space-5); }
+.guide-toc + .guide-sec { margin-top: 0; }
+.prose h2 { font-size: var(--t-xl); line-height: 1.25; margin-bottom: var(--space-3); scroll-margin-top: calc(var(--nav-h) + 16px); }
+.prose h3 { font-size: var(--t-lg); margin: var(--space-4) 0 var(--space-2); }
+.prose p, .prose ul, .prose ol { margin-bottom: var(--space-3); }
+.prose ul, .prose ol { padding-left: 1.3em; }
+.prose li { margin-bottom: 6px; }
+.prose li::marker { color: var(--c-accent-dim); font-weight: 600; }
+.prose a { color: #0a7a46; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.prose a:hover { color: var(--c-ink-lt); }
+.prose strong { color: var(--c-ink-lt); }
+.guide-note { border-left: 3px solid var(--c-accent-dim); background: var(--c-surface-lt); padding: var(--space-3) var(--space-4); border-radius: 0 12px 12px 0; }
+
+.table-scroll { overflow-x: auto; margin: var(--space-3) 0 var(--space-4); border: 1px solid var(--c-line-lt); border-radius: 14px; background: var(--c-surface-lt); -webkit-overflow-scrolling: touch; }
+.guide-table { width: 100%; border-collapse: collapse; font-size: var(--t-sm); line-height: 1.45; }
+.guide-table th, .guide-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--c-line-lt); vertical-align: top; }
+.guide-table thead th { background: #f0f1ee; font-weight: 600; white-space: nowrap; }
+.guide-table tbody th { font-weight: 600; }
+.guide-table tr:last-child > * { border-bottom: 0; }
+
+.guide-toc { background: var(--c-surface-lt); border: 1px solid var(--c-line-lt); border-radius: 16px; padding: var(--space-4); margin-bottom: var(--space-5); }
+.guide-toc__title { font-size: var(--t-sm) !important; text-transform: uppercase; letter-spacing: .08em; color: var(--c-ink-muted-lt) !important; margin-bottom: var(--space-2) !important; }
+.guide-toc ol { margin: 0; columns: 2; column-gap: var(--space-5); font-size: var(--t-sm); }
+.guide-toc li { break-inside: avoid; }
+
+.guide-box { background: var(--c-surface-lt); border: 1px solid var(--c-line-lt); border-radius: 18px; padding: var(--space-4); box-shadow: var(--shadow-lt); color: var(--c-ink-lt); }
+.guide-box__title { font-size: var(--t-lg) !important; margin-bottom: var(--space-3); }
+.guide-box p { color: var(--c-ink-muted-lt); font-size: var(--t-sm); margin-bottom: var(--space-3); }
+.guide-box--accent { border-color: rgba(0,184,98,.35); }
+.guide-box--accent .btn { width: 100%; justify-content: center; }
+.guide-facts { display: grid; gap: 10px; margin: 0; }
+.guide-facts div { display: grid; gap: 2px; padding-bottom: 10px; border-bottom: 1px solid var(--c-line-lt); }
+.guide-facts div:last-child { border-bottom: 0; padding-bottom: 0; }
+.guide-facts dt { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--c-ink-muted-lt); }
+.guide-facts dd { margin: 0; font-weight: 600; }
+.guide-links, .guide-shops { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: var(--t-sm); }
+.guide-links a, .guide-shops a { color: var(--c-ink-lt); font-weight: 500; }
+.guide-shops { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--c-line-lt); }
+.guide-shops li { display: flex; justify-content: space-between; gap: 8px; }
+.guide-shops span, .guide-shops span a { color: var(--c-accent-dim); font-weight: 500; }
+
+.guide-faq { margin-top: var(--space-5); }
+.guide-faq h2 { margin-bottom: var(--space-3); }
+.guide-related { margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--c-line-lt); }
+.guide-related h2 { font-size: var(--t-xl); margin-bottom: var(--space-4); }
+.guide-card { display: block; text-decoration: none; transition: transform var(--ease), box-shadow var(--ease); }
+.guide-card:hover { transform: translateY(-3px); }
+.guide-card .eyebrow { margin-bottom: 8px; }
+.guide-card .card__title { font-size: var(--t-lg); margin-bottom: 6px; }
+.guide-hub-link { margin-top: var(--space-4); font-weight: 600; }
+.guide-hub-link a { color: var(--c-accent-dim); }
+.guide-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: var(--space-3); }
+.guide-list a { display: block; height: 100%; padding: var(--space-4); background: var(--c-surface-lt); border: 1px solid var(--c-line-lt); border-radius: 14px; color: var(--c-ink-lt); font-weight: 600; text-decoration: none; }
+.guide-list a:hover { border-color: var(--c-accent-dim); }
+
+@media (max-width: 1023px) {
+  .guide { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
+  .guide__aside { position: static; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+}
+@media (max-width: 599px) {
+  .prose { font-size: 1rem; }
+  .guide-toc ol { columns: 1; }
+  .guide-table { font-size: 13px; }
+  .guide-table th, .guide-table td { padding: 8px 9px; }
+  .guide-table thead th { white-space: normal; }
+  .guide__media { aspect-ratio: 4 / 3; border-radius: var(--radius-lg); }
+}
+
+/* V4: phone-shaped frames for the art-directed photos */
+@media (max-width: 767px) {
+  .model-hero { aspect-ratio: 4 / 5; border-radius: var(--radius-lg); }
+  .statement__media img { aspect-ratio: 4 / 5; object-position: center 45%; }
+  .hero__media img { object-position: center 40%; }
+  .colours__stage { padding: var(--space-3); min-height: 0; border-radius: var(--radius-lg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1097,7 +1227,7 @@ input[type="range"]::-moz-range-thumb {
   .reveal { opacity: 1; transform: none; }
 }
 
-@media (max-width: 899px) {
+@media (max-width: 1099px) {
   /* dropdowns become plain stacked groups inside the burger panel */
   .menu__panel {
     position: static; min-width: 0; border: 0; background: transparent;

@@ -1,0 +1,129 @@
+#!/usr/bin/env python3
+"""
+make_logo.py  —  Version: V2  (12 Nov 2026)
+
+Builds every logo file the site uses from the company logo image
+(assets/brand/pillai-auto-logo-source.jpg).
+
+RULE (from Pillai Auto): the logo is always used exactly as it is — same cream
+background, same black and green, same shape and proportions. No recolouring,
+no rounded corners, no transparent version. Only the square icons add more of
+the SAME cream above and below, because browsers and phones need a square.
+
+    python tools/make_logo.py
+Needs: Pillow, numpy, the `potrace` command (vector tracing) and Playwright.
+
+Writes
+  assets/brand/logo-paths.json   traced vector paths (used by the header/footer partials)
+  assets/img/logo.svg            the logo as a sharp vector, identical to the original
+  assets/img/favicon.svg         square browser-tab icon (logo + matching cream)
+  assets/img/favicon-32.png, apple-touch-icon.png, icon-192.png, icon-512.png
+  assets/img/og-default.png      1200 x 630 image used when pages are shared
+  site.webmanifest               home-screen icon details for Android
+"""
+import json, os, re, subprocess, tempfile
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC = os.path.join(ROOT, "assets", "brand", "pillai-auto-logo-source.jpg")
+IMG = os.path.join(ROOT, "assets", "img")
+BRAND = os.path.join(ROOT, "assets", "brand")
+
+
+def trace():
+    import numpy as np
+    from PIL import Image
+    im = np.array(Image.open(SRC).convert("RGB")).astype(int)
+    r, g, b = im[..., 0], im[..., 1], im[..., 2]
+    masks = {"black": (r < 90) & (g < 90) & (b < 90),
+             "green": (g > 150) & (r < 160) & (b < 120)}
+    bg = ~(masks["black"] | masks["green"]) & (r > 230)
+    hexc = lambda m: "#%02X%02X%02X" % tuple(int(v) for v in np.median(im[m], 0))
+    H, W = im.shape[:2]
+    paths = {}
+    with tempfile.TemporaryDirectory() as tmp:
+        for name, m in masks.items():
+            pbm, svg = os.path.join(tmp, name + ".pbm"), os.path.join(tmp, name + ".svg")
+            Image.fromarray(np.where(m, 0, 255).astype("uint8")).save(pbm)
+            subprocess.run(["potrace", pbm, "-s", "-o", svg, "--turdsize", "20",
+                            "--alphamax", "1.0", "--opttolerance", "0.2", "-u", "1"], check=True)
+            paths[name] = " ".join(re.findall(r'<path d="([^"]+)"', open(svg).read(), re.S)).replace("\n", " ")
+    return {"w": W, "h": H, "flip": H, "black": paths["black"], "green": paths["green"],
+            "c_black": hexc(masks["black"]), "c_green": hexc(masks["green"]), "c_bg": hexc(bg)}
+
+
+def body(p):
+    """Background + both shapes, in the logo's own coordinates (0..w, 0..h)."""
+    return (f'<rect width="{p["w"]}" height="{p["h"]}" fill="{p["c_bg"]}"/>'
+            f'<g transform="translate(0 {p["flip"]}) scale(1 -1)">'
+            f'<path fill="{p["c_black"]}" d="{p["black"]}"/><path fill="{p["c_green"]}" d="{p["green"]}"/></g>')
+
+
+def logo_svg(p):
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {p["w"]} {p["h"]}" '
+            f'width="{p["w"]}" height="{p["h"]}" role="img" aria-label="Pillai Auto">{body(p)}</svg>')
+
+
+def square_svg(p):
+    """Square icon: the same logo, with the same cream extended above and below."""
+    s = max(p["w"], p["h"])
+    x, y = (s - p["w"]) / 2, (s - p["h"]) / 2
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {s} {s}" role="img" aria-label="Pillai Auto">'
+            f'<rect width="{s}" height="{s}" fill="{p["c_bg"]}"/>'
+            f'<svg x="{x:g}" y="{y:g}" width="{p["w"]}" height="{p["h"]}">{body(p)}</svg></svg>')
+
+
+def og_html(p):
+    return f"""<!doctype html><html><head><style>
+body{{margin:0;width:1200px;height:630px;background:{p['c_bg']};font-family:Inter,sans-serif;color:#12141a;
+display:flex;align-items:center;gap:72px;padding:0 90px;box-sizing:border-box;overflow:hidden}}
+.m{{width:390px;flex:none}} .m svg{{width:100%;height:auto;display:block}}
+h1{{font-size:78px;letter-spacing:.02em;margin:0 0 16px;font-weight:700}}
+p{{margin:0;font-size:29px;color:#3d4248;line-height:1.4}}
+</style></head><body><div class="m">{logo_svg(p)}</div><div><h1>PILLAI AUTO</h1>
+<p>Authorised Ather dealer<br>Chennai · Chengalpattu<br>Puducherry · Chidambaram</p></div></body></html>"""
+
+
+def render_pngs(items):
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as pw:
+        b = pw.chromium.launch()
+        for html, out, w, h in items:
+            pg = b.new_page(viewport={"width": w, "height": h})
+            if not html.startswith("<!doctype"):
+                html = (f'<!doctype html><html><body style="margin:0">'
+                        + html.replace("<svg ", f'<svg width="{w}" height="{h}" ', 1) + "</body></html>")
+            pg.set_content(html)
+            pg.screenshot(path=out)
+            pg.close()
+        b.close()
+
+
+def main():
+    p = trace()
+    with open(os.path.join(BRAND, "logo-paths.json"), "w") as f:
+        json.dump(p, f)
+    head = "<!-- {} — Version: {} — generated by tools/make_logo.py; the Pillai Auto logo, unchanged -->\n"
+    with open(os.path.join(IMG, "logo.svg"), "w") as f:
+        f.write(head.format("assets/img/logo.svg", "V1") + logo_svg(p) + "\n")
+    with open(os.path.join(IMG, "favicon.svg"), "w") as f:
+        f.write(head.format("assets/img/favicon.svg", "V3") + square_svg(p) + "\n")
+    for old in ("logo-mark.svg", "logo-mark-on-dark.svg"):          # V1 variants, withdrawn
+        if os.path.exists(os.path.join(IMG, old)):
+            os.remove(os.path.join(IMG, old))
+    sq = square_svg(p)
+    render_pngs([(sq, os.path.join(IMG, "favicon-32.png"), 32, 32),
+                 (sq, os.path.join(IMG, "apple-touch-icon.png"), 180, 180),
+                 (sq, os.path.join(IMG, "icon-192.png"), 192, 192),
+                 (sq, os.path.join(IMG, "icon-512.png"), 512, 512),
+                 (og_html(p), os.path.join(IMG, "og-default.png"), 1200, 630)])
+    manifest = {"name": "Pillai Auto — Authorised Ather Dealer", "short_name": "Pillai Auto",
+                "icons": [{"src": "assets/img/icon-192.png", "sizes": "192x192", "type": "image/png"},
+                          {"src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png"}],
+                "theme_color": "#08090A", "background_color": p["c_bg"], "display": "browser", "start_url": "/"}
+    with open(os.path.join(ROOT, "site.webmanifest"), "w") as f:
+        json.dump(manifest, f, indent=2)
+    print(f"logo {p['w']}x{p['h']}  black {p['c_black']}  green {p['c_green']}  background {p['c_bg']}")
+
+
+if __name__ == "__main__":
+    main()
