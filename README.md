@@ -3,7 +3,7 @@
 Static site. Plain HTML, CSS and JavaScript. No build step, no framework, no npm install.
 Open `index.html` in a browser and it runs.
 
-25 pages, built 22 August 2026, for the four Pillai Auto showrooms:
+25 pages, built 22 August 2026 and updated 10 November 2026, for the four Pillai Auto showrooms:
 **Chennai (OMR) · Chengalpattu · Puducherry · Chidambaram.**
 
 Content is deliberately narrow: vehicles, prices, test rides, finance, service, charging,
@@ -18,13 +18,14 @@ accessories and showrooms. No corporate pages, no investor or press sections, no
 | `assets/css/main.css` | **V2** | The only stylesheet |
 | `assets/js/main.js` | **V2** | The only script |
 | `partials/head.html` | **V2** | Shared `<head>` block |
-| `partials/nav.html` | **V2** | Offer strip + header nav with dropdowns |
-| `partials/footer.html` | **V2** | Footer with all four branches |
-| `tools/site_data.py` | **V1** | Branch and model data — the single source of truth |
-| `tools/build_site.py` | **V1** | Generates every HTML page from that data |
+| `partials/nav.html` | **V3** | Offer strip + header nav with dropdowns |
+| `partials/footer.html` | **V3** | Footer with all four branches |
+| `tools/site_data.py` | **V2** | Branch and model data — the single source of truth |
+| `tools/build_site.py` | **V2** | Generates every HTML page from that data |
 | `tools/sync_partials.py` | **V1** | Injects the partials into every page |
-| all 25 `*.html` pages | **V1** | Generated output — this is what you deploy |
-| `robots.txt`, `sitemap.xml` | **V1** | Crawler files |
+| all 25 `*.html` pages | **V2** | Generated output — this is what you deploy |
+| `robots.txt` | **V1** | Crawler rules |
+| `sitemap.xml` | **V2** | Crawler file (lastmod 2026-11-10) |
 | `assets/img/og-default.png` | **V2** | Social share card (1200×630) |
 | `assets/img/favicon.svg` | **V1** | Tab icon |
 
@@ -42,7 +43,7 @@ scooters/ather-450x.html
 scooters/ather-450s.html
 scooters/ather-rizta-z.html
 scooters/ather-rizta-s.html
-scooters/ather-konarc.html      Pre-launch — see the warning below
+scooters/ather-konarc.html      Launched — see the Konarc note below
 compare.html                    All six side by side
 price-chennai.html              On-road price estimator + ex-showroom table
 emi-calculator.html             EMI sliders + running-cost comparison
@@ -109,27 +110,36 @@ Search the project for `TODO(client)`.
    on the `#onroad` form. These are placeholders. Set them to the figures you actually
    quote, including any Tamil Nadu EV road-tax concession, and check Puducherry separately —
    its rates differ.
-7. **Prices.** All in `site_data.py`, indicative ex-showroom as of August 2026.
-8. **The offer strip** in `partials/nav.html` — change or delete it when the offer ends.
+7. **Prices.** All in `site_data.py`, indicative ex-showroom as of 10 November 2026.
+   Ather does not publish a 450 Apex price online, so ₹1,94,946 is carried over from August — confirm it.
+8. **The offer strip** in `partials/nav.html` — currently the Konarc launch; change it when the introductory price ends.
 9. **Legal drafts.** `privacy.html` and `terms.html` are starting drafts, not legal advice.
 
 ---
 
-## The Ather Konarc page — please read
+## The Ather Konarc page
 
-You asked for a full page using reported specs. It is built, but the Konarc has **not
-launched yet** — Ather reveals it on **29 August 2026**, a week after this site was made.
+The Konarc has launched. As of 10 November 2026 the page is a normal model page built
+from Ather's published specification sheet for the **Konarc S** (2.1 / 2.7 / 3.5 kWh), at
+Ather's **introductory price of ₹99,999** ex-showroom. The Konarc Z (touchscreen, AeBS,
+MagicKey) is listed by Ather as coming soon — add it to `site_data.py` when it is priced.
 
-Every figure on that page comes from pre-launch press coverage, not from Ather. The page
-says so prominently, tags each unconfirmed spec with an "unconfirmed" badge, and counts down
-to launch instead of pretending to know the price. That is deliberate: a dealer site quoting
-a wrong price is a problem you have to live with afterwards.
+When the introductory price ends, change `price` for the Konarc in `tools/site_data.py`,
+update the offer strip in `partials/nav.html`, and re-run the two scripts.
 
-**On 29 August, open `tools/site_data.py`, find the Konarc entry, replace `status`,
-`price`, `specs`, `colours` and the media URLs with the real ones, and re-run the two
-scripts.** The page will convert itself from a teaser into a normal model page.
+### What changed on 10 November 2026
 
----
+- Konarc: launched — full specs, four colours with Ather images, home-page launch band,
+  first on the scooters page, offer strip and menu label updated.
+- 450 and Rizta: larger battery is now 3.5 kWh (was listed as 3.7); TrueRange added;
+  charging times from Ather's current sheets; Infinite Cruise on 450X/Apex; SkidControl,
+  Crash Alert and Tamil dashboard on Rizta Z.
+- 450S corrected: 5.4 kW / 22 Nm, no traction control, no Magic Twist, 15 km in 10 min.
+- Prices: 450X ₹1,48,998 (was ₹1,52,498), Rizta S ₹1,21,999 (was ₹1,21,499).
+- Battery warranty everywhere: 3 yr / 30,000 km standard, extendable up to 10 yr /
+  1,00,000 km (replaces "up to 8 years / Eight70").
+- Images: Konarc assets added; 450X Hyper Sand and the 450S colour switcher now use
+  the filenames on Ather's current 450 page.
 
 ## Images and video
 
@@ -200,7 +210,7 @@ All asset paths are relative, so the site also works from a subfolder
 - [ ] WhatsApp routing tested from each branch dropdown option
 - [ ] On-road RTO and insurance rates set to your actual figures
 - [ ] Prices current
-- [ ] Konarc page updated after 29 August
+- [x] Konarc page updated after launch (10 Nov 2026)
 - [ ] Opened on a real phone, not just a resized desktop window
 - [ ] Google Business Profile name, address and phone match each showroom page exactly
 - [ ] `sitemap.xml` submitted in Google Search Console
