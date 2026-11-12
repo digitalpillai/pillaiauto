@@ -1,8 +1,9 @@
 /* ==========================================================================
    Pillai Auto — Ather dealership website
    File: assets/js/main.js
-   Version: V6
-   Last updated: 12 November 2026 (V6: main phone → Chennai OMR 92400 13817.
+   Version: V7
+   Last updated: 12 November 2026 (V7: full menu from 1100px, matching the bigger header name.
+   V6: main phone → Chennai OMR 92400 13817.
    V5: WhatsApp for all outlets → 73581 05818.
    V4: colour picker swaps responsive srcsets;
    home video loads on tablets/laptops only, still photo on phones.
@@ -693,7 +694,7 @@
   (function navMenus() {
     var menus = $$('.site-nav .menu');
     if (!menus.length) return;
-    var desktop = function () { return window.innerWidth >= 900; };
+    var desktop = function () { return window.innerWidth >= 1100; };   // V7: matches the CSS header breakpoint
 
     menus.forEach(function (d) {
       d.addEventListener('toggle', function () {

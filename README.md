@@ -15,7 +15,7 @@ accessories and showrooms. No corporate pages, no investor or press sections, no
 
 | File | Version | What it is |
 |---|---|---|
-| `assets/css/main.css` | **V7** | The only stylesheet |
+| `assets/css/main.css` | **V8** | The only stylesheet |
 | `assets/js/main.js` | **V4** | The only script |
 | `partials/head.html` | **V3** | Shared `<head>` block (icons + manifest) |
 | `partials/nav.html` | **V5** | Offer strip + header nav with dropdowns + Pillai Auto logo |

@@ -1,8 +1,9 @@
 /* ==========================================================================
    Pillai Auto — Ather dealership website (Chennai · Chengalpattu · Puducherry · Chidambaram)
    File: assets/css/main.css
-   Version: V7
-   Last updated: 12 November 2026 (V7: logo used exactly as supplied. V6: Pillai Auto logo in header and footer. V5: Ather guides layout. V4: responsive self-hosted media — model-hero
+   Version: V8
+   Last updated: 12 November 2026 (V8: company name in the header twice as big; compact header below 1100px.
+   V7: logo used exactly as supplied. V6: Pillai Auto logo in header and footer. V5: Ather guides layout. V4: responsive self-hosted media — model-hero
    frame, phone crops, hero still + video layering. V3: card studio backdrop)
    --------------------------------------------------------------------------
    Order is fixed: tokens -> reset -> primitives -> components -> page
@@ -68,7 +69,7 @@
   --ease:      260ms cubic-bezier(.22,.61,.36,1);
   --ease-slow: 620ms cubic-bezier(.22,.61,.36,1);
   --container: 1220px;
-  --nav-h:     64px;
+  --nav-h:     72px;   /* V8: taller header for the bigger company name (64px on phones) */
   --subnav-h:  56px;
 }
 
@@ -239,11 +240,11 @@ section.is-flush { padding-block: 0; }
 /* V7: the Pillai Auto logo exactly as supplied — 1390 x 1132, cream background kept, never recoloured */
 .brand-logo { display: block; flex: none; height: 40px; width: auto; aspect-ratio: 1390 / 1132; }
 .site-nav__logo b {
-  font-family: var(--f-display); font-size: 1.05rem;
-  letter-spacing: .04em; font-weight: 700; line-height: 1;
+  font-family: var(--f-display); font-size: 2.1rem;   /* V8: twice the previous 1.05rem */
+  letter-spacing: .03em; font-weight: 700; line-height: 1; white-space: nowrap;
 }
 .site-nav__logo small {
-  display: block; font-size: 10px; letter-spacing: .16em;
+  display: block; margin-top: 5px; font-size: 11px; letter-spacing: .16em;
   text-transform: uppercase; color: var(--c-ink-muted); font-weight: 500;
 }
 .site-nav__list {
@@ -1072,7 +1073,8 @@ input[type="range"]::-moz-range-thumb {
   .statement__copy { margin-bottom: var(--space-6); }
 }
 
-@media (max-width: 899px) {
+/* V8: compact header (menu button) below 1100px, so the bigger name never crowds the menu */
+@media (max-width: 1099px) {
   .site-nav__toggle { display: block; }
   .site-nav__list {
     display: none; position: absolute; left: 0; right: 0;
@@ -1101,8 +1103,22 @@ input[type="range"]::-moz-range-thumb {
   .cta-short { display: inline; }
   .site-nav__actions .btn { padding: 8px 13px; min-height: 36px; }
   .site-nav__logo .brand-logo { height: 36px; }
-  .site-nav__logo b { font-size: .95rem; }
-  .site-nav__logo small { font-size: 9px; letter-spacing: .1em; }
+  .site-nav__logo b { font-size: 1.9rem; }
+  .site-nav__logo small { font-size: 9px; letter-spacing: .1em; margin-top: 4px; }
+  :root { --nav-h: 64px; }
+}
+/* V8: on phones the name gets as big as the row allows next to the Test ride and menu buttons */
+@media (max-width: 479px) { .site-nav__logo b { font-size: 1.7rem; } }
+@media (max-width: 413px) { .site-nav__logo b { font-size: 1.5rem; } }
+@media (max-width: 389px) { .site-nav__logo b { font-size: 1.375rem; } }
+@media (max-width: 374px) { .site-nav__logo b { font-size: 1.25rem; } }
+@media (max-width: 359px) {                     /* smallest phones: tighten the row so nothing spills off-screen */
+  .site-nav__inner { gap: 8px; }
+  .site-nav__logo { gap: 7px; }
+  .site-nav__logo b { font-size: 1.125rem; }
+  .site-nav__logo .brand-logo { height: 28px; }
+  .site-nav__actions { gap: 6px; }
+  .site-nav__actions .btn { padding: 7px 10px; font-size: 13px; }
 }
 
 @media (max-width: 380px) {
@@ -1211,7 +1227,7 @@ input[type="range"]::-moz-range-thumb {
   .reveal { opacity: 1; transform: none; }
 }
 
-@media (max-width: 899px) {
+@media (max-width: 1099px) {
   /* dropdowns become plain stacked groups inside the burger panel */
   .menu__panel {
     position: static; min-width: 0; border: 0; background: transparent;
