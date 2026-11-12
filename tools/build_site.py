@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-build_site.py  —  Version: V2  (10 Nov 2026: Konarc launched — teaser text removed,
+build_site.py  —  Version: V3  (12 Nov 2026: model cards pass backup images
+via data-alt. V2, 10 Nov 2026: Konarc launched — teaser text removed,
 Konarc launch band on home, 3.5 kWh packs, 10-year warranty wording, Nov dates)
 Generates the Pillai Auto site's HTML from tools/site_data.py.
 
@@ -34,7 +35,7 @@ WRITTEN = []
 # ---------------------------------------------------------------------------
 # Page shell
 # ---------------------------------------------------------------------------
-def page(path, title, desc, body, head_extra="", og_img=None, version="V2"):
+def page(path, title, desc, body, head_extra="", og_img=None, version="V3"):
     depth = path.count("/")
     P = "../" * depth
     og = og_img or (B["domain"] + "/assets/img/og-default.png")
@@ -213,7 +214,8 @@ def model_card(m, prefix="{P}"):
              (f'<span class="model-card__badge">{m["eyebrow"]}</span>' if m["order"] <= 2 else ""))
     if m["card"]:
         media = (f'<div class="model-card__media media" data-media>{badge}'
-                 f'<img src="{m["card"]}" alt="{m["name"]}" width="800" height="600" loading="lazy" decoding="async">'
+                 f'<img src="{m["card"]}" alt="{m["name"]}" width="800" height="600" loading="lazy" decoding="async"'
+                 + (f' data-alt="{"|".join(m["card_alts"])}"' if m.get("card_alts") else "") + '>'
                  f'<div class="media__fallback">{m["name"]}</div></div>')
     else:
         media = (f'<div class="model-card__media" style="display:grid;place-items:center;min-height:210px">{badge}'

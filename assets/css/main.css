@@ -1,8 +1,8 @@
 /* ==========================================================================
    Pillai Auto — Ather dealership website (Chennai · Chengalpattu · Puducherry · Chidambaram)
    File: assets/css/main.css
-   Version: V2
-   Last updated: 22 August 2026
+   Version: V3
+   Last updated: 12 November 2026 (V3: studio backdrop on model-card images)
    --------------------------------------------------------------------------
    Order is fixed: tokens -> reset -> primitives -> components -> page
    sections -> media queries. Keep it that way; it is what stops
@@ -540,8 +540,16 @@ section.is-flush { padding-block: 0; }
   transition: transform var(--ease), border-color var(--ease);
 }
 .model-card:hover { transform: translateY(-4px); border-color: var(--c-line-strong); }
-.model-card__media { position: relative; background: radial-gradient(120% 90% at 50% 20%, #23272d, #0d0f11); }
-.model-card__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; padding: var(--space-4); }
+.model-card__media {
+  position: relative; border-radius: 0;
+  background: linear-gradient(180deg, #f1f1ef 0%, #e6e6e3 72%, #f4f4f2 100%);   /* V3: studio backdrop */
+}
+.model-card__media img {
+  width: 100%; height: auto; aspect-ratio: 4 / 3;
+  object-fit: contain; object-position: center bottom;
+  padding: var(--space-4) var(--space-4) var(--space-2);
+}
+.model-card__media .media__fallback { color: #6b7076; }
 .model-card__badge {
   position: absolute; top: 12px; left: 12px; z-index: 2;
   padding: 4px 10px; border-radius: 999px;

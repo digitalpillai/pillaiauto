@@ -1,8 +1,8 @@
 /* ==========================================================================
    Pillai Auto — Ather dealership website
    File: assets/js/main.js
-   Version: V2
-   Last updated: 22 August 2026
+   Version: V3
+   Last updated: 12 November 2026 (V3: image fallback tries data-alt backups)
    --------------------------------------------------------------------------
    No dependencies, no build step. Every module below is optional: if its
    markup is missing the module exits quietly, so this same file can be
@@ -147,6 +147,15 @@
      ---------------------------------------------------------------------- */
   (function mediaFallback() {
     function fail(node) {
+      // V3: try the next backup image in data-alt="url1|url2" before giving up
+      var alts = node.getAttribute && node.getAttribute('data-alt');
+      if (alts) {
+        var list = alts.split('|');
+        var next = list.shift();
+        if (list.length) node.setAttribute('data-alt', list.join('|'));
+        else node.removeAttribute('data-alt');
+        if (next) { node.src = next; return; }
+      }
       var frame = node.closest('[data-media]');
       if (frame) frame.classList.add('has-error');
     }

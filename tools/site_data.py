@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-site_data.py  —  Version: V2  (10 Nov 2026: Konarc launched; specs, prices and
-warranty updated from Ather's current spec sheets)
+site_data.py  —  Version: V3  (12 Nov 2026: model cards use studio colour shots with
+backup images. V2, 10 Nov: Konarc launched; specs, prices, warranty updated)
 Single source of truth for everything repeated across the Pillai Auto site:
 the four branches and the scooter line-up.
 
@@ -132,7 +132,8 @@ MODELS = [
         "price": 99999,
         "price_note": "Introductory ex-showroom, Konarc S",
         "hero": M + "PDPKVDesktop.webp",
-        "card": M + "homepageproductcardkonarc3x.webp",
+        "card": M + "1-Celestial-Gold-desk.webp",                 # studio colour shot
+        "card_alts": [M + "3-Quartz-White-desk.webp", M + "4-Majestic-Grey-desk.webp"],
         "stats": [("200", "km", "IDC range*"), ("70", "km/h", "Top speed"),
                   ("31", "L", "Boot space"), ("2", "hr", "Home charge 0–80%")],
         "specs": [
@@ -183,7 +184,8 @@ MODELS = [
         "price": 194946,                       # TODO(client): Ather doesn't publish an Apex price online — confirm
         "price_note": "Ex-showroom, indicative",
         "hero": M + "Ather-450-Apex-optin.webp",
-        "card": M + "450%20Apex%20-%20%20-%20Product%20card.png",
+        "card": M + "450%20Apex%20-%20%20-%20Product%20card.png",   # studio product card
+        "card_alts": [M + "Ather-450-Apex-optin.webp"],
         "stats": [("2.9", "s", "0 – 40 km/h"), ("100", "km/h", "Top speed"),
                   ("165", "km", "IDC range"), ("7", "kW", "Peak power")],
         "specs": [
@@ -223,7 +225,8 @@ MODELS = [
         "price": 148998,
         "price_note": "Ex-showroom, indicative",
         "hero": M + "ather-450-overtones-new-d.webp",
-        "card": M + "Ather-450-electric-scooter.webp",
+        "card": M + "450x-mono-true-red-d.webp",   # studio colour shot
+        "card_alts": [M + "450x-mono-cosmic-black-d.webp", M + "450x-overtones-still-white-d.webp"],
         "stats": [("3.3", "s", "0 – 40 km/h"), ("90", "km/h", "Top speed"),
                   ("161", "km", "IDC range"), ("6.4", "kW", "Peak power")],
         "specs": [
@@ -272,7 +275,8 @@ MODELS = [
         "price": 135999,
         "price_note": "Ex-showroom, indicative",
         "hero": M + "450s-hyper-sand-d.webp",
-        "card": M + "Ather-450-electric-scooter.webp",
+        "card": M + "450x-overtones-still-white-d.webp",   # studio colour shot
+        "card_alts": [M + "450s-hyper-sand-d.webp", M + "450x-matte-stealth-blue-d.webp"],
         "stats": [("3.9", "s", "0 – 40 km/h"), ("90", "km/h", "Top speed"),
                   ("161", "km", "IDC range"), ("5.4", "kW", "Peak power")],
         "specs": [
@@ -318,7 +322,8 @@ MODELS = [
         "price": 136999,
         "price_note": "Ex-showroom, indicative",
         "hero": M + "Rizta-Terracotta-Red-Duo-New-1.webp",
-        "card": M + "Ather-rizta-electric-scooter.webp",
+        "card": M + "Blue-Duo.png",   # studio colour shot
+        "card_alts": [M + "Grey-Duo.png", M + "Yellow-Duo.png"],
         "stats": [("80", "km/h", "Top speed"), ("161", "km", "IDC range"),
                   ("56", "L", "Total storage"), ("4.3", "kW", "Peak power")],
         "specs": [
@@ -371,7 +376,8 @@ MODELS = [
         "price": 121999,
         "price_note": "Ex-showroom, indicative",
         "hero": M + "White-Mono.png",
-        "card": M + "Ather-rizta-electric-scooter.webp",
+        "card": M + "White-Mono.png",   # studio colour shot
+        "card_alts": [M + "Grey-Mono.png", M + "Blue-Mono.png"],
         "stats": [("80", "km/h", "Top speed"), ("161", "km", "IDC range"),
                   ("56", "L", "Total storage"), ("4.3", "kW", "Peak power")],
         "specs": [
