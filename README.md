@@ -15,14 +15,14 @@ accessories and showrooms. No corporate pages, no investor or press sections, no
 
 | File | Version | What it is |
 |---|---|---|
-| `assets/css/main.css` | **V6** | The only stylesheet |
+| `assets/css/main.css` | **V7** | The only stylesheet |
 | `assets/js/main.js` | **V4** | The only script |
 | `partials/head.html` | **V3** | Shared `<head>` block (icons + manifest) |
-| `partials/nav.html` | **V4** | Offer strip + header nav with dropdowns + Pillai Auto logo |
-| `partials/footer.html` | **V5** | Footer with logo, all four branches and Ather guides link |
+| `partials/nav.html` | **V5** | Offer strip + header nav with dropdowns + Pillai Auto logo |
+| `partials/footer.html` | **V6** | Footer with logo, all four branches and Ather guides link |
 | `tools/site_data.py` | **V4** | Branch and model data — the single source of truth |
 | `tools/build_site.py` | **V6** | Generates every HTML page from that data |
-| `tools/make_logo.py` | **V1** | Builds all logo files from `assets/brand/pillai-auto-logo-source.jpg` |
+| `tools/make_logo.py` | **V2** | Builds all logo files from `assets/brand/pillai-auto-logo-source.jpg` |
 | `tools/build_guides.py` | **V1** | Builds the Ather guides hub and guide pages, with a quality check |
 | `tools/guides_index.py` | **V1** | Collects the guides; which guides each model and showroom page links to |
 | `tools/guides_models.py`, `guides_compare.py`, `guides_features.py`, `guides_ownership.py`, `guides_local.py` | **V1** | The guide content (51 pages) |
@@ -34,10 +34,10 @@ accessories and showrooms. No corporate pages, no investor or press sections, no
 | `guides/*.html` (52 pages) | **V1** | Ather guides hub + 51 guides |
 | `robots.txt` | **V1** | Crawler rules |
 | `sitemap.xml` | **V2** | Crawler file (lastmod 2026-11-10) |
-| `assets/img/og-default.png` | **V3** | Social share card with the Pillai Auto logo (1200×630) |
-| `assets/img/logo-mark.svg`, `logo-mark-on-dark.svg` | **V1** | The logo as vectors, for light and dark backgrounds |
+| `assets/img/og-default.png` | **V4** | Social share card: the logo as supplied, on its own cream (1200×630) |
+| `assets/img/logo.svg` | **V1** | The logo as a sharp vector, identical to the supplied image |
 | `assets/img/favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest` | **V1** | Tab, phone home-screen and Android icons |
-| `assets/img/favicon.svg` | **V2** | Tab icon (Pillai Auto mark on cream) |
+| `assets/img/favicon.svg` | **V3** | Tab icon: the logo with the same cream extended to a square |
 
 Bump a version in the file's header comment and in this table when you change it.
 
@@ -186,14 +186,18 @@ find keeps loading from Ather, with the labelled placeholder as before if that f
 
 ## Logo
 
-The Pillai Auto logo (`assets/brand/pillai-auto-logo-source.jpg`) was traced into a vector, so it
-stays sharp at every size. In the header and footer it is drawn inline: its upper (black) half
-takes the text colour, so it shows white on the dark site and black on light backgrounds; the
-lower half keeps the logo green, #41F130. Header size: 40 px on laptops and tablets, 34 px on
-phones, 32 px on very narrow phones.
+**Rule: the Pillai Auto logo is always used exactly as supplied** — cream background
+(#FDF1C9), black (#000000) and green (#40F12F), same shape and proportions (1390 × 1132).
+Never recolour it, round its corners, remove its background or place a variant on dark.
+
+The supplied image (`assets/brand/pillai-auto-logo-source.jpg`) is traced into a vector so it
+stays sharp; the vector matches the original to within JPEG noise. It appears in the header
+(40 px tall on laptops and tablets, 36 px on phones, 32 px on very narrow phones), in the footer,
+as the browser-tab and home-screen icons, and in the share image. Square icons only add more of
+the same cream above and below, because browsers and phones require a square.
 
 If the logo ever changes, replace the source image, run `python tools/make_logo.py` (needs
-`potrace`), paste the new paths into the partials — or ask for it to be redone — and rebuild.
+`potrace`), and rebuild.
 
 ## Ather guides (SEO pages)
 

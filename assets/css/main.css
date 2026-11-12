@@ -1,8 +1,8 @@
 /* ==========================================================================
    Pillai Auto — Ather dealership website (Chennai · Chengalpattu · Puducherry · Chidambaram)
    File: assets/css/main.css
-   Version: V6
-   Last updated: 12 November 2026 (V6: Pillai Auto logo in header and footer. V5: Ather guides layout. V4: responsive self-hosted media — model-hero
+   Version: V7
+   Last updated: 12 November 2026 (V7: logo used exactly as supplied. V6: Pillai Auto logo in header and footer. V5: Ather guides layout. V4: responsive self-hosted media — model-hero
    frame, phone crops, hero still + video layering. V3: card studio backdrop)
    --------------------------------------------------------------------------
    Order is fixed: tokens -> reset -> primitives -> components -> page
@@ -234,9 +234,10 @@ section.is-flush { padding-block: 0; }
 }
 .site-nav__logo {
   display: flex; align-items: center; gap: 10px;
-  text-decoration: none; flex: none; color: var(--c-ink);
+  text-decoration: none; flex: none;
 }
-.site-nav__logo svg { width: 40px; height: 40px; flex: none; display: block; }   /* V6: Pillai Auto mark */
+/* V7: the Pillai Auto logo exactly as supplied — 1390 x 1132, cream background kept, never recoloured */
+.brand-logo { display: block; flex: none; height: 40px; width: auto; aspect-ratio: 1390 / 1132; }
 .site-nav__logo b {
   font-family: var(--f-display); font-size: 1.05rem;
   letter-spacing: .04em; font-weight: 700; line-height: 1;
@@ -702,10 +703,10 @@ picture { display: contents; }   /* V4: <picture> wrappers don't change layout *
 }
 .site-footer a { color: inherit; text-decoration: none; }
 .site-footer__brand {                                   /* V6: logo row */
-  display: inline-flex; align-items: center; gap: 14px; color: var(--c-ink) !important;
+  display: inline-flex; align-items: center; gap: 16px; color: var(--c-ink) !important;
   margin-bottom: var(--space-5); text-decoration: none !important;
 }
-.site-footer__brand svg { width: 56px; height: 56px; flex: none; }
+.site-footer__brand .brand-logo { height: 60px; }
 .site-footer__brand b { display: block; font-family: var(--f-display); font-size: 1.25rem; letter-spacing: .04em; line-height: 1.1; }
 .site-footer__brand small { display: block; margin-top: 4px; color: var(--c-ink-muted); font-size: var(--t-sm); }
 .site-footer a:hover { color: var(--c-ink); text-decoration: underline; }
@@ -1099,17 +1100,17 @@ input[type="range"]::-moz-range-thumb {
   .cta-full { display: none; }
   .cta-short { display: inline; }
   .site-nav__actions .btn { padding: 8px 13px; min-height: 36px; }
-  .site-nav__logo svg { width: 34px; height: 34px; }
+  .site-nav__logo .brand-logo { height: 36px; }
   .site-nav__logo b { font-size: .95rem; }
   .site-nav__logo small { font-size: 9px; letter-spacing: .1em; }
 }
 
 @media (max-width: 380px) {
   .site-nav__logo small { display: none; }
-  .site-nav__logo svg { width: 32px; height: 32px; }
+  .site-nav__logo .brand-logo { height: 32px; }
 }
 @media (max-width: 599px) {
-  .site-footer__brand svg { width: 46px; height: 46px; }
+  .site-footer__brand .brand-logo { height: 48px; }
 }
 
 /* --- page: Ather guides (V5) --- */

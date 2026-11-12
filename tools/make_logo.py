@@ -1,24 +1,25 @@
 #!/usr/bin/env python3
 """
-make_logo.py  —  Version: V1  (12 Nov 2026)
+make_logo.py  —  Version: V2  (12 Nov 2026)
 
 Builds every logo file the site uses from the company logo image
-(assets/brand/pillai-auto-logo-source.jpg). Run it again only if the logo
-changes; the generated files are committed, so normal site builds don't need it.
+(assets/brand/pillai-auto-logo-source.jpg).
+
+RULE (from Pillai Auto): the logo is always used exactly as it is — same cream
+background, same black and green, same shape and proportions. No recolouring,
+no rounded corners, no transparent version. Only the square icons add more of
+the SAME cream above and below, because browsers and phones need a square.
 
     python tools/make_logo.py
-
-Needs: Pillow, numpy, the `potrace` command (vector tracing) and Playwright
-(for the social-preview image).
+Needs: Pillow, numpy, the `potrace` command (vector tracing) and Playwright.
 
 Writes
-  assets/brand/logo-paths.json        traced vector paths (used by the partials)
-  assets/img/logo-mark.svg            colour mark: black + green, transparent
-  assets/img/logo-mark-on-dark.svg    for dark backgrounds: off-white + green
-  assets/img/favicon.svg              browser tab icon (cream tile)
+  assets/brand/logo-paths.json   traced vector paths (used by the header/footer partials)
+  assets/img/logo.svg            the logo as a sharp vector, identical to the original
+  assets/img/favicon.svg         square browser-tab icon (logo + matching cream)
   assets/img/favicon-32.png, apple-touch-icon.png, icon-192.png, icon-512.png
-  assets/img/og-default.png           1200 x 630 image used when pages are shared
-  site.webmanifest                    home-screen icon details for Android
+  assets/img/og-default.png      1200 x 630 image used when pages are shared
+  site.webmanifest               home-screen icon details for Android
 """
 import json, os, re, subprocess, tempfile
 
@@ -26,12 +27,6 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "assets", "brand", "pillai-auto-logo-source.jpg")
 IMG = os.path.join(ROOT, "assets", "img")
 BRAND = os.path.join(ROOT, "assets", "brand")
-
-GREEN = "#41F130"        # sampled from the logo
-BLACK = "#000000"
-CREAM = "#FCF1C9"        # the logo's background
-ON_DARK = "#F2F4F5"      # site text colour on dark (--c-ink)
-SITE_BG = "#08090A"      # site background (--c-bg)
 
 
 def trace():
@@ -41,9 +36,9 @@ def trace():
     r, g, b = im[..., 0], im[..., 1], im[..., 2]
     masks = {"black": (r < 90) & (g < 90) & (b < 90),
              "green": (g > 150) & (r < 160) & (b < 120)}
-    ys, xs = np.where(masks["black"] | masks["green"])
-    x0, y0, x1, y1 = xs.min(), ys.min(), xs.max() + 1, ys.max() + 1
-    H = im.shape[0]
+    bg = ~(masks["black"] | masks["green"]) & (r > 230)
+    hexc = lambda m: "#%02X%02X%02X" % tuple(int(v) for v in np.median(im[m], 0))
+    H, W = im.shape[:2]
     paths = {}
     with tempfile.TemporaryDirectory() as tmp:
         for name, m in masks.items():
@@ -52,96 +47,82 @@ def trace():
             subprocess.run(["potrace", pbm, "-s", "-o", svg, "--turdsize", "20",
                             "--alphamax", "1.0", "--opttolerance", "0.2", "-u", "1"], check=True)
             paths[name] = " ".join(re.findall(r'<path d="([^"]+)"', open(svg).read(), re.S)).replace("\n", " ")
-    # potrace draws upside down (y up); the group transform below flips it back
-    side = max(x1 - x0, y1 - y0)
-    pad = round(side * 0.04)
-    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
-    vb = [round(cx - side / 2) - pad, round(cy - side / 2) - pad, side + 2 * pad, side + 2 * pad]
-    return {"viewBox": " ".join(map(str, vb)), "flip": H, "black": paths["black"], "green": paths["green"]}
+    return {"w": W, "h": H, "flip": H, "black": paths["black"], "green": paths["green"],
+            "c_black": hexc(masks["black"]), "c_green": hexc(masks["green"]), "c_bg": hexc(bg)}
 
 
-def svg(p, top, bottom=GREEN, bg=None, radius=0.22, size=None, label="Pillai Auto"):
-    vb = list(map(float, p["viewBox"].split()))
-    tile = ""
-    if bg:
-        r = vb[2] * radius
-        tile = f'<rect x="{vb[0]}" y="{vb[1]}" width="{vb[2]}" height="{vb[3]}" rx="{r:.0f}" fill="{bg}"/>'
-    wh = f' width="{size}" height="{size}"' if size else ""
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{p["viewBox"]}"{wh} role="img" aria-label="{label}">'
-            f'{tile}<g transform="translate(0 {p["flip"]}) scale(1 -1)">'
-            f'<path fill="{top}" d="{p["black"]}"/><path fill="{bottom}" d="{p["green"]}"/></g></svg>')
-
-
-def tile_svg(p, bg, scale=0.72):
-    """Mark centred on a rounded square, smaller than the tile (for icons)."""
-    vb = list(map(float, p["viewBox"].split()))
-    s = vb[2]
-    inner = s * scale
-    off = (s - inner) / 2
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {s:.0f} {s:.0f}" role="img" aria-label="Pillai Auto">'
-            f'<rect width="{s:.0f}" height="{s:.0f}" rx="{s * 0.22:.0f}" fill="{bg}"/>'
-            f'<svg x="{off:.1f}" y="{off:.1f}" width="{inner:.1f}" height="{inner:.1f}" viewBox="{p["viewBox"]}">'
+def body(p):
+    """Background + both shapes, in the logo's own coordinates (0..w, 0..h)."""
+    return (f'<rect width="{p["w"]}" height="{p["h"]}" fill="{p["c_bg"]}"/>'
             f'<g transform="translate(0 {p["flip"]}) scale(1 -1)">'
-            f'<path fill="{BLACK}" d="{p["black"]}"/><path fill="{GREEN}" d="{p["green"]}"/></g></svg></svg>')
+            f'<path fill="{p["c_black"]}" d="{p["black"]}"/><path fill="{p["c_green"]}" d="{p["green"]}"/></g>')
 
 
-def render_pngs(files):
-    """files: [(svg_markup_or_html, out_path, w, h)] rendered with Playwright."""
-    from playwright.sync_api import sync_playwright
-    with sync_playwright() as pw:
-        b = pw.chromium.launch()
-        for markup, out, w, h in files:
-            pg = b.new_page(viewport={"width": w, "height": h})
-            html = markup if markup.lstrip().startswith("<!doctype") else \
-                f'<!doctype html><html><body style="margin:0">{markup.replace("<svg ", f"<svg width={w} height={h} ", 1)}</body></html>'
-            pg.set_content(html)
-            pg.screenshot(path=out, omit_background=True)
-            pg.close()
-        b.close()
+def logo_svg(p):
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {p["w"]} {p["h"]}" '
+            f'width="{p["w"]}" height="{p["h"]}" role="img" aria-label="Pillai Auto">{body(p)}</svg>')
+
+
+def square_svg(p):
+    """Square icon: the same logo, with the same cream extended above and below."""
+    s = max(p["w"], p["h"])
+    x, y = (s - p["w"]) / 2, (s - p["h"]) / 2
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {s} {s}" role="img" aria-label="Pillai Auto">'
+            f'<rect width="{s}" height="{s}" fill="{p["c_bg"]}"/>'
+            f'<svg x="{x:g}" y="{y:g}" width="{p["w"]}" height="{p["h"]}">{body(p)}</svg></svg>')
 
 
 def og_html(p):
-    mark = svg(p, ON_DARK)
     return f"""<!doctype html><html><head><style>
-body{{margin:0;width:1200px;height:630px;background:{SITE_BG};font-family:Inter,sans-serif;color:{ON_DARK};
-display:flex;align-items:center;gap:64px;padding:0 96px;box-sizing:border-box;overflow:hidden;position:relative}}
-.m{{width:300px;height:300px;flex:none}} .m svg{{width:100%;height:100%}}
-h1{{font-size:76px;letter-spacing:.02em;margin:0 0 14px;font-weight:700}}
-p{{margin:0;font-size:30px;color:#9ba3ab;line-height:1.35}}
-.k{{display:inline-block;margin-top:28px;padding:10px 20px;border-radius:999px;background:{GREEN};color:{SITE_BG};font-weight:700;font-size:24px}}
-.bar{{position:absolute;left:0;right:0;bottom:0;height:10px;background:{GREEN}}}
-</style></head><body><div class="m">{mark}</div><div><h1>PILLAI AUTO</h1>
-<p>Authorised Ather dealer<br>Chennai · Chengalpattu · Puducherry · Chidambaram</p>
-<span class="k">Sales · Service · Test rides</span></div><div class="bar"></div></body></html>"""
+body{{margin:0;width:1200px;height:630px;background:{p['c_bg']};font-family:Inter,sans-serif;color:#12141a;
+display:flex;align-items:center;gap:72px;padding:0 90px;box-sizing:border-box;overflow:hidden}}
+.m{{width:390px;flex:none}} .m svg{{width:100%;height:auto;display:block}}
+h1{{font-size:78px;letter-spacing:.02em;margin:0 0 16px;font-weight:700}}
+p{{margin:0;font-size:29px;color:#3d4248;line-height:1.4}}
+</style></head><body><div class="m">{logo_svg(p)}</div><div><h1>PILLAI AUTO</h1>
+<p>Authorised Ather dealer<br>Chennai · Chengalpattu<br>Puducherry · Chidambaram</p></div></body></html>"""
+
+
+def render_pngs(items):
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as pw:
+        b = pw.chromium.launch()
+        for html, out, w, h in items:
+            pg = b.new_page(viewport={"width": w, "height": h})
+            if not html.startswith("<!doctype"):
+                html = (f'<!doctype html><html><body style="margin:0">'
+                        + html.replace("<svg ", f'<svg width="{w}" height="{h}" ', 1) + "</body></html>")
+            pg.set_content(html)
+            pg.screenshot(path=out)
+            pg.close()
+        b.close()
 
 
 def main():
     p = trace()
     with open(os.path.join(BRAND, "logo-paths.json"), "w") as f:
         json.dump(p, f)
-    head = "<!-- {} — Version: V1 — generated by tools/make_logo.py from the Pillai Auto logo -->\n"
-    out = {
-        "logo-mark.svg": svg(p, BLACK),
-        "logo-mark-on-dark.svg": svg(p, ON_DARK),
-        "favicon.svg": tile_svg(p, CREAM, 0.8),
-    }
-    for fn, s in out.items():
-        with open(os.path.join(IMG, fn), "w") as f:
-            f.write(head.format("assets/img/" + fn) + s + "\n")
-    icon = tile_svg(p, CREAM, 0.74)
-    render_pngs([(tile_svg(p, CREAM, 0.86), os.path.join(IMG, "favicon-32.png"), 32, 32),
-                 (icon, os.path.join(IMG, "apple-touch-icon.png"), 180, 180),
-                 (icon, os.path.join(IMG, "icon-192.png"), 192, 192),
-                 (icon, os.path.join(IMG, "icon-512.png"), 512, 512),
+    head = "<!-- {} — Version: {} — generated by tools/make_logo.py; the Pillai Auto logo, unchanged -->\n"
+    with open(os.path.join(IMG, "logo.svg"), "w") as f:
+        f.write(head.format("assets/img/logo.svg", "V1") + logo_svg(p) + "\n")
+    with open(os.path.join(IMG, "favicon.svg"), "w") as f:
+        f.write(head.format("assets/img/favicon.svg", "V3") + square_svg(p) + "\n")
+    for old in ("logo-mark.svg", "logo-mark-on-dark.svg"):          # V1 variants, withdrawn
+        if os.path.exists(os.path.join(IMG, old)):
+            os.remove(os.path.join(IMG, old))
+    sq = square_svg(p)
+    render_pngs([(sq, os.path.join(IMG, "favicon-32.png"), 32, 32),
+                 (sq, os.path.join(IMG, "apple-touch-icon.png"), 180, 180),
+                 (sq, os.path.join(IMG, "icon-192.png"), 192, 192),
+                 (sq, os.path.join(IMG, "icon-512.png"), 512, 512),
                  (og_html(p), os.path.join(IMG, "og-default.png"), 1200, 630)])
     manifest = {"name": "Pillai Auto — Authorised Ather Dealer", "short_name": "Pillai Auto",
                 "icons": [{"src": "assets/img/icon-192.png", "sizes": "192x192", "type": "image/png"},
                           {"src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png"}],
-                "theme_color": SITE_BG, "background_color": SITE_BG, "display": "browser", "start_url": "/"}
+                "theme_color": "#08090A", "background_color": p["c_bg"], "display": "browser", "start_url": "/"}
     with open(os.path.join(ROOT, "site.webmanifest"), "w") as f:
         json.dump(manifest, f, indent=2)
-    print("logo files written; viewBox", p["viewBox"],
-          f"; path data {len(p['black']) + len(p['green'])} chars")
+    print(f"logo {p['w']}x{p['h']}  black {p['c_black']}  green {p['c_green']}  background {p['c_bg']}")
 
 
 if __name__ == "__main__":
