@@ -1,8 +1,10 @@
 /* ==========================================================================
    Pillai Auto — Ather dealership website (Chennai · Chengalpattu · Puducherry · Chidambaram)
    File: assets/css/main.css
-   Version: V8
-   Last updated: 12 November 2026 (V8: company name in the header twice as big; compact header below 1100px.
+   Version: V9
+   Last updated: 15 November 2026 (V9: phone/tablet menu rebuilt — full-height panel with side margins,
+   even white text, roomy rows, arrows kept on screen, Call + WhatsApp buttons at the bottom.
+   V8: company name in the header twice as big; compact header below 1100px.
    V7: logo used exactly as supplied. V6: Pillai Auto logo in header and footer. V5: Ather guides layout. V4: responsive self-hosted media — model-hero
    frame, phone crops, hero still + video layering. V3: card studio backdrop)
    --------------------------------------------------------------------------
@@ -258,6 +260,7 @@ section.is-flush { padding-block: 0; }
 .site-nav__list a:hover, .site-nav__list a.is-active { color: var(--c-ink); }
 .site-nav__actions { display: flex; align-items: center; gap: var(--space-2); flex: 0 1 auto; min-width: 0; }
 .cta-short { display: none; }
+.site-nav__mcta { display: none; }   /* V9: Call + WhatsApp row shows only inside the phone/tablet menu */
 .site-nav__toggle {
   display: none; background: none; border: 1px solid var(--c-line);
   border-radius: var(--radius); padding: 9px 10px; cursor: pointer; line-height: 0;
@@ -1076,15 +1079,35 @@ input[type="range"]::-moz-range-thumb {
 /* V8: compact header (menu button) below 1100px, so the bigger name never crowds the menu */
 @media (max-width: 1099px) {
   .site-nav__toggle { display: block; }
+  /* V9: the menu panel fills the screen below the header and scrolls on its own */
   .site-nav__list {
-    display: none; position: absolute; left: 0; right: 0;
-    top: 100%; flex-direction: column; align-items: stretch; gap: 0;
-    background: var(--c-bg-2); border-bottom: 1px solid var(--c-line);
-    padding: var(--space-2) 0 var(--space-4);
+    display: none; position: absolute; left: 0; right: 0; top: 100%;
+    flex-direction: column; align-items: stretch; gap: 0;
+    height: calc(100vh - var(--menu-top, var(--nav-h)));
+    height: calc(100dvh - var(--menu-top, var(--nav-h)));
+    overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+    background: var(--c-bg-2); border-top: 1px solid var(--c-line);
+    padding: var(--space-2) var(--space-4) calc(var(--space-6, 48px) + env(safe-area-inset-bottom));
   }
   .site-nav__list.is-open { display: flex; }
-  .site-nav__list li { border-top: 1px solid var(--c-line); }
-  .site-nav__list a { display: block; padding: var(--space-3) 0; font-size: var(--t-base); }
+  .site-nav__list > li { border-bottom: 1px solid var(--c-line); }
+  .site-nav__list > li > a:not(.btn),
+  .site-nav__list .menu > summary {
+    display: flex; align-items: center; justify-content: space-between; width: 100%;
+    min-height: 56px; padding: 0 4px;
+    font-family: var(--f-display); font-size: 1.0625rem; font-weight: 500; color: var(--c-ink);
+  }
+  .site-nav__list > li > a.is-active { color: var(--c-accent); }
+  .site-nav__list .menu > summary::after { flex: none; width: 8px; height: 8px; margin: -4px 6px 0 12px; }
+  .site-nav__list .menu[open] > summary::after { margin-top: 4px; }
+  .site-nav__list .menu[open] > summary { color: var(--c-accent); }
+  .site-nav__mcta {
+    border-bottom: 0 !important; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    padding-top: var(--space-5);
+  }
+  .site-nav__mcta .btn { width: 100%; min-height: 48px; padding: 12px 10px; font-size: var(--t-sm); justify-content: center; text-align: center; color: #04140a; }
+  html.nav-open, html.nav-open body { overflow: hidden; }
+  html.nav-open .wa-float, html.nav-open .to-top, html.nav-open .sticky-cta { display: none !important; }
   .site-nav__actions .btn--desk { display: none; }
   .subnav__model { display: none; }
 }
@@ -1230,9 +1253,13 @@ input[type="range"]::-moz-range-thumb {
 @media (max-width: 1099px) {
   /* dropdowns become plain stacked groups inside the burger panel */
   .menu__panel {
-    position: static; min-width: 0; border: 0; background: transparent;
-    box-shadow: none; padding: 0 0 var(--space-2) var(--space-3); animation: none;
+    position: static; min-width: 0; border: 0; border-radius: 0; box-shadow: none; animation: none;
+    background: transparent; padding: 0 0 var(--space-3) 4px;
   }
-  .menu > summary { padding: var(--space-3) 0; font-size: var(--t-base); color: var(--c-ink); width: 100%; justify-content: space-between; }
+  .menu__panel a { padding: 10px 12px; border-left: 2px solid var(--c-line); border-radius: 0; }
+  .menu__panel a:hover, .menu__panel a.is-active { background: rgba(255,255,255,.04); border-left-color: var(--c-accent); }
+  .menu__panel b { font-size: var(--t-base); }
+  .menu__panel span { font-size: var(--t-xs); margin-top: 2px; }
+  .menu__all { margin-top: 0; border-top: 0; font-size: var(--t-sm); }
   .site-nav__list .has-menu { position: static; }
 }

@@ -1,8 +1,10 @@
 /* ==========================================================================
    Pillai Auto — Ather dealership website
    File: assets/js/main.js
-   Version: V7
-   Last updated: 12 November 2026 (V7: full menu from 1100px, matching the bigger header name.
+   Version: V8
+   Last updated: 15 November 2026 (V8: phone menu fills the screen below the header,
+   page behind stops scrolling while it is open, one group open at a time.
+   V7: full menu from 1100px, matching the bigger header name.
    V6: main phone → Chennai OMR 92400 13817.
    V5: WhatsApp for all outlets → 73581 05818.
    V4: colour picker swaps responsive srcsets;
@@ -54,23 +56,32 @@
     var list = $('#nav-list');
     if (!btn || !list) return;
 
+    var nav = btn.closest('.site-nav');
+    var root = document.documentElement;
+    function setOpen(open) {
+      if (open && nav) {   // panel height = screen below the header (the offer strip may still be showing)
+        root.style.setProperty('--menu-top', Math.max(0, nav.getBoundingClientRect().bottom) + 'px');
+      }
+      btn.setAttribute('aria-expanded', String(open));
+      list.classList.toggle('is-open', open);
+      root.classList.toggle('nav-open', open);
+    }
+
     btn.addEventListener('click', function () {
-      var open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!open));
-      list.classList.toggle('is-open', !open);
+      setOpen(btn.getAttribute('aria-expanded') !== 'true');
     });
 
     list.addEventListener('click', function (e) {
-      if (e.target.closest('a')) {
-        btn.setAttribute('aria-expanded', 'false');
-        list.classList.remove('is-open');
-      }
+      if (e.target.closest('a')) setOpen(false);
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 1100 && list.classList.contains('is-open')) setOpen(false);
     });
 
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && list.classList.contains('is-open')) {
-        btn.setAttribute('aria-expanded', 'false');
-        list.classList.remove('is-open');
+        setOpen(false);
         btn.focus();
       }
     });
@@ -697,8 +708,8 @@
     var desktop = function () { return window.innerWidth >= 1100; };   // V7: matches the CSS header breakpoint
 
     menus.forEach(function (d) {
-      d.addEventListener('toggle', function () {
-        if (!d.open || !desktop()) return;
+      d.addEventListener('toggle', function () {   // V8: one group open at a time on phones too
+        if (!d.open) return;
         menus.forEach(function (o) { if (o !== d) o.open = false; });
       });
     });
